@@ -1,20 +1,25 @@
-# Ivan Kashuba — Personal Website
+# Ivan Kashuba - Personal Website v2
 
-A bilingual, responsive static website. No paid hosting or backend is required.
+Обновлённая двуязычная персональная страница с расширенной информацией из CV и résumé.
 
-## Publish free with GitHub Pages
+## Что изменено
 
-1. Create a new public GitHub repository, for example `ivan-kashuba-rd.github.io`.
-2. Upload `index.html` to the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**.
-5. Select branch **main** and folder **/(root)**, then save.
-6. Your public address will normally be:
-   `https://ivan-kashuba-rd.github.io/`
+- Добавлен более подробный профессиональный опыт без повторения одинаковых фактов в нескольких разделах.
+- Добавлены разделы о развитии в биоинформатике и молекулярном докинге.
+- Добавлен блок о создании простых сайтов и возможной интерактивности.
+- Добавлены четыре инженерных Python-проекта с прямыми ссылками.
+- Добавлены светлая и тёмная темы, переключатель языков и кнопка возврата наверх.
+- В комплект включены PDF-файлы подробного CV и двухстраничного résumé.
 
-For a project repository with another name, the address will normally be:
-`https://ivan-kashuba-rd.github.io/REPOSITORY-NAME/`
+## Как обновить сайт на GitHub Pages
 
-## Edit
-
-Open `index.html` in any text editor. Contact links, biography, experience and projects are directly editable in the HTML.
+1. Распакуйте архив.
+2. Скопируйте все четыре файла в локальную папку репозитория `ivan-kashuba-rd.github.io`:
+   - `index.html`
+   - `Ivan_Kashuba_Detailed_CV.pdf`
+   - `Ivan_Kashuba_Resume.pdf`
+   - `README.md`
+3. Разрешите замену старых `index.html` и `README.md`.
+4. В GitHub Desktop укажите Summary: `Expand personal website content`.
+5. Нажмите **Commit to main**, затем **Push origin**.
+6. Через несколько минут обновите страницу `https://ivan-kashuba-rd.github.io/` сочетанием `Ctrl+F5`.
