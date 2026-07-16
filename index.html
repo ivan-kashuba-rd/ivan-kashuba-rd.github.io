@@ -147,16 +147,26 @@
         radial-gradient(circle at 70% 24%,rgba(255,242,222,.86) 0 8%,transparent 8.5%),
         radial-gradient(circle at 36% 35%,rgba(255,171,188,.8),transparent 24%),
         linear-gradient(145deg,#fff0e5 0%,#f6c4bd 48%,#c85d79 100%);
+      padding:28px;
     }
-    .web-case-visual::before,.web-case-visual::after {
-      content:""; position:absolute; border-radius:55% 45% 50% 50%; background:linear-gradient(145deg,#ffd9de,#ef7798 55%,#9e355f);
-      box-shadow:inset 8px 7px 15px rgba(255,255,255,.42),0 18px 40px rgba(102,35,62,.22); transform-origin:100% 100%;
-    }
-    .web-case-visual::before { width:90px; height:150px; transform:translate(-26px,-19px) rotate(-42deg); }
-    .web-case-visual::after { width:90px; height:150px; transform:translate(24px,-19px) rotate(42deg) scaleX(-1); }
-    .web-case-mark { position:relative; z-index:2; margin-top:125px; text-align:center; color:#502235; text-shadow:0 1px rgba(255,255,255,.5); }
-    .web-case-mark strong { display:block; font-family:Georgia,serif; font-size:2.15rem; letter-spacing:.18em; }
-    .web-case-mark span { font-size:.72rem; text-transform:uppercase; letter-spacing:.24em; }
+    .site-preview { width:min(100%,430px); border-radius:16px; overflow:hidden; background:#fffaf4; color:#3d2826; box-shadow:0 24px 55px rgba(83,31,49,.3); transform:rotate(-1.2deg); }
+    .site-preview-bar { height:22px; display:flex; align-items:center; gap:5px; padding:0 10px; background:#f5e9e2; }
+    .site-preview-bar i { width:6px; height:6px; border-radius:50%; background:#d9a9a3; }
+    .site-preview-nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px 9px; border-bottom:1px solid #eeded5; }
+    .mini-brand { display:flex; align-items:center; gap:8px; font:700 .66rem/1 Georgia,serif; letter-spacing:.13em; }
+    .mini-flower { position:relative; width:30px; height:30px; filter:drop-shadow(0 4px 5px rgba(164,55,92,.2)); }
+    .mini-flower i { position:absolute; left:11px; top:2px; width:9px; height:14px; border-radius:80% 20% 70% 30%; background:linear-gradient(145deg,#ffd3df,#ef6591 55%,#a72e63); transform-origin:4px 13px; }
+    .mini-flower i:nth-child(2) { transform:rotate(72deg); }.mini-flower i:nth-child(3) { transform:rotate(144deg); }
+    .mini-flower i:nth-child(4) { transform:rotate(216deg); }.mini-flower i:nth-child(5) { transform:rotate(288deg); }
+    .mini-links { display:flex; gap:9px; color:#8b6a62; font-size:.43rem; text-transform:uppercase; letter-spacing:.08em; }
+    .site-preview-hero { display:grid; grid-template-columns:1.05fr .95fr; min-height:190px; }
+    .mini-copy { padding:24px 10px 20px 20px; }
+    .mini-kicker { color:#b24d68; font-size:.42rem; letter-spacing:.15em; text-transform:uppercase; }
+    .mini-title { margin:8px 0 10px; font:500 1.35rem/1.05 Georgia,serif; }
+    .mini-text { width:85%; height:22px; border-radius:4px; background:repeating-linear-gradient(to bottom,#b9a29a 0 2px,transparent 2px 8px); opacity:.55; }
+    .mini-button { display:inline-block; margin-top:14px; padding:6px 10px; border-radius:20px; background:#bb5d72; color:white; font-size:.43rem; }
+    .mini-logo-stage { margin:14px 14px 14px 4px; border-radius:70px 12px 70px 12px; background:linear-gradient(150deg,#fce8de,#d98da0); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .mini-logo-stage img { width:88%; height:88%; object-fit:contain; filter:drop-shadow(0 15px 12px rgba(119,38,69,.25)); }
     .web-case-copy { padding:30px; align-self:center; }
     .case-status { display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--accent2); font-size:.78rem; font-weight:850; }
     .case-status::before { content:""; width:7px; height:7px; border-radius:50%; background:currentColor; }
@@ -377,7 +387,17 @@
     <div class="grid">
       <article class="card web-case">
         <div class="web-case-visual" aria-hidden="true">
-          <div class="web-case-mark"><strong>LUMÉ</strong><span>Beauty studio · Antalya</span></div>
+          <div class="site-preview">
+            <div class="site-preview-bar"><i></i><i></i><i></i></div>
+            <div class="site-preview-nav">
+              <div class="mini-brand"><span class="mini-flower"><i></i><i></i><i></i><i></i><i></i></span>LUMÉ</div>
+              <div class="mini-links"><span>Services</span><span>Studio</span><span>Contact</span></div>
+            </div>
+            <div class="site-preview-hero">
+              <div class="mini-copy"><div class="mini-kicker">Beauty studio · Antalya</div><div class="mini-title">Natural beauty,<br>thoughtful care</div><div class="mini-text"></div><span class="mini-button">Book online</span></div>
+              <div class="mini-logo-stage"><img src="assets/lume-3d-flower.png" alt=""></div>
+            </div>
+          </div>
         </div>
         <div class="web-case-copy">
           <span class="case-status" data-lang="en">Personal concept · not yet launched for a client</span>
