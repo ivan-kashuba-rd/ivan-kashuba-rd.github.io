@@ -137,6 +137,30 @@
     .service strong { display:block; margin-bottom:5px; }
     .availability { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
     .availability span { padding:7px 11px; border-radius:999px; border:1px solid var(--line); font-size:.88rem; color:var(--soft); }
+    .web-case {
+      grid-column:span 12; overflow:hidden; display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
+      padding:0; min-height:330px;
+    }
+    .web-case-visual {
+      position:relative; isolation:isolate; display:flex; align-items:center; justify-content:center; min-height:330px;
+      background:
+        radial-gradient(circle at 70% 24%,rgba(255,242,222,.86) 0 8%,transparent 8.5%),
+        radial-gradient(circle at 36% 35%,rgba(255,171,188,.8),transparent 24%),
+        linear-gradient(145deg,#fff0e5 0%,#f6c4bd 48%,#c85d79 100%);
+    }
+    .web-case-visual::before,.web-case-visual::after {
+      content:""; position:absolute; border-radius:55% 45% 50% 50%; background:linear-gradient(145deg,#ffd9de,#ef7798 55%,#9e355f);
+      box-shadow:inset 8px 7px 15px rgba(255,255,255,.42),0 18px 40px rgba(102,35,62,.22); transform-origin:100% 100%;
+    }
+    .web-case-visual::before { width:90px; height:150px; transform:translate(-26px,-19px) rotate(-42deg); }
+    .web-case-visual::after { width:90px; height:150px; transform:translate(24px,-19px) rotate(42deg) scaleX(-1); }
+    .web-case-mark { position:relative; z-index:2; margin-top:125px; text-align:center; color:#502235; text-shadow:0 1px rgba(255,255,255,.5); }
+    .web-case-mark strong { display:block; font-family:Georgia,serif; font-size:2.15rem; letter-spacing:.18em; }
+    .web-case-mark span { font-size:.72rem; text-transform:uppercase; letter-spacing:.24em; }
+    .web-case-copy { padding:30px; align-self:center; }
+    .case-status { display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--accent2); font-size:.78rem; font-weight:850; }
+    .case-status::before { content:""; width:7px; height:7px; border-radius:50%; background:currentColor; }
+    .case-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
     footer { padding:54px 0 72px; color:var(--muted); text-align:center; }
     #topBtn {
       position:fixed; right:18px; bottom:18px; z-index:15; display:none;
@@ -151,6 +175,8 @@
       .service-grid { grid-template-columns:1fr; }
       .nav-links a:not(.keep) { display:none; }
       header { padding-top:62px; }
+      .web-case { grid-template-columns:1fr; }
+      .web-case-visual { min-height:260px; }
     }
     @media (max-width: 560px) {
       .wrap { width:min(calc(100% - 22px),var(--max)); }
@@ -349,6 +375,26 @@
       <p data-lang="ru">Я создаю и поддерживаю лёгкие сайты с применением ИИ-инструментов, быстро адаптируя структуру, оформление и информацию под человека или проект.</p>
     </div>
     <div class="grid">
+      <article class="card web-case">
+        <div class="web-case-visual" aria-hidden="true">
+          <div class="web-case-mark"><strong>LUMÉ</strong><span>Beauty studio · Antalya</span></div>
+        </div>
+        <div class="web-case-copy">
+          <span class="case-status" data-lang="en">Personal concept · not yet launched for a client</span>
+          <span class="case-status" data-lang="ru">Личная концепция · ещё не запущена для клиента</span>
+          <h4 style="font-size:clamp(1.55rem,3vw,2.2rem);margin-top:15px">LUMÉ Antalya — Beauty Studio</h4>
+          <p data-lang="en">A responsive four-language website concept for a beauty studio in Antalya. It includes 32 services grouped into three directions, category-aware booking, WhatsApp contact, maps, a gallery, dual-currency prices and calm, accessible mobile navigation.</p>
+          <p data-lang="ru">Адаптивная концепция сайта студии красоты в Анталии на четырёх языках. В ней 32 услуги в трёх направлениях, понятное бронирование по категориям, связь через WhatsApp, карта, галерея, цены в двух валютах и удобная мобильная навигация.</p>
+          <p class="note" data-lang="en">The project explores two visual directions: a calm premium version and a warmer, more joyful colour variation.</p>
+          <p class="note" data-lang="ru">В проекте исследованы два визуальных направления: спокойная премиальная версия и более тёплый, радостный цветовой вариант.</p>
+          <div class="case-actions">
+            <a class="btn primary" href="https://studiya-krasoty.alesygreen.chatgpt.site" target="_blank" rel="noopener" data-lang="en">View calm version ↗</a>
+            <a class="btn primary" href="https://studiya-krasoty.alesygreen.chatgpt.site" target="_blank" rel="noopener" data-lang="ru">Смотреть спокойную версию ↗</a>
+            <a class="btn" href="https://lume-antalya-joyful.alesygreen.chatgpt.site" target="_blank" rel="noopener" data-lang="en">Joyful version ↗</a>
+            <a class="btn" href="https://lume-antalya-joyful.alesygreen.chatgpt.site" target="_blank" rel="noopener" data-lang="ru">Радостная версия ↗</a>
+          </div>
+        </div>
+      </article>
       <div class="card span-7">
         <h4 data-lang="en">Types of pages I can build and update quickly</h4><h4 data-lang="ru">Какие страницы я могу быстро создавать и обновлять</h4>
         <div class="service-grid">
