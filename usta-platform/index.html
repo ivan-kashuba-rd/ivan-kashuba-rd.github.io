@@ -106,7 +106,13 @@
   <nav class="mobile-bar"><button data-view="catalog"><span>⌕</span>Услуги</button><button data-view="orders"><span>▣</span>Заказы</button><button data-view="messages"><span class="mobile-chat">▢</span>Чаты<i>2</i></button><button data-view="favorites"><span>♡</span>Избранное</button><button data-view="account"><span>♙</span>Профиль</button></nav>
   <script src="script.js"></script>
   <script src="app.js"></script>
-  <script src="i18n.js"></script>
+  <script>
+    (() => {
+      const requested = new URLSearchParams(location.search).get('lang');
+      if (['ru', 'tr', 'en'].includes(requested)) localStorage.setItem('usta-lang', requested);
+    })();
+  </script>
+  <script src="i18n.js?v=2"></script>
   <script>const cb=document.querySelector('#cookieBanner');if(!localStorage.getItem('usta-cookie-choice'))cb.classList.add('show');document.querySelector('#cookieAccept').onclick=()=>{localStorage.setItem('usta-cookie-choice','all');cb.classList.remove('show')};document.querySelector('#cookieNecessary').onclick=()=>{localStorage.setItem('usta-cookie-choice','necessary');cb.classList.remove('show')};</script>
 </body>
 </html>
