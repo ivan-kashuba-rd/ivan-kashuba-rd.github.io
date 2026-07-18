@@ -137,6 +137,18 @@
     .service strong { display:block; margin-bottom:5px; }
     .availability { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
     .availability span { padding:7px 11px; border-radius:999px; border:1px solid var(--line); font-size:.88rem; color:var(--soft); }
+    .science-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:20px; }
+    .science-figure { margin:0; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#05090e; }
+    .science-figure a { display:block; background:#05090e; }
+    .science-figure img { display:block; width:100%; height:270px; object-fit:contain; transition:transform .25s ease; }
+    .science-figure:hover img { transform:scale(1.015); }
+    .science-figure figcaption { padding:12px 14px; color:var(--soft); font-size:.86rem; border-top:1px solid var(--line); }
+    .science-figure figcaption strong { color:var(--accent2); }
+    .coursework-note { margin-top:16px; padding:14px 16px; border-left:3px solid var(--accent2); border-radius:0 12px 12px 0; background:color-mix(in srgb,var(--accent2) 7%,transparent); }
+    .work-figure { margin:18px 0 4px; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#fff; }
+    .work-figure img { display:block; width:100%; max-height:430px; object-fit:contain; }
+    .work-figure.compact { width:min(100%,320px); }
+    .work-figure figcaption { padding:10px 13px; color:#496274; background:#f4f8fb; font-size:.82rem; border-top:1px solid rgba(17,97,142,.14); }
     .web-case {
       grid-column:span 12; overflow:hidden; display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
       padding:0; min-height:330px;
@@ -201,6 +213,8 @@
       header { padding-top:62px; }
       .web-case { grid-template-columns:1fr; }
       .web-case-visual { min-height:260px; }
+      .science-gallery { grid-template-columns:1fr; }
+      .science-figure img { height:auto; max-height:360px; }
     }
     @media (max-width: 560px) {
       .wrap { width:min(calc(100% - 22px),var(--max)); }
@@ -319,6 +333,21 @@
         <ul data-lang="en"><li>More reliable docking preparation, controls and interpretation.</li><li>Protein and ligand data handling in reproducible Python workflows.</li><li>Structural-biology databases and literature-driven validation.</li><li>Clear separation between exploratory computational results and experimentally validated conclusions.</li></ul>
         <ul data-lang="ru"><li>Более надёжная подготовка докинга, контрольные проверки и интерпретация.</li><li>Обработка данных о белках и лигандах в воспроизводимых процессах Python.</li><li>Базы структурной биологии и проверка выводов по литературе.</li><li>Чёткое разделение предварительных вычислительных результатов и экспериментально подтверждённых выводов.</li></ul>
       </div>
+      <article class="card span-12">
+        <span class="project-tag">ProteinsPlus · JAMDA</span>
+        <h4 data-lang="en">Molecular Docking Coursework: Ligands–Influenza Hemagglutinin</h4>
+        <h4 data-lang="ru">Учебная работа по молекулярному докингу: лиганды–гемагглютинин вируса гриппа</h4>
+        <p data-lang="en">Coursework exercise in molecular docking using ProteinsPlus. All four figures show ligands docked to the same influenza hemagglutinin target used for the dinaciclib calculation. The work included protein and ligand preparation, binding-site analysis, docking-pose review and interpretation of non-covalent interaction diagrams.</p>
+        <p data-lang="ru">Учебная работа по молекулярному докингу с использованием ProteinsPlus. На всех четырёх изображениях показаны лиганды, рассчитанные для одной и той же мишени — гемагглютинина вируса гриппа, использованного в расчёте динациклиба. Работа включала подготовку белка и лигандов, анализ сайта связывания, просмотр поз докинга и интерпретацию диаграмм нековалентных взаимодействий.</p>
+        <div class="science-gallery">
+          <figure class="science-figure"><a href="assets/docking-dinaciclib.png" target="_blank" rel="noopener"><img src="assets/docking-dinaciclib.png" alt="Dinaciclib docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong>Dinaciclib · JAMDA −2.7395</strong><br><span data-lang="en">Predicted binding pose and selected non-covalent interactions.</span><span data-lang="ru">Предсказанная поза связывания и выбранные нековалентные взаимодействия.</span></figcaption></figure>
+          <figure class="science-figure"><a href="assets/docking-ligand-2.png" target="_blank" rel="noopener"><img src="assets/docking-ligand-2.png" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 1 · JAMDA −2.4808</strong><strong data-lang="ru">Дополнительный лиганд 1 · JAMDA −2.4808</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
+          <figure class="science-figure"><a href="assets/docking-ligand-3.png" target="_blank" rel="noopener"><img src="assets/docking-ligand-3.png" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 2 · JAMDA −2.4527</strong><strong data-lang="ru">Дополнительный лиганд 2 · JAMDA −2.4527</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
+          <figure class="science-figure"><a href="assets/docking-ligand-4.png" target="_blank" rel="noopener"><img src="assets/docking-ligand-4.png" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 3 · JAMDA −2.1566</strong><strong data-lang="ru">Дополнительный лиганд 3 · JAMDA −2.1566</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
+        </div>
+        <p class="coursework-note note" data-lang="en">This is an in-silico coursework result, not experimental validation of antiviral activity. The scores are reported as generated in the training workflow and should not be interpreted as evidence of therapeutic efficacy.</p>
+        <p class="coursework-note note" data-lang="ru">Это результат учебного расчёта in silico, а не экспериментальное подтверждение противовирусной активности. Значения приведены в том виде, в котором они были получены в учебном процессе, и не являются доказательством терапевтической эффективности.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -346,6 +375,7 @@
         <div class="meta">Aug 2021 – Apr 2024 · Glycolide monomer manufacturing</div>
         <ul data-lang="en"><li>Maintained process documentation for glycolide synthesis, purification, filtration and thermal-vacuum operations used in biodegradable polymer production.</li><li>Investigated quality deviations linked to raw-material dehydration, storage-related oxidation, filtration and thermal-vacuum processing; supported installation of an improved drying cabinet.</li><li>Defined practical operating-temperature ranges for synthesis and distillation and improved filtration by insulating the filter element, reducing overheating and unintended oligomer dissolution.</li><li>Contributed to production of approximately 600 kg of monomer.</li><li>Reduced preparation time of a heat-crosslinking polymer–dye protective solution from about two weeks to a few hours through grinding, heating and controlled mixing.</li><li>Co-developed a microwave synthesis and distillation setup for university project work; ¹H NMR revealed rapid moisture-associated oligomerization of the monomer.</li></ul>
         <ul data-lang="ru"><li>Вёл технологическую документацию по синтезу, очистке, фильтрации и термовакуумным операциям с гликолидом для биоразлагаемых полимеров.</li><li>Исследовал отклонения качества, связанные с обезвоживанием сырья, окислением при хранении, фильтрацией и термовакуумной обработкой; участвовал во внедрении улучшенного сушильного шкафа.</li><li>Определил практические температурные диапазоны синтеза и дистилляции и улучшил фильтрацию теплоизоляцией фильтрующего элемента, снизив перегрев и нежелательное растворение олигомеров.</li><li>Участвовал в производстве примерно 600 кг мономера.</li><li>Сократил приготовление термосшиваемого защитного раствора полимер–краситель примерно с двух недель до нескольких часов за счёт измельчения, нагрева и контролируемого перемешивания.</li><li>Участвовал в создании установки микроволнового синтеза и дистилляции для университетского проекта; ¹H ЯМР показал быструю олигомеризацию мономера при воздействии влаги.</li></ul>
+        <figure class="work-figure"><a href="assets/microwave-synthesis-setup.png" target="_blank" rel="noopener"><img src="assets/microwave-synthesis-setup.png" alt="Schematic of a microwave synthesis and distillation laboratory setup"></a><figcaption><span data-lang="en">Schematic of the microwave-assisted synthesis and distillation setup developed for university project work.</span><span data-lang="ru">Схема установки микроволнового синтеза и дистилляции, разработанной для университетского проекта.</span></figcaption></figure>
       </article>
       <article class="role">
         <h4 data-lang="en">Process Engineer · ODV Prescription Optics Plant</h4><h4 data-lang="ru">Инженер-технолог · Завод рецептурной оптики ODV</h4>
@@ -358,6 +388,7 @@
         <div class="meta">Jan 2013 – Jul 2021 · Photonics and medical light-guide technology</div>
         <ul data-lang="en"><li>Played a key hands-on role in a team that developed and implemented a flexible PMMA light-guide neonatal phototherapy lamp for treatment of hyperbilirubinemia in premature infants.</li><li>Proposed automated laser engraving of PMMA light guides to create controlled side emission and identified suitable equipment suppliers.</li><li>Co-assembled an LED UV-curing unit for rapid connector fixation; machined connectors and attachment components.</li><li>Created a detailed written workflow for a substantial part of lamp production and assembly and supported infrared light-guide processing and extrusion laboratory work.</li><li>Participated in volunteer projects supporting children in orphanages, reinforcing a long-term interest in medical applications of materials science.</li></ul>
         <ul data-lang="ru"><li>Сыграл ключевую практическую роль в команде, разработавшей и внедрившей гибкую фототерапевтическую лампу на основе ПММА-световодов для лечения гипербилирубинемии у недоношенных детей.</li><li>Предложил автоматическую лазерную гравировку ПММА-световодов для управляемого бокового свечения и нашёл подходящих поставщиков оборудования.</li><li>Участвовал в сборке светодиодной УФ-установки для быстрого отверждения клея; изготавливал коннекторы и крепёжные детали.</li><li>Подготовил подробную письменную процедуру значительной части производства и сборки лампы и участвовал в лабораторной обработке и экструзии ИК-световодов.</li><li>Участвовал в волонтёрских проектах помощи детям в детских домах, что укрепило мой интерес к медицинским применениям материаловедения.</li></ul>
+        <figure class="work-figure compact"><a href="assets/phototherapy-light-guide.png" target="_blank" rel="noopener"><img src="assets/phototherapy-light-guide.png" alt="Flexible PMMA light-guide phototherapy element"></a><figcaption><span data-lang="en">Flexible PMMA light-guide element used in the neonatal phototherapy development.</span><span data-lang="ru">Гибкий ПММА-световодный элемент, применявшийся в разработке фототерапевтической лампы.</span></figcaption></figure>
       </article>
     </div>
   </div>

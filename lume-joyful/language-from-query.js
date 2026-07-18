@@ -5,14 +5,10 @@
   window.addEventListener("load", () => {
     let attempts = 0;
     const timer = window.setInterval(() => {
-      const select = [...document.querySelectorAll("select")].find((item) =>
-        [...item.options].some((option) => option.value === "en") &&
-        [...item.options].some((option) => option.value === "ru")
+      const button = [...document.querySelectorAll(".langs button")].find(
+        (item) => item.textContent.trim().toLowerCase() === lang
       );
-      if (select) {
-        select.value = lang;
-        select.dispatchEvent(new Event("change", { bubbles: true }));
-      }
+      if (button) button.click();
       attempts += 1;
       if (document.documentElement.lang === lang || attempts >= 30) {
         window.clearInterval(timer);
