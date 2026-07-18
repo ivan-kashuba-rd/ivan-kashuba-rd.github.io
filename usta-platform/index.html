@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Usta Alanya — местные специалисты и услуги в Алании" />
+  <title>Usta Alanya — специалисты рядом</title>
+  <link rel="icon" type="image/png" href="assets/usta-3d-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="pro.css" />
+  <link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="language.css" />
+  <link rel="stylesheet" href="cookie.css" />
+  <link rel="stylesheet" href="layout-fixes.css" />
+  <style>.hero h1{font-size:50px;max-width:660px}.chat-info{background:#eaf4ee;border-radius:13px;padding:15px 17px;margin-bottom:18px}.chat-info b{font-size:12px}.chat-info p{font-size:10px;color:#607068;margin:5px 0 0;line-height:1.5}@media(max-width:560px){.hero h1{font-size:38px}}</style>
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#"><img class="logo-mark brand-image" src="assets/usta-3d-logo.png" alt=""><span>Usta <b>Alanya</b></span></a>
+    <nav class="nav" aria-label="Главное меню">
+      <a href="#services">Услуги</a><a href="#how">Как это работает</a><a href="#experts">Специалисты</a><button class="nav-action" data-view="orders">Мои заказы</button>
+    </nav>
+    <div class="header-actions">
+      <button class="header-icon" type="button" data-view="favorites" aria-label="Избранное">♡<i id="favCount">0</i></button><button class="header-icon message-icon" type="button" data-view="messages" aria-label="Сообщения"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 9 9 0 0 1-3.4-.7L4 20l1.5-4A7.4 7.4 0 0 1 4 11.5 7.5 7.5 0 0 1 12 4a7.5 7.5 0 0 1 8 7.5Z"/></svg><i>2</i></button><select class="lang" id="langSelect" aria-label="Язык"><option value="tr">TR</option><option value="en">EN</option><option value="ru" selected>RU</option></select>
+      <button class="login" type="button" data-modal="login">Войти</button>
+      <button class="pro-button" type="button" data-pro>Я — специалист</button>
+    </div>
+    <button class="menu-toggle" aria-label="Открыть меню">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> Подбор специалистов в Алании</div>
+        <h1>Напишите, что нужно сделать,<br><em>а мы найдём лучшего мастера</em></h1>
+        <p>Ответьте на несколько вопросов — мы подберём подходящих специалистов. Быстро и бесплатно.</p>
+        <form class="search" id="searchForm">
+          <label><span class="search-icon">⌕</span><input id="serviceSearch" autocomplete="off" placeholder="Какая услуга вам нужна?" /></label>
+          <button type="submit">Подобрать специалиста <span>→</span></button>
+          <div class="suggestions" id="suggestions"></div>
+        </form>
+        <div class="quick"><span>Часто ищут:</span><button data-query="Уборка">Уборка</button><button data-query="Ремонт техники">Ремонт техники</button><button data-query="Репетитор">Репетитор</button></div>
+        <div class="trust-row">
+          <div class="avatars"><span>А</span><span>М</span><span>Е</span><span>+2k</span></div>
+          <div><b>4,9 из 5</b><small>по отзывам клиентов</small></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="sun"></div><div class="sea"></div><div class="castle">♜</div>
+        <div class="expert-card hero-card">
+          <div class="avatar avatar-main">MK</div><div><b>Mehmet Kaya</b><span>Мастер по ремонту</span><strong>★ 4,9 <i>• 128 отзывов</i></strong></div><span class="verified">✓</span>
+        </div>
+        <div class="done-card"><span>✓</span><div><b>Заказ выполнен</b><small>Кондиционер работает отлично!</small></div></div>
+        <div class="bubble b1">🔧</div><div class="bubble b2">✦</div><div class="bubble b3">⚡</div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-head"><div><span class="eyebrow-label">КАТЕГОРИИ УСЛУГ</span><h2>Популярные услуги</h2></div><button class="text-link" data-view="catalog">Все услуги <span>→</span></button></div>
+      <div class="category-grid" id="categoryGrid">
+        <button class="category" data-query="Ремонт и строительство"><span class="icon orange">🔨</span><b>Ремонт и строительство</b><small>246 специалистов</small></button>
+        <button class="category" data-query="Красота и здоровье"><span class="icon pink">✦</span><b>Красота и здоровье</b><small>189 специалистов</small></button>
+        <button class="category" data-query="Уборка и помощь по дому"><span class="icon blue">⌂</span><b>Уборка и помощь по дому</b><small>132 специалиста</small></button>
+        <button class="category" data-query="Репетиторы и обучение"><span class="icon purple">A</span><b>Репетиторы и обучение</b><small>94 специалиста</small></button>
+        <button class="category" data-query="Ремонт техники"><span class="icon green">⚙</span><b>Ремонт техники</b><small>118 специалистов</small></button>
+        <button class="category" data-query="Фото и мероприятия"><span class="icon yellow">◉</span><b>Фото и мероприятия</b><small>76 специалистов</small></button>
+        <button class="category" data-query="Переводы и документы"><span class="icon cyan">文</span><b>Переводы и документы</b><small>63 специалиста</small></button>
+        <button class="category" data-query="Автоуслуги"><span class="icon red">◇</span><b>Автоуслуги</b><small>81 специалист</small></button>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="how-copy"><span class="eyebrow-label">БЫСТРО И БЕЗОПАСНО</span><h2>От задачи до результата —<br>три простых шага</h2><p>Вы выбираете не вслепую: сравнивайте предложения, отзывы и примеры работ.</p></div>
+      <div class="steps">
+        <article><span>01</span><div><b>Расскажите о задаче</b><p>Ответьте на несколько вопросов — это займёт 2 минуты.</p></div></article>
+        <article><span>02</span><div><b>Получите предложения</b><p>Специалисты откликнутся с ценой и удобным временем.</p></div></article>
+        <article><span>03</span><div><b>Выберите лучшего</b><p>Смотрите рейтинг, отзывы и общайтесь напрямую.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section experts" id="experts">
+      <div class="section-head"><div><span class="eyebrow-label">СПЕЦИАЛИСТЫ АЛАНИИ</span><h2>Специалисты рядом</h2></div><div class="arrows"><button id="prev">←</button><button id="next">→</button></div></div>
+      <div class="expert-track" id="expertTrack">
+        <article class="person"><div class="photo p1"><span>АК</span><i>✓</i></div><div class="person-body"><span class="tag">Ремонт</span><h3>Ahmet Karaca</h3><div class="rating">★ 5,0 <span>(87 отзывов)</span></div><p>Сантехника, электрика, мелкий ремонт</p><div class="price"><b>от 500 ₺</b><div><button class="heart" data-favorite="Ahmet Karaca">♡</button><button data-profile="Ahmet Karaca">Анкета</button><button data-name="Ahmet Karaca">Выбрать</button></div></div></div></article>
+        <article class="person"><div class="photo p2"><span>ЕВ</span><i>✓</i></div><div class="person-body"><span class="tag">Красота</span><h3>Елена Волкова</h3><div class="rating">★ 4,9 <span>(112 отзывов)</span></div><p>Стрижки, окрашивание, укладки</p><div class="price"><b>от 700 ₺</b><div><button class="heart" data-favorite="Елена Волкова">♡</button><button data-profile="Елена Волкова">Анкета</button><button data-name="Елена Волкова">Выбрать</button></div></div></div></article>
+        <article class="person"><div class="photo p3"><span>MY</span><i>✓</i></div><div class="person-body"><span class="tag">Обучение</span><h3>Merve Yılmaz</h3><div class="rating">★ 5,0 <span>(64 отзыва)</span></div><p>Турецкий язык для взрослых и детей</p><div class="price"><b>от 450 ₺</b><div><button class="heart" data-favorite="Merve Yılmaz">♡</button><button data-profile="Merve Yılmaz">Анкета</button><button data-name="Merve Yılmaz">Выбрать</button></div></div></div></article>
+        <article class="person"><div class="photo p4"><span>ДС</span><i>✓</i></div><div class="person-body"><span class="tag">Уборка</span><h3>Дарья Смирнова</h3><div class="rating">★ 4,8 <span>(95 отзывов)</span></div><p>Квартиры, виллы, уборка после ремонта</p><div class="price"><b>от 900 ₺</b><div><button class="heart" data-favorite="Дарья Смирнова">♡</button><button data-profile="Дарья Смирнова">Анкета</button><button data-name="Дарья Смирнова">Выбрать</button></div></div></div></article>
+      </div>
+    </section>
+
+    <section class="cta"><div><span>USTA ALANYA ДЛЯ СПЕЦИАЛИСТОВ</span><h2>Сайт для специалистов.<br>Находите клиентов рядом.</h2><p>Создайте профиль бесплатно и получайте подходящие заказы в Алании.</p><button data-pro>Я — специалист <span>→</span></button></div><div class="cta-art"><div class="phone"><div class="notch"></div><small>Новый заказ рядом</small><b>Установить кондиционер</b><span>📍 Махмутлар • 1,2 км</span><button>Откликнуться</button></div></div></section>
+  </main>
+
+  <footer><a class="logo" href="#"><img class="logo-mark brand-image" src="assets/usta-3d-logo.png" alt=""><span>Usta <b>Alanya</b></span></a><p>Местные специалисты для любых задач</p><div class="footer-links"><a href="legal.html#terms">Клиентам</a><a href="legal.html#pros">Специалистам</a><a href="legal.html#privacy">Конфиденциальность</a><a href="legal.html#cookies">Cookies</a><a href="legal.html#complaints">Жалобы</a></div><small>© 2026 Usta Alanya. Демонстрационная версия. Юридические тексты требуют проверки в Турции.</small></footer>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-box"><button class="close" id="closeModal">×</button><span class="eyebrow-label">USTA ALANYA</span><h2 id="modalTitle">Найдём специалиста</h2><p id="modalText">Опишите задачу, и подходящие мастера предложат цену.</p><form id="requestForm"><label>Услуга<input id="taskInput" required placeholder="Например, установить кондиционер"></label><label>Ваш район<select><option>Авсаллар</option><option>Центральный район</option><option>Махмутлар</option><option>Каргыджак</option><option>Джикджилли</option><option>Демирташ</option><option>Оба</option><option>Тосмур</option><option>Кестель</option><option>Кызылот</option><option>Окурджалар</option><option>Паяллар</option><option>Тюрклер</option><option>Инжекум</option><option>Конаклы</option></select></label><label>Телефон<input required type="tel" placeholder="+90 5__ ___ __ __"></label><button type="submit">Продолжить →</button></form><div class="success" id="success"><span>✓</span><h3>Заявка создана!</h3><p>Это демо-режим. В рабочей версии здесь появятся предложения специалистов.</p></div></div>
+  </div>
+  <div class="toast" id="toast">Язык интерфейса: русский</div>
+  <aside class="cookie-banner" id="cookieBanner" aria-label="Настройки cookies"><div><b>Cookies на Usta Alanya</b><p>Необходимые cookies обеспечивают вход и безопасность. Аналитические используются только с вашего согласия.</p><a href="legal.html#cookies">Подробнее</a></div><div><button id="cookieNecessary">Только необходимые</button><button id="cookieAccept">Принять</button></div></aside>
+  <div class="app-drawer" id="appDrawer" aria-hidden="true"><div class="drawer-backdrop" data-close-drawer></div><section class="drawer-panel"><header><a class="logo" href="#"><img class="logo-mark brand-image" src="assets/usta-3d-logo.png" alt=""><span>Usta <b>Alanya</b></span></a><button data-close-drawer>×</button></header><div id="drawerContent"></div></section></div>
+  <nav class="mobile-bar"><button data-view="catalog"><span>⌕</span>Услуги</button><button data-view="orders"><span>▣</span>Заказы</button><button data-view="messages"><span class="mobile-chat">▢</span>Чаты<i>2</i></button><button data-view="favorites"><span>♡</span>Избранное</button><button data-view="account"><span>♙</span>Профиль</button></nav>
+  <script src="script.js"></script>
+  <script src="app.js"></script>
+  <script src="i18n.js"></script>
+  <script>const cb=document.querySelector('#cookieBanner');if(!localStorage.getItem('usta-cookie-choice'))cb.classList.add('show');document.querySelector('#cookieAccept').onclick=()=>{localStorage.setItem('usta-cookie-choice','all');cb.classList.remove('show')};document.querySelector('#cookieNecessary').onclick=()=>{localStorage.setItem('usta-cookie-choice','necessary');cb.classList.remove('show')};</script>
+</body>
+</html>
