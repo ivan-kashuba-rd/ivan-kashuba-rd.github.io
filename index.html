@@ -1,601 +1,264 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Ivan Kashuba - scientific R&D professional in materials, polymers, coatings, photonics, engineering calculations and scientific support." />
-  <meta name="author" content="Ivan Kashuba" />
-  <meta property="og:title" content="Ivan Kashuba - Scientific R&D" />
-  <meta property="og:description" content="Materials & Polymer R&D · Process Troubleshooting · Scientific Data · Engineering Models" />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#07111f" />
-  <title>Ivan Kashuba - Scientific R&D</title>
-  <style>
-    :root {
-      --bg: #06101d;
-      --bg-mid: #071421;
-      --card: rgba(13, 29, 48, .82);
-      --card-2: rgba(17, 39, 63, .84);
-      --line: rgba(118, 203, 255, .22);
-      --text: #eef7ff;
-      --muted: #a8bed0;
-      --soft: #cbdce8;
-      --accent: #59c8ff;
-      --accent2: #7ef0d2;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --radius: 22px;
-      --max: 1140px;
-    }
-    body.light {
-      --bg: #eef6fb;
-      --bg-mid: #f7fbfe;
-      --card: rgba(255,255,255,.90);
-      --card-2: rgba(246,251,255,.96);
-      --line: rgba(17, 97, 142, .18);
-      --text: #102638;
-      --muted: #516c7e;
-      --soft: #2e5269;
-      --accent: #087fb8;
-      --accent2: #068b76;
-      --shadow: 0 18px 50px rgba(30,73,99,.12);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 8%, rgba(53,152,255,.15), transparent 30%),
-        radial-gradient(circle at 85% 25%, rgba(50,233,196,.09), transparent 28%),
-        linear-gradient(180deg, var(--bg), var(--bg-mid) 55%, var(--bg));
-      line-height: 1.65;
-      transition: background .25s ease, color .25s ease;
-    }
-    body::before {
-      content: "";
-      position: fixed; inset: 0; pointer-events: none; opacity: .25;
-      background-image:
-        linear-gradient(rgba(100,190,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100,190,255,.035) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: linear-gradient(to bottom, black, transparent 85%);
-    }
-    a { color: inherit; }
-    .wrap { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
-    nav {
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(16px);
-      background: color-mix(in srgb, var(--bg) 80%, transparent);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .brand { font-weight: 850; letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
-    .nav-links { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:15px; }
-    .nav-links a { color: var(--muted); text-decoration:none; font-size:.92rem; }
-    .nav-links a:hover { color: var(--text); }
-    .icon-btn, .lang-btn {
-      border: 1px solid var(--line); color: var(--text); background: color-mix(in srgb, var(--card) 80%, transparent);
-      padding: 8px 11px; border-radius: 999px; cursor: pointer; font-weight: 750;
-    }
-    header { padding: 90px 0 56px; }
-    .hero { display:grid; grid-template-columns: 1.27fr .73fr; gap:34px; align-items:center; }
-    .eyebrow { color: var(--accent2); text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:850; }
-    h1 { font-size: clamp(2.8rem, 7vw, 5.7rem); line-height:.98; margin:.18em 0 .22em; letter-spacing:-.055em; }
-    .hero h2 { margin:0; max-width:820px; color:var(--muted); font-weight:550; font-size:clamp(1.12rem,2.3vw,1.55rem); }
-    .hero p { max-width:790px; font-size:1.05rem; color:var(--soft); }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:12px 18px; border-radius:999px; text-decoration:none; font-weight:800;
-      border:1px solid var(--line); background:color-mix(in srgb, var(--card) 82%, transparent);
-      transition: transform .2s ease, border-color .2s ease;
-    }
-    .btn:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
-    .btn.primary { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#04111b; border:0; }
-    .hero-card, .card {
-      background: linear-gradient(180deg, var(--card-2), var(--card));
-      border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);
-    }
-    .hero-card { padding:26px; position:relative; overflow:hidden; }
-    .hero-card::after {
-      content:""; position:absolute; width:180px; height:180px; border-radius:50%;
-      right:-85px; top:-85px; background:radial-gradient(circle,rgba(89,200,255,.28),transparent 67%);
-    }
-    .stat { padding:15px 0; border-bottom:1px solid var(--line); position:relative; z-index:1; }
-    .stat:last-child { border:0; }
-    .stat strong { display:block; font-size:1.22rem; }
-    .stat span { color:var(--muted); font-size:.92rem; }
-    section { padding:56px 0; scroll-margin-top:78px; }
-    .section-title { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:22px; }
-    .section-title h3 { margin:0; font-size:clamp(1.7rem,4vw,2.45rem); letter-spacing:-.035em; }
-    .section-title p { color:var(--muted); max-width:620px; margin:0; }
-    .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
-    .card { padding:24px; }
-    .span-3 { grid-column:span 3; } .span-4 { grid-column:span 4; } .span-5 { grid-column:span 5; }
-    .span-6 { grid-column:span 6; } .span-7 { grid-column:span 7; } .span-8 { grid-column:span 8; } .span-12 { grid-column:span 12; }
-    .card h4 { margin:0 0 10px; font-size:1.14rem; }
-    .card h5 { margin:18px 0 6px; font-size:1rem; color:var(--accent2); }
-    .card p { color:var(--soft); margin:.45em 0; }
-    .note { color:var(--muted); font-size:.93rem; }
-    .chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:15px; }
-    .chip { color:var(--text); border:1px solid var(--line); background:color-mix(in srgb, var(--accent) 8%, transparent); padding:7px 10px; border-radius:999px; font-size:.87rem; }
-    .timeline { display:grid; gap:22px; }
-    .role { position:relative; padding-left:23px; border-left:2px solid color-mix(in srgb, var(--accent) 38%, transparent); }
-    .role h4 { margin:0; font-size:1.13rem; }
-    .meta { color:var(--accent2); font-size:.9rem; font-weight:760; margin:3px 0 8px; }
-    ul { margin:.5em 0 0; padding-left:1.15em; color:var(--soft); }
-    li { margin:.38em 0; }
-    .project-link { text-decoration:none; display:block; height:100%; }
-    .project-link:hover .card { transform:translateY(-3px); border-color:color-mix(in srgb, var(--accent2) 55%, var(--line)); }
-    .project-link .card { transition:.2s ease; height:100%; }
-    .project-tag { display:inline-block; margin-bottom:9px; color:var(--accent2); font-size:.8rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
-    details { border-top:1px solid var(--line); padding-top:13px; margin-top:15px; }
-    summary { cursor:pointer; color:var(--accent); font-weight:800; }
-    .service-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:16px; }
-    .service { border:1px solid var(--line); border-radius:16px; padding:16px; background:color-mix(in srgb, var(--card-2) 75%, transparent); }
-    .service strong { display:block; margin-bottom:5px; }
-    .availability { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-    .availability span { padding:7px 11px; border-radius:999px; border:1px solid var(--line); font-size:.88rem; color:var(--soft); }
-    .science-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:20px; }
-    .science-figure { margin:0; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#05090e; }
-    .science-figure a { display:block; background:#05090e; }
-    .science-figure img { display:block; width:100%; height:270px; object-fit:contain; transition:transform .25s ease; }
-    .science-figure:hover img { transform:scale(1.015); }
-    .science-figure figcaption { padding:12px 14px; color:var(--soft); font-size:.86rem; border-top:1px solid var(--line); }
-    .science-figure figcaption strong { color:var(--accent2); }
-    .coursework-note { margin-top:16px; padding:14px 16px; border-left:3px solid var(--accent2); border-radius:0 12px 12px 0; background:color-mix(in srgb,var(--accent2) 7%,transparent); }
-    .workflow-case { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr); gap:18px; margin-top:20px; align-items:stretch; }
-    .workflow-visual { margin:0; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:#f5f7fa; }
-    .workflow-visual img { display:block; width:100%; height:100%; min-height:330px; object-fit:contain; }
-    .workflow-visual figcaption { padding:11px 14px; color:#496274; background:#f4f8fb; border-top:1px solid rgba(17,97,142,.14); font-size:.82rem; }
-    .workflow-steps { display:grid; gap:10px; counter-reset:workflow; }
-    .workflow-step { position:relative; padding:13px 14px 13px 48px; border:1px solid var(--line); border-radius:14px; background:color-mix(in srgb,var(--card-2) 78%,transparent); }
-    .workflow-step::before { counter-increment:workflow; content:counter(workflow); position:absolute; left:14px; top:13px; width:23px; height:23px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#04111b; font-size:.72rem; font-weight:900; }
-    .workflow-step strong { display:block; color:var(--text); font-size:.9rem; }
-    .workflow-step span { display:block; color:var(--muted); font-size:.82rem; line-height:1.45; margin-top:3px; }
-    .workflow-links { display:flex; flex-wrap:wrap; gap:9px; margin-top:15px; }
-    .workflow-links a { color:var(--accent); text-decoration:none; font-size:.86rem; font-weight:800; }
-    .work-figure { margin:18px 0 4px; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#fff; }
-    .work-figure img { display:block; width:100%; max-height:430px; object-fit:contain; }
-    .work-figure.compact { width:min(100%,320px); }
-    .work-figure figcaption { padding:10px 13px; color:#496274; background:#f4f8fb; font-size:.82rem; border-top:1px solid rgba(17,97,142,.14); }
-    .web-case {
-      grid-column:span 12; overflow:hidden; display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
-      padding:0; min-height:330px;
-    }
-    .web-case-visual {
-      position:relative; isolation:isolate; display:flex; align-items:center; justify-content:center; min-height:330px;
-      background:
-        radial-gradient(circle at 70% 24%,rgba(255,242,222,.86) 0 8%,transparent 8.5%),
-        radial-gradient(circle at 36% 35%,rgba(255,171,188,.8),transparent 24%),
-        linear-gradient(145deg,#fff0e5 0%,#f6c4bd 48%,#c85d79 100%);
-      padding:28px;
-    }
-    .site-preview { width:min(100%,430px); border-radius:16px; overflow:hidden; background:#fffaf4; color:#3d2826; box-shadow:0 24px 55px rgba(83,31,49,.3); transform:rotate(-1.2deg); }
-    .site-preview-bar { height:22px; display:flex; align-items:center; gap:5px; padding:0 10px; background:#f5e9e2; }
-    .site-preview-bar i { width:6px; height:6px; border-radius:50%; background:#d9a9a3; }
-    .site-preview-nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px 9px; border-bottom:1px solid #eeded5; }
-    .mini-brand { display:flex; align-items:center; gap:8px; font:700 .66rem/1 Georgia,serif; letter-spacing:.13em; }
-    .mini-flower { position:relative; width:30px; height:30px; filter:drop-shadow(0 4px 5px rgba(164,55,92,.2)); }
-    .mini-flower i { position:absolute; left:11px; top:2px; width:9px; height:14px; border-radius:80% 20% 70% 30%; background:linear-gradient(145deg,#ffd3df,#ef6591 55%,#a72e63); transform-origin:4px 13px; }
-    .mini-flower i:nth-child(2) { transform:rotate(72deg); }.mini-flower i:nth-child(3) { transform:rotate(144deg); }
-    .mini-flower i:nth-child(4) { transform:rotate(216deg); }.mini-flower i:nth-child(5) { transform:rotate(288deg); }
-    .mini-links { display:flex; gap:9px; color:#8b6a62; font-size:.43rem; text-transform:uppercase; letter-spacing:.08em; }
-    .site-preview-hero { display:grid; grid-template-columns:1.05fr .95fr; min-height:190px; }
-    .mini-copy { padding:24px 10px 20px 20px; }
-    .mini-kicker { color:#b24d68; font-size:.42rem; letter-spacing:.15em; text-transform:uppercase; }
-    .mini-title { margin:8px 0 10px; font:500 1.35rem/1.05 Georgia,serif; }
-    .mini-text { width:85%; height:22px; border-radius:4px; background:repeating-linear-gradient(to bottom,#b9a29a 0 2px,transparent 2px 8px); opacity:.55; }
-    .mini-button { display:inline-block; margin-top:14px; padding:6px 10px; border-radius:20px; background:#bb5d72; color:white; font-size:.43rem; }
-    .mini-logo-stage { margin:14px 14px 14px 4px; border-radius:70px 12px 70px 12px; background:linear-gradient(150deg,#fce8de,#d98da0); display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .mini-logo-stage img { width:88%; height:88%; object-fit:contain; filter:drop-shadow(0 15px 12px rgba(119,38,69,.25)); }
-    .web-case-copy { padding:30px; align-self:center; }
-    .usta-case-visual {
-      background:
-        radial-gradient(circle at 72% 22%,rgba(223,240,108,.7),transparent 22%),
-        radial-gradient(circle at 22% 78%,rgba(126,240,210,.28),transparent 28%),
-        linear-gradient(145deg,#eaf6ee 0%,#8cc7ad 48%,#11684c 100%);
-    }
-    .usta-preview { width:min(100%,430px); min-height:250px; border-radius:22px; background:rgba(255,255,255,.94); color:#18211d; box-shadow:0 25px 60px rgba(8,55,39,.3); display:grid; grid-template-columns:.82fr 1.18fr; align-items:center; padding:25px; transform:rotate(1deg); }
-    .usta-preview-logo { display:flex; align-items:center; justify-content:center; }
-    .usta-preview-logo img { width:min(100%,175px); filter:drop-shadow(0 17px 16px rgba(17,104,76,.25)); }
-    .usta-preview-copy small { color:#11684c; font-weight:850; letter-spacing:.12em; text-transform:uppercase; font-size:.55rem; }
-    .usta-preview-copy strong { display:block; font-size:1.55rem; line-height:1.05; margin:10px 0; }
-    .usta-preview-copy p { color:#69736e; font-size:.65rem; line-height:1.45; }
-    .usta-preview-pills { display:flex; flex-wrap:wrap; gap:5px; margin-top:13px; }
-    .usta-preview-pills i { font-style:normal; border-radius:999px; background:#edf4f0; color:#11684c; padding:5px 7px; font-size:.5rem; font-weight:750; }
-    .case-status { display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--accent2); font-size:.78rem; font-weight:850; }
-    .case-status::before { content:""; width:7px; height:7px; border-radius:50%; background:currentColor; }
-    .case-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
-    footer { padding:54px 0 72px; color:var(--muted); text-align:center; }
-    #topBtn {
-      position:fixed; right:18px; bottom:18px; z-index:15; display:none;
-      width:44px; height:44px; border-radius:50%; border:1px solid var(--line);
-      background:var(--card); color:var(--text); cursor:pointer; box-shadow:var(--shadow); font-weight:900;
-    }
-    body:not(.ru) [data-lang="ru"] { display:none !important; }
-    body.ru [data-lang="en"] { display:none !important; }
-    @media (max-width: 900px) {
-      .hero { grid-template-columns:1fr; }
-      .span-3,.span-4,.span-5,.span-6,.span-7,.span-8 { grid-column:span 12; }
-      .service-grid { grid-template-columns:1fr; }
-      .nav-links a:not(.keep) { display:none; }
-      header { padding-top:62px; }
-      .web-case { grid-template-columns:1fr; }
-      .web-case-visual { min-height:260px; }
-      .science-gallery { grid-template-columns:1fr; }
-      .science-figure img { height:auto; max-height:360px; }
-      .workflow-case { grid-template-columns:1fr; }
-      .workflow-visual img { min-height:0; height:auto; }
-    }
-    @media (max-width: 560px) {
-      .wrap { width:min(calc(100% - 22px),var(--max)); }
-      .card,.hero-card { padding:20px; }
-      .nav-links { gap:8px; }
-      .nav-links .keep { display:none; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="LUMÉ Riviera — a signature four-language beauty studio concept with services, prices and WhatsApp booking.">
+  <meta name="author" content="Ivan Kashuba">
+  <meta name="theme-color" content="#fff8f0">
+  <meta name="color-scheme" content="light">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LUMÉ Riviera — Signature Beauty Studio">
+  <meta property="og:description" content="Hair, nails, brows, skin and makeup — signature care inspired by the Antalya Riviera.">
+  <meta property="og:image" content="assets/hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>LUMÉ Riviera — Signature Beauty Studio</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"LUMÉ Riviera — Signature Beauty Studio","description":"A multilingual signature beauty studio portfolio concept.","inLanguage":["en","ru","tr","de"],"isAccessibleForFree":true,"creator":{"@type":"Person","name":"Ivan Kashuba"}}
+  </script>
 </head>
 <body>
-<nav>
-  <div class="wrap nav-inner">
-    <a class="brand" href="#top">IK / R&amp;D</a>
-    <div class="nav-links">
-      <a href="#profile" data-lang="en">Profile</a><a href="#profile" data-lang="ru">Профиль</a>
-      <a href="#experience" data-lang="en">Experience</a><a href="#experience" data-lang="ru">Опыт</a>
-      <a href="#projects" data-lang="en">Projects</a><a href="#projects" data-lang="ru">Проекты</a>
-      <a href="#web" data-lang="en">Web pages</a><a href="#web" data-lang="ru">Сайты</a>
-      <a class="keep" href="mailto:ivan.med.tr@gmail.com">Email</a>
-      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme" title="Theme">◐</button>
-      <button class="lang-btn" id="langBtn" aria-label="Switch language">RU</button>
-    </div>
-  </div>
-</nav>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
-<header id="top">
-  <div class="wrap hero">
-    <div>
-      <div class="eyebrow">Scientific R&amp;D · Materials · Data · Technical Support</div>
-      <h1>Ivan<br>Kashuba</h1>
-      <h2 data-lang="en">Research Engineer &amp; R&amp;D Chemist · Materials, Polymers, Coatings and Photonics · Process Troubleshooting · Engineering Calculations</h2>
-      <h2 data-lang="ru">Инженер-исследователь и химик R&amp;D · Материалы, полимеры, покрытия и фотоника · Анализ процессов · Инженерные расчёты</h2>
-      <p data-lang="en">I combine hands-on laboratory and production experience with experimental analysis, process improvement, scientific literature research, reproducible Python workflows and clear technical documentation.</p>
-      <p data-lang="ru">Я объединяю практический лабораторный и производственный опыт с анализом экспериментов, улучшением процессов, поиском научной литературы, воспроизводимыми расчётами на Python и понятной технической документацией.</p>
-      <div class="actions">
-        <a class="btn primary" href="mailto:ivan.med.tr@gmail.com" data-lang="en">Contact me</a>
-        <a class="btn primary" href="mailto:ivan.med.tr@gmail.com" data-lang="ru">Связаться</a>
-        <a class="btn" href="Ivan_Kashuba_Detailed_CV.pdf" target="_blank" data-lang="en">Detailed CV ↗</a>
-        <a class="btn" href="Ivan_Kashuba_Detailed_CV.pdf" target="_blank" data-lang="ru">Подробное CV ↗</a>
-        <a class="btn" href="Ivan_Kashuba_Resume.pdf" target="_blank" data-lang="en">2-page résumé ↗</a>
-        <a class="btn" href="Ivan_Kashuba_Resume.pdf" target="_blank" data-lang="ru">Резюме, 2 страницы ↗</a>
-      </div>
-      <div class="actions">
-        <a class="btn" href="https://www.linkedin.com/in/ivan-kashuba" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="btn" href="https://github.com/ivan-kashuba-rd" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn" href="https://orcid.org/0009-0002-8976-8886" target="_blank" rel="noopener">ORCID ↗</a>
-      </div>
-    </div>
-    <aside class="hero-card">
-      <div class="stat"><strong>10+ years</strong><span data-lang="en">laboratory, R&amp;D and production experience</span><span data-lang="ru">лабораторного, исследовательского и производственного опыта</span></div>
-      <div class="stat"><strong>Materials → Process → Data</strong><span data-lang="en">from equipment and experiments to root-cause analysis and documentation</span><span data-lang="ru">от оборудования и эксперимента до поиска причин и документации</span></div>
-      <div class="stat"><strong>Remote-first</strong><span data-lang="en"> Türkiye · EU business hours · open to international relocation</span><span data-lang="ru"> Турция · рабочее время ЕС · открыт к международной релокации</span></div>
-    </aside>
+  <div class="announcement" role="status">
+    <span data-i18n="announcement">Portfolio concept · Explore the complete booking experience</span>
+    <button class="announcement-close" type="button" aria-label="Close">×</button>
   </div>
-</header>
 
-<main>
-<section id="profile">
-  <div class="wrap">
-    <div class="section-title">
-      <h3 data-lang="en">Professional profile</h3><h3 data-lang="ru">Профессиональный профиль</h3>
-      <p data-lang="en">A focused overview of the areas in which I can contribute without repeating the detailed employment history below.</p>
-      <p data-lang="ru">Краткий обзор направлений, в которых я могу быть полезен, без повторения подробного опыта работы ниже.</p>
-    </div>
-    <div class="grid">
-      <div class="card span-4"><h4 data-lang="en">Materials &amp; process R&amp;D</h4><h4 data-lang="ru">R&amp;D материалов и процессов</h4><p data-lang="en">Experimental planning, formulation comparisons, thermal and vacuum processing, filtration, drying, extrusion, optical coatings and quality investigations.</p><p data-lang="ru">Планирование экспериментов, сравнение рецептур, термические и вакуумные процессы, фильтрация, сушка, экструзия, оптические покрытия и исследование качества.</p></div>
-      <div class="card span-4"><h4 data-lang="en">Scientific support &amp; troubleshooting</h4><h4 data-lang="ru">Научная поддержка и поиск причин</h4><p data-lang="en">Connecting instrument data, process parameters, material condition and operator observations to identify likely causes, corrective actions and reproducible workflows.</p><p data-lang="ru">Сопоставление данных приборов, параметров процесса, состояния материала и наблюдений операторов для определения вероятных причин, корректирующих действий и воспроизводимых процедур.</p></div>
-      <div class="card span-4"><h4 data-lang="en">Data, calculations &amp; documentation</h4><h4 data-lang="ru">Данные, расчёты и документация</h4><p data-lang="en">Excel and Python analysis, parameter-driven engineering models, CSV/JSON workflows, visualisation, literature review, technical instructions and GitHub documentation.</p><p data-lang="ru">Анализ в Excel и Python, параметрические инженерные модели, процессы с CSV/JSON, визуализация, обзор литературы, технические инструкции и документация GitHub.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="section-title"><h3 data-lang="en">Technical toolkit</h3><h3 data-lang="ru">Технический инструментарий</h3></div>
-    <div class="grid">
-      <div class="card span-6">
-        <h4 data-lang="en">Analytical and experimental methods</h4><h4 data-lang="ru">Аналитические и экспериментальные методы</h4>
-        <div class="chips"><span class="chip">¹H / ¹³C NMR</span><span class="chip">HSQC / HMBC basics</span><span class="chip">DSC / DTA / TGA</span><span class="chip">FTIR</span><span class="chip">UV-Vis</span><span class="chip">Spectrophotometry</span><span class="chip">TLC / HPLC / LC-MS / GC-MS / UPLC studies</span><span class="chip">Microscopy</span><span class="chip">Electrochemical testing</span></div>
-      </div>
-      <div class="card span-6">
-        <h4 data-lang="en">Laboratory and production equipment</h4><h4 data-lang="ru">Лабораторное и производственное оборудование</h4>
-        <div class="chips"><span class="chip">Vacuum systems</span><span class="chip">Thermal-vacuum reactors</span><span class="chip">Electron-beam deposition</span><span class="chip">Powder-coating lines</span><span class="chip">Micronization</span><span class="chip">Hot extrusion</span><span class="chip">CO₂ laser</span><span class="chip">Microwave reactor</span><span class="chip">Ultrasonic bath</span><span class="chip">Centrifuge</span><span class="chip">pH / conductivity / thickness meters</span></div>
-      </div>
-      <div class="card span-6">
-        <h4 data-lang="en">Software, research and collaboration</h4><h4 data-lang="ru">Программы, исследования и сотрудничество</h4>
-        <div class="chips"><span class="chip">Excel</span><span class="chip">Python / Google Colab</span><span class="chip">Git / GitHub</span><span class="chip">MestReNova</span><span class="chip">ChemDraw / Chem3D</span><span class="chip">Origin</span><span class="chip">KOMPAS-3D</span><span class="chip">Reaxys</span><span class="chip">Google Scholar</span><span class="chip">PubMed / NCBI</span><span class="chip">MS Office / Google Workspace</span><span class="chip">Zoom / Teams / Slack / Trello / Notion</span></div>
-      </div>
-      <div class="card span-6">
-        <h4 data-lang="en">Working style</h4><h4 data-lang="ru">Стиль работы</h4>
-        <p data-lang="en">Critical analysis of new information, careful documentation, practical experimentation, cross-functional communication, remote collaboration and step-by-step improvement of unfamiliar workflows.</p>
-        <p data-lang="ru">Критический анализ новой информации, аккуратное документирование, практические эксперименты, межфункциональная коммуникация, дистанционная работа и последовательное освоение новых процессов.</p>
-        <div class="availability"><span>Russian — native</span><span>English — B2</span><span>Chinese — A1</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="bioinformatics">
-  <div class="wrap">
-    <div class="section-title">
-      <h3 data-lang="en">Developing in bioinformatics</h3><h3 data-lang="ru">Развиваюсь в биоинформатике</h3>
-      <p data-lang="en">This is a developing competence supported by introductory practical coursework, not a claim of senior bioinformatics expertise.</p>
-      <p data-lang="ru">Это развиваемая компетенция, основанная на вводной практической подготовке, а не заявление об уровне опытного биоинформатика.</p>
-    </div>
-    <div class="grid">
-      <div class="card span-7">
-        <h4 data-lang="en">Bioinformatics and molecular modelling pathway</h4><h4 data-lang="ru">Направление развития: биоинформатика и молекулярное моделирование</h4>
-        <p data-lang="en">I am expanding my skills in protein–ligand interaction analysis, molecular docking, target and binding-site research, structural data interpretation, literature-based hypothesis development and basic phylogenetic analysis.</p>
-        <p data-lang="ru">Я развиваю навыки анализа взаимодействий белок–лиганд, молекулярного докинга, поиска мишеней и сайтов связывания, интерпретации структурных данных, формирования гипотез по литературе и базового филогенетического анализа.</p>
-        <h5 data-lang="en">Tools studied or used in training</h5><h5 data-lang="ru">Инструменты, изученные или применявшиеся в обучении</h5>
-        <div class="chips"><span class="chip">ProteinsPlus</span><span class="chip">PyMOL</span><span class="chip">AutoDockTools</span><span class="chip">Open Babel</span><span class="chip">SwissTargetPrediction</span><span class="chip">RCSB PDB</span><span class="chip">NCBI</span><span class="chip">PubMed</span><span class="chip">Cheminfo</span><span class="chip">Python basics</span></div>
-      </div>
-      <div class="card span-5">
-        <h4 data-lang="en">Current learning priorities</h4><h4 data-lang="ru">Текущие приоритеты обучения</h4>
-        <ul data-lang="en"><li>More reliable docking preparation, controls and interpretation.</li><li>Protein and ligand data handling in reproducible Python workflows.</li><li>Structural-biology databases and literature-driven validation.</li><li>Clear separation between exploratory computational results and experimentally validated conclusions.</li></ul>
-        <ul data-lang="ru"><li>Более надёжная подготовка докинга, контрольные проверки и интерпретация.</li><li>Обработка данных о белках и лигандах в воспроизводимых процессах Python.</li><li>Базы структурной биологии и проверка выводов по литературе.</li><li>Чёткое разделение предварительных вычислительных результатов и экспериментально подтверждённых выводов.</li></ul>
-      </div>
-      <article class="card span-12">
-        <span class="project-tag">ProteinsPlus · JAMDA</span>
-        <h4 data-lang="en">Molecular Docking Coursework: Ligands–Influenza Hemagglutinin</h4>
-        <h4 data-lang="ru">Учебная работа по молекулярному докингу: лиганды–гемагглютинин вируса гриппа</h4>
-        <p data-lang="en">Coursework exercise in molecular docking using ProteinsPlus. All four figures show ligands docked to the same influenza hemagglutinin target used for the dinaciclib calculation. The work included protein and ligand preparation, binding-site analysis, docking-pose review and interpretation of non-covalent interaction diagrams.</p>
-        <p data-lang="ru">Учебная работа по молекулярному докингу с использованием ProteinsPlus. На всех четырёх изображениях показаны лиганды, рассчитанные для одной и той же мишени — гемагглютинина вируса гриппа, использованного в расчёте динациклиба. Работа включала подготовку белка и лигандов, анализ сайта связывания, просмотр поз докинга и интерпретацию диаграмм нековалентных взаимодействий.</p>
-        <div class="workflow-case">
-          <figure class="workflow-visual"><a href="assets/binding-site-dogsite3.png" target="_blank" rel="noopener"><img src="assets/binding-site-dogsite3.png" alt="DoGSite3 binding-pocket detection for influenza hemagglutinin"></a><figcaption><span data-lang="en">DoGSite3 pocket detection and descriptor table. The largest predicted pocket was selected for the coursework docking comparison.</span><span data-lang="ru">Определение карманов в DoGSite3 и таблица их дескрипторов. Для учебного сравнения докинга был выбран крупнейший предсказанный карман.</span></figcaption></figure>
-          <div class="workflow-steps">
-            <div class="workflow-step"><strong data-lang="en">Target and sequence search</strong><strong data-lang="ru">Выбор мишени и поиск последовательности</strong><span data-lang="en">Selected Influenza A H3N2 hemagglutinin, NCBI accession ABB46547.1, and reviewed related sequences.</span><span data-lang="ru">Выбран гемагглютинин Influenza A H3N2 с идентификатором NCBI ABB46547.1; выполнен просмотр родственных последовательностей.</span></div>
-            <div class="workflow-step"><strong data-lang="en">Phylogenetic scope</strong><strong data-lang="ru">Филогенетическая выборка</strong><span data-lang="en">Narrowed the initial 1980–1990 result set to 1980–1985 to meet the tree-building tool limit of fewer than 1,000 sequences.</span><span data-lang="ru">Исходная выборка 1980–1990 годов была сужена до 1980–1985 годов из-за ограничения инструмента построения дерева — менее 1000 последовательностей.</span></div>
-            <div class="workflow-step"><strong data-lang="en">Structural-model review</strong><strong data-lang="ru">Проверка структурной модели</strong><span data-lang="en">Compared templates using sequence identity and the reported Å-scale structural difference, then reviewed model geometry with a Ramachandran plot.</span><span data-lang="ru">Шаблоны сравнивались по идентичности последовательности и указанному структурному различию в Å; геометрия модели проверялась по карте Рамачандрана.</span></div>
-            <div class="workflow-step"><strong data-lang="en">Binding-site selection</strong><strong data-lang="ru">Определение сайта связывания</strong><span data-lang="en">Used DoGSite3 to predict pockets from the 3D structure, compared the five largest candidates and noted similar pockets across the hemagglutinin trimer.</span><span data-lang="ru">DoGSite3 использовался для прогнозирования карманов по 3D-структуре; сопоставлены пять крупнейших кандидатов и отмечены сходные карманы в тримере гемагглютинина.</span></div>
-            <div class="workflow-step"><strong data-lang="en">Docking and interaction review</strong><strong data-lang="ru">Докинг и анализ взаимодействий</strong><span data-lang="en">Prepared or converted ligand files, ran JAMDA docking, exported results and reviewed selected poses and 2D non-covalent interactions in PoseEdit.</span><span data-lang="ru">Подготовлены и преобразованы файлы лигандов, выполнен докинг JAMDA, выгружены результаты и проанализированы выбранные позы и 2D-диаграммы нековалентных взаимодействий в PoseEdit.</span></div>
-          </div>
-        </div>
-        <div class="workflow-links"><a href="https://www.ncbi.nlm.nih.gov/protein/ABB46547.1" target="_blank" rel="noopener">NCBI ABB46547.1 ↗</a><a href="https://proteins.plus/" target="_blank" rel="noopener">ProteinsPlus ↗</a></div>
-        <h5 data-lang="en">What the exercise demonstrates</h5><h5 data-lang="ru">Какие навыки показывает работа</h5>
-        <div class="chips" data-lang="en"><span class="chip">Target selection</span><span class="chip">Sequence-set curation</span><span class="chip">Tool-limit awareness</span><span class="chip">Structural-model review</span><span class="chip">Pocket ranking</span><span class="chip">Ligand-format troubleshooting</span><span class="chip">Critical interpretation</span><span class="chip">Transparent limitations</span></div>
-        <div class="chips" data-lang="ru"><span class="chip">Выбор мишени</span><span class="chip">Формирование выборки</span><span class="chip">Учёт ограничений инструментов</span><span class="chip">Проверка структурной модели</span><span class="chip">Ранжирование карманов</span><span class="chip">Работа с форматами лигандов</span><span class="chip">Критическая интерпретация</span><span class="chip">Прозрачное описание ограничений</span></div>
-        <p class="note" data-lang="en">The exercise also exposed practical data-quality and interoperability issues: several candidate compounds were not recognised or did not return a valid score. This required alternative structure generation or format conversion and a clear distinction between missing results and interpretable docking outputs.</p>
-        <p class="note" data-lang="ru">Работа также выявила практические проблемы качества и совместимости данных: несколько соединений не распознавались инструментом или не давали корректной оценки. Это потребовало альтернативной генерации структуры или преобразования формата и чёткого отделения отсутствующих результатов от интерпретируемых выходных данных докинга.</p>
-        <div class="science-gallery">
-          <figure class="science-figure"><a href="assets/docking-dinaciclib.png" target="_blank" rel="noopener"><img src="assets/docking-dinaciclib.png" alt="Dinaciclib docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong>Dinaciclib · JAMDA −2.7395</strong><br><span data-lang="en">Predicted binding pose and selected non-covalent interactions.</span><span data-lang="ru">Предсказанная поза связывания и выбранные нековалентные взаимодействия.</span></figcaption></figure>
-          <figure class="science-figure"><a href="assets/docking-ligand-2.png" target="_blank" rel="noopener"><img src="assets/docking-ligand-2.png" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 1 · JAMDA −2.4808</strong><strong data-lang="ru">Дополнительный лиганд 1 · JAMDA −2.4808</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
-          <figure class="science-figure"><a href="assets/docking-ligand-3.png" target="_blank" rel="noopener"><img src="assets/docking-ligand-3.png" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 2 · JAMDA −2.4527</strong><strong data-lang="ru">Дополнительный лиганд 2 · JAMDA −2.4527</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
-          <figure class="science-figure"><a href="assets/docking-ligand-4.png" target="_blank" rel="noopener"><img src="assets/docking-ligand-4.png" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 3 · JAMDA −2.1566</strong><strong data-lang="ru">Дополнительный лиганд 3 · JAMDA −2.1566</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
-        </div>
-        <p class="coursework-note note" data-lang="en">This is an in-silico coursework result, not experimental validation of antiviral activity. The scores are reported as generated in the training workflow and should not be interpreted as evidence of therapeutic efficacy.</p>
-        <p class="coursework-note note" data-lang="ru">Это результат учебного расчёта in silico, а не экспериментальное подтверждение противовирусной активности. Значения приведены в том виде, в котором они были получены в учебном процессе, и не являются доказательством терапевтической эффективности.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap">
-    <div class="section-title"><h3 data-lang="en">Professional experience</h3><h3 data-lang="ru">Профессиональный опыт</h3></div>
-    <div class="card timeline">
-      <article class="role">
-        <h4 data-lang="en">Independent Research &amp; Professional Development · Self-employed</h4>
-        <h4 data-lang="ru">Независимые исследования и профессиональное развитие · Самозанятость</h4>
-        <div class="meta">Feb 2025 – Present · Türkiye</div>
-        <ul data-lang="en"><li>Conduct independent literature research in materials, polymers, coatings, monomer processes and scientific data workflows.</li><li>Convert selected Excel-based chemical-process calculations into reproducible Python models with configurable inputs, validation checks, CSV outputs and plots.</li><li>Build GitHub documentation and strengthen version control, remote R&amp;D communication and AI-assisted technical workflows.</li></ul>
-        <ul data-lang="ru"><li>Провожу самостоятельный поиск литературы по материалам, полимерам, покрытиям, мономерным процессам и научным данным.</li><li>Преобразую выбранные расчёты химико-технологических процессов из Excel в воспроизводимые Python-модели с настраиваемыми входными данными, проверками, CSV и графиками.</li><li>Развиваю документацию GitHub, контроль версий, дистанционную R&amp;D-коммуникацию и технические процессы с поддержкой ИИ.</li></ul>
-      </article>
-      <article class="role">
-        <h4 data-lang="en">Research Engineer · Institute for Applied Chemistry and Certification FRISHBERG Ltd.</h4>
-        <h4 data-lang="ru">Инженер-исследователь · Институт прикладной химии и сертификации «ФРИШБЕРГ»</h4>
-        <div class="meta">Jul 2024 – Jan 2025 · Powder coatings R&amp;D</div>
-        <ul data-lang="en"><li>Helped establish and develop a powder-coatings R&amp;D laboratory by transferring, positioning, connecting and commissioning selected equipment.</li><li>Tested replacement components and alternative formulations using gel-time measurements, DSC with nitrogen cooling, NMR-solvent selection and laboratory coating trials.</li><li>Processed and visualised Excel data for component content, gel time, powder humidity, cathodic-delamination diameter, material weights and correlation screening.</li><li>Improved temperature control and product quality by inspecting and cleaning a liquid heat exchanger, addressing micronization cleanliness, sealing storage and improving powder-mixture homogeneity through grinding and sieving.</li><li>Applied tribostatic powder spraying to heated test specimens; produced about 30 kg of experimental coating batches and assessed adhesion and cathodic delamination.</li><li>Performed selected qualitative chemical reactions for iron, catechol-type hydroxyl groups and iodine during material investigations.</li></ul>
-        <ul data-lang="ru"><li>Участвовал в создании и развитии R&amp;D-лаборатории порошковых покрытий: переносил, размещал, подключал и вводил в работу отдельное оборудование.</li><li>Испытывал заменяющие компоненты и альтернативные рецептуры по времени гелеобразования, ДСК с азотным охлаждением, подбору растворителей для ЯМР и лабораторным нанесениям.</li><li>Обрабатывал и визуализировал в Excel данные по содержанию компонентов, времени гелеобразования, влажности порошка, диаметру катодного отслаивания, навескам и возможным корреляциям.</li><li>Улучшал температурный контроль и качество продукта: осматривал и очищал жидкостный теплообменник, устранял загрязнение системы микронизации, улучшал герметичность хранения и однородность смеси измельчением и просеиванием.</li><li>Наносил порошок трибостатическим способом на нагретые образцы; изготовил около 30 кг экспериментальных партий и оценивал адгезию и катодное отслаивание.</li><li>Проводил отдельные качественные реакции на железо, пирокатехольные группы и йод при исследовании материалов.</li></ul>
-      </article>
-      <article class="role">
-        <h4 data-lang="en">Chemist-Technologist · Medin-N</h4><h4 data-lang="ru">Химик-технолог · «Медин-Н»</h4>
-        <div class="meta">Aug 2021 – Apr 2024 · Glycolide monomer manufacturing</div>
-        <ul data-lang="en"><li>Maintained process documentation for glycolide synthesis, purification, filtration and thermal-vacuum operations used in biodegradable polymer production.</li><li>Investigated quality deviations linked to raw-material dehydration, storage-related oxidation, filtration and thermal-vacuum processing; supported installation of an improved drying cabinet.</li><li>Defined practical operating-temperature ranges for synthesis and distillation and improved filtration by insulating the filter element, reducing overheating and unintended oligomer dissolution.</li><li>Contributed to production of approximately 600 kg of monomer.</li><li>Reduced preparation time of a heat-crosslinking polymer–dye protective solution from about two weeks to a few hours through grinding, heating and controlled mixing.</li><li>Co-developed a microwave synthesis and distillation setup for university project work; ¹H NMR revealed rapid moisture-associated oligomerization of the monomer.</li></ul>
-        <ul data-lang="ru"><li>Вёл технологическую документацию по синтезу, очистке, фильтрации и термовакуумным операциям с гликолидом для биоразлагаемых полимеров.</li><li>Исследовал отклонения качества, связанные с обезвоживанием сырья, окислением при хранении, фильтрацией и термовакуумной обработкой; участвовал во внедрении улучшенного сушильного шкафа.</li><li>Определил практические температурные диапазоны синтеза и дистилляции и улучшил фильтрацию теплоизоляцией фильтрующего элемента, снизив перегрев и нежелательное растворение олигомеров.</li><li>Участвовал в производстве примерно 600 кг мономера.</li><li>Сократил приготовление термосшиваемого защитного раствора полимер–краситель примерно с двух недель до нескольких часов за счёт измельчения, нагрева и контролируемого перемешивания.</li><li>Участвовал в создании установки микроволнового синтеза и дистилляции для университетского проекта; ¹H ЯМР показал быструю олигомеризацию мономера при воздействии влаги.</li></ul>
-        <figure class="work-figure"><a href="assets/microwave-synthesis-setup.png" target="_blank" rel="noopener"><img src="assets/microwave-synthesis-setup.png" alt="Schematic of a microwave synthesis and distillation laboratory setup"></a><figcaption><span data-lang="en">Schematic of the microwave-assisted synthesis and distillation setup developed for university project work.</span><span data-lang="ru">Схема установки микроволнового синтеза и дистилляции, разработанной для университетского проекта.</span></figcaption></figure>
-      </article>
-      <article class="role">
-        <h4 data-lang="en">Process Engineer · ODV Prescription Optics Plant</h4><h4 data-lang="ru">Инженер-технолог · Завод рецептурной оптики ODV</h4>
-        <div class="meta">Apr 2021 – Jul 2021 · Optical coatings</div>
-        <ul data-lang="en"><li>Supported washing, surface activation and adhesion processes for polymer ophthalmic lenses and optical interference coatings.</li><li>Transferred an interference-coating recipe to new low-pressure electron-beam deposition equipment.</li><li>Measured polymer moisture and coating transmission spectra, maintained Excel process logs and investigated defects using microscopy, humidity, temperature and equipment parameters.</li><li>Removed hardened flaking polymer contamination from the finishing area and supported rapid corrective action during production.</li></ul>
-        <ul data-lang="ru"><li>Сопровождал мойку, активацию поверхности и повышение адгезии полимерных офтальмологических линз и интерференционных покрытий.</li><li>Перенёс рецептуру интерференционного покрытия на новое электронно-лучевое оборудование низкого давления.</li><li>Измерял влажность полимера и спектры пропускания покрытий, вёл журналы Excel и исследовал дефекты по микроскопии, влажности, температуре и параметрам оборудования.</li><li>Удалял затвердевшие отслаивающиеся полимерные загрязнения из финишной зоны и участвовал в оперативном устранении производственных проблем.</li></ul>
-      </article>
-      <article class="role">
-        <h4 data-lang="en">Research Engineer · Fiber Technology &amp; Photonics Laboratory</h4><h4 data-lang="ru">Инженер-исследователь · Лаборатория волоконной техники и фотоники</h4>
-        <div class="meta">Jan 2013 – Jul 2021 · Photonics and medical light-guide technology</div>
-        <ul data-lang="en"><li>Played a key hands-on role in a team that developed and implemented a flexible PMMA light-guide neonatal phototherapy lamp for treatment of hyperbilirubinemia in premature infants.</li><li>Proposed automated laser engraving of PMMA light guides to create controlled side emission and identified suitable equipment suppliers.</li><li>Co-assembled an LED UV-curing unit for rapid connector fixation; machined connectors and attachment components.</li><li>Created a detailed written workflow for a substantial part of lamp production and assembly and supported infrared light-guide processing and extrusion laboratory work.</li><li>Participated in volunteer projects supporting children in orphanages, reinforcing a long-term interest in medical applications of materials science.</li></ul>
-        <ul data-lang="ru"><li>Сыграл ключевую практическую роль в команде, разработавшей и внедрившей гибкую фототерапевтическую лампу на основе ПММА-световодов для лечения гипербилирубинемии у недоношенных детей.</li><li>Предложил автоматическую лазерную гравировку ПММА-световодов для управляемого бокового свечения и нашёл подходящих поставщиков оборудования.</li><li>Участвовал в сборке светодиодной УФ-установки для быстрого отверждения клея; изготавливал коннекторы и крепёжные детали.</li><li>Подготовил подробную письменную процедуру значительной части производства и сборки лампы и участвовал в лабораторной обработке и экструзии ИК-световодов.</li><li>Участвовал в волонтёрских проектах помощи детям в детских домах, что укрепило мой интерес к медицинским применениям материаловедения.</li></ul>
-        <figure class="work-figure compact"><a href="assets/phototherapy-light-guide.png" target="_blank" rel="noopener"><img src="assets/phototherapy-light-guide.png" alt="Flexible PMMA light-guide phototherapy element"></a><figcaption><span data-lang="en">Flexible PMMA light-guide element used in the neonatal phototherapy development.</span><span data-lang="ru">Гибкий ПММА-световодный элемент, применявшийся в разработке фототерапевтической лампы.</span></figcaption></figure>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="wrap">
-    <div class="section-title">
-      <h3 data-lang="en">Engineering portfolio</h3><h3 data-lang="ru">Инженерное портфолио</h3>
-      <p data-lang="en">AI-assisted, parameter-driven Python models developed from chemical-engineering calculations and documented for reproducibility.</p>
-      <p data-lang="ru">Параметрические Python-модели с поддержкой ИИ, созданные на основе химико-технологических расчётов и документированные для воспроизводимости.</p>
-    </div>
-    <div class="grid">
-      <a class="project-link span-6" href="https://github.com/ivan-kashuba-rd/reactor-dissolution-calculation" target="_blank" rel="noopener"><div class="card"><span class="project-tag">Mass transfer</span><h4>Reactor Dissolution Calculation ↗</h4><p data-lang="en">Models agitator-speed scenarios, mass transfer, dissolution time, motor-capacity limits and energy indicators, with a baseline checked against the source spreadsheet.</p><p data-lang="ru">Моделирует влияние скорости мешалки, массообмен, время растворения, ограничения мощности двигателя и энергетические показатели с проверкой базового варианта по исходной таблице.</p></div></a>
-      <a class="project-link span-6" href="https://github.com/ivan-kashuba-rd/pneumatic-dryer-performance-calculator" target="_blank" rel="noopener"><div class="card"><span class="project-tag">Drying</span><h4>Pneumatic Dryer Performance Calculator ↗</h4><p data-lang="en">Evaluates gas velocity, tube diameter, heat transfer, drying time, required pipe length and pressure drop, producing CSV outputs and plots.</p><p data-lang="ru">Оценивает скорость газа, диаметр трубы, теплообмен, время сушки, требуемую длину и потери давления с выводом CSV и графиков.</p></div></a>
-      <a class="project-link span-6" href="https://github.com/ivan-kashuba-rd/stirred-vessel-heating-comparator" target="_blank" rel="noopener"><div class="card"><span class="project-tag">Heat transfer</span><h4>Stirred-Vessel Heating Comparator ↗</h4><p data-lang="en">Compares paddle, anchor and propeller impellers across rpm ranges, predicted heat-transfer performance, heating time and diminishing-return behaviour.</p><p data-lang="ru">Сравнивает лопастную, якорную и пропеллерную мешалки по диапазонам оборотов, теплоотдаче, времени нагрева и эффекту убывающей отдачи.</p></div></a>
-      <a class="project-link span-6" href="https://github.com/ivan-kashuba-rd/tube-in-tube-heat-exchanger-scaling" target="_blank" rel="noopener"><div class="card"><span class="project-tag">Scale-up</span><h4>Tube-in-Tube Heat Exchanger Scaling ↗</h4><p data-lang="en">Screens flow regimes and criteria-based operating conditions for a tube-in-tube milk-heating calculation with reproducible engineering outputs.</p><p data-lang="ru">Проверяет режимы течения и рабочие условия по критериям подобия для расчёта нагрева молока в теплообменнике «труба в трубе».</p></div></a>
-    </div>
-  </div>
-</section>
-
-<section id="education">
-  <div class="wrap">
-    <div class="section-title"><h3 data-lang="en">Education and research training</h3><h3 data-lang="ru">Образование и исследовательская подготовка</h3></div>
-    <div class="grid">
-      <div class="card span-6"><h4 data-lang="en">Postgraduate Qualification in Chemical Sciences</h4><h4 data-lang="ru">Послевузовская квалификация в области химических наук</h4><p><strong>Ural Federal University · 2015–2019 · GPA 4.4/5.0</strong></p><p data-lang="en">Research on photonic-crystal infrared light guides and single-crystal materials. Refined the AgBr–AgI phase diagram by DTA, worked with thermozone crystallization and the Bridgman–Stockbarger method, machined single crystals in a glove box and extruded them into light guides. Designed extrusion tooling in KOMPAS-3D, reviewed ANSYS stress analysis and calculated and built a tubular furnace for heating extrusion tooling.</p><p data-lang="ru">Исследовал фотонно-кристаллические ИК-световоды и монокристаллические материалы. Уточнил фазовую диаграмму AgBr–AgI методом ДТА, работал с термозонной кристаллизацией и методом Бриджмена–Стокбаргера, обрабатывал монокристаллы в перчаточном боксе и экструдировал их в световоды. Проектировал оснастку в КОМПАС-3D, изучал расчёт напряжений в ANSYS и рассчитал и изготовил трубчатую печь для нагрева экструзионной оснастки.</p></div>
-      <div class="card span-6"><h4 data-lang="en">Specialist Degree in Chemical Technology</h4><h4 data-lang="ru">Специалитет по химической технологии</h4><p><strong>Ural Federal University · 2010–2015 · GPA 4.4/5.0</strong></p><p data-lang="en">Specialisation in chemical technology of single crystals, materials and electronic products. Studied production and hot-extrusion modes of silver-halide infrared light guides, crystal machining, tooling strength and optical-quality evaluation.</p><p data-lang="ru">Специализация по химической технологии монокристаллов, материалов и изделий электронной техники. Исследовал получение и режимы горячей экструзии ИК-световодов из галогенидов серебра, обработку кристаллов, прочность оснастки и оценку оптического качества.</p></div>
-      <div class="card span-6"><h4 data-lang="en">Enterprise Economics and Management</h4><h4 data-lang="ru">Экономика и управление предприятием</h4><p><strong>Ural Federal University Business School · 2012–2015</strong></p><p data-lang="en">Professional retraining in profitability and cost calculations, small-scale scientific production planning, operations management and industrial decision-making.</p><p data-lang="ru">Профессиональная переподготовка по расчётам рентабельности и затрат, планированию малого научного производства, операционному управлению и принятию решений в промышленности.</p></div>
-      <div class="card span-6"><h4 data-lang="en">Resource-Saving Technologies and Biotechnology</h4><h4 data-lang="ru">Ресурсосберегающие технологии и биотехнология</h4><p><strong>Ural Federal University · 2023–2024</strong></p><p data-lang="en">Additional studies not completed because of international relocation. Practical coursework covered NMR interpretation, chromatographic and spectroscopic methods, molecular docking, protein–ligand interaction analysis, phylogenetic analysis, Excel-based scale-up equations, introductory Python data work and literature-based microwave-reactor design.</p><p data-lang="ru">Дополнительное обучение не завершено из-за международной релокации. Практическая подготовка включала интерпретацию ЯМР, хроматографические и спектроскопические методы, молекулярный докинг, анализ взаимодействий белок–лиганд, филогенетический анализ, уравнения масштабирования в Excel, вводную работу с Python и проектирование микроволнового реактора по литературе.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="web">
-  <div class="wrap">
-    <div class="section-title">
-      <h3 data-lang="en">Simple websites and digital pages</h3><h3 data-lang="ru">Простые сайты и цифровые страницы</h3>
-      <p data-lang="en">I create and maintain lightweight websites with AI-assisted development, adapting structure, design and content to a person's or project's needs.</p>
-      <p data-lang="ru">Я создаю и поддерживаю лёгкие сайты с применением ИИ-инструментов, быстро адаптируя структуру, оформление и информацию под человека или проект.</p>
-    </div>
-    <div class="grid">
-      <article class="card web-case">
-        <div class="web-case-visual" aria-hidden="true">
-          <div class="site-preview">
-            <div class="site-preview-bar"><i></i><i></i><i></i></div>
-            <div class="site-preview-nav">
-              <div class="mini-brand"><span class="mini-flower"><i></i><i></i><i></i><i></i><i></i></span>LUMÉ</div>
-              <div class="mini-links"><span>Services</span><span>Studio</span><span>Contact</span></div>
-            </div>
-            <div class="site-preview-hero">
-              <div class="mini-copy"><div class="mini-kicker">Beauty studio · Antalya</div><div class="mini-title">Natural beauty,<br>thoughtful care</div><div class="mini-text"></div><span class="mini-button">Book online</span></div>
-              <div class="mini-logo-stage"><img src="assets/lume-3d-flower.png" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <div class="web-case-copy">
-          <span class="case-status" data-lang="en">Ready-made concept · available for purchase</span>
-          <span class="case-status" data-lang="ru">Готовая концепция · доступна для приобретения</span>
-          <h4 style="font-size:clamp(1.55rem,3vw,2.2rem);margin-top:15px">LUMÉ Antalya — Beauty Studio</h4>
-          <p data-lang="en">A responsive four-language website concept for a beauty studio in Antalya. It includes 32 services grouped into three directions, category-aware booking, WhatsApp contact, maps, a gallery, dual-currency prices and calm, accessible mobile navigation.</p>
-          <p data-lang="ru">Адаптивная концепция сайта студии красоты в Анталии на четырёх языках. В ней 32 услуги в трёх направлениях, понятное бронирование по категориям, связь через WhatsApp, карта, галерея, цены в двух валютах и удобная мобильная навигация.</p>
-          <p class="note" data-lang="en">The project explores three visual directions: a calm premium version, a warmer joyful variation and LUMÉ Riviera — a more exclusive signature concept. Each version can be adapted to a real studio: brand, services, prices, contacts, photos, domain and booking channels.</p>
-          <p class="note" data-lang="ru">В проекте исследованы три визуальных направления: спокойная премиальная версия, более тёплый радостный вариант и LUMÉ Riviera — эксклюзивная signature-концепция. Каждую версию можно адаптировать под действующую студию: заменить бренд, услуги, цены, контакты, фотографии, домен и каналы записи.</p>
-          <div class="case-actions">
-            <a class="btn primary" href="mailto:ivan.med.tr@gmail.com?subject=LUM%C3%89%20Antalya%20website" data-lang="en">Buy &amp; customize</a>
-            <a class="btn primary" href="mailto:ivan.med.tr@gmail.com?subject=%D0%A1%D0%B0%D0%B9%D1%82%20LUM%C3%89%20Antalya" data-lang="ru">Приобрести и адаптировать</a>
-            <a class="btn" href="/lume/?lang=en" target="_blank" rel="noopener" data-lang="en">View calm version ↗</a>
-            <a class="btn" href="/lume/?lang=ru" target="_blank" rel="noopener" data-lang="ru">Смотреть спокойную версию ↗</a>
-            <a class="btn" href="/lume-joyful/?lang=en" target="_blank" rel="noopener" data-lang="en">Joyful version ↗</a>
-            <a class="btn" href="/lume-joyful/?lang=ru" target="_blank" rel="noopener" data-lang="ru">Радостная версия ↗</a>
-            <a class="btn" href="/lume-riviera/?lang=en" target="_blank" rel="noopener" data-lang="en">LUMÉ Riviera · Signature ↗</a>
-            <a class="btn" href="/lume-riviera/?lang=ru" target="_blank" rel="noopener" data-lang="ru">LUMÉ Riviera · Премиум ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="card web-case">
-        <div class="web-case-visual usta-case-visual" aria-hidden="true">
-          <div class="usta-preview">
-            <div class="usta-preview-logo"><img src="assets/usta-3d-logo.png" alt=""></div>
-            <div class="usta-preview-copy">
-              <small>Local services · Alanya</small>
-              <strong>Usta Platform</strong>
-              <p>Find a trusted professional nearby for everyday tasks.</p>
-              <div class="usta-preview-pills"><i>90+ services</i><i>TR · EN · RU</i><i>Chat</i></div>
-            </div>
-          </div>
-        </div>
-        <div class="web-case-copy">
-          <span class="case-status" data-lang="en">Interactive marketplace prototype · GitHub Pages</span>
-          <span class="case-status" data-lang="ru">Интерактивный прототип маркетплейса · GitHub Pages</span>
-          <h4 style="font-size:clamp(1.55rem,3vw,2.2rem);margin-top:15px">Usta Platform — Local Services</h4>
-          <p data-lang="en">A responsive three-language marketplace concept connecting customers with local professionals. It includes more than 90 services, district-based requests, professional profiles, responses, favourites, internal chat and separate customer and professional journeys.</p>
-          <p data-lang="ru">Адаптивная трёхъязычная концепция маркетплейса, соединяющего клиентов с местными специалистами. В проекте более 90 услуг, заявки по районам, анкеты специалистов, отклики, избранное, внутренний чат и отдельные сценарии для клиентов и исполнителей.</p>
-          <p class="note" data-lang="en">The current public version demonstrates the interface and interaction model. Authentication, a live database and real-time messaging are planned as the backend phase.</p>
-          <p class="note" data-lang="ru">Текущая публичная версия демонстрирует интерфейс и модель взаимодействия. Авторизация, рабочая база данных и сообщения в реальном времени запланированы как следующий серверный этап.</p>
-          <div class="case-actions">
-            <a class="btn primary" href="/usta-platform/?lang=en" target="_blank" rel="noopener" data-lang="en">View Usta Platform ↗</a>
-            <a class="btn primary" href="/usta-platform/?lang=ru" target="_blank" rel="noopener" data-lang="ru">Открыть Usta Platform ↗</a>
-          </div>
-        </div>
-      </article>
-      <div class="card span-7">
-        <h4 data-lang="en">Types of pages I can build and update quickly</h4><h4 data-lang="ru">Какие страницы я могу быстро создавать и обновлять</h4>
-        <div class="service-grid">
-          <div class="service"><strong data-lang="en">Personal CV and portfolio sites</strong><strong data-lang="ru">Личные сайты, CV и портфолио</strong><span class="note" data-lang="en">Biography, experience, projects, publications, contacts and downloadable documents.</span><span class="note" data-lang="ru">Биография, опыт, проекты, публикации, контакты и документы для скачивания.</span></div>
-          <div class="service"><strong data-lang="en">Landing pages</strong><strong data-lang="ru">Лендинги</strong><span class="note" data-lang="en">A focused one-page presentation of a service, product, course, event or collaboration offer.</span><span class="note" data-lang="ru">Одностраничная презентация услуги, продукта, курса, события или предложения о сотрудничестве.</span></div>
-          <div class="service"><strong data-lang="en">Research, laboratory and project pages</strong><strong data-lang="ru">Страницы исследований, лабораторий и проектов</strong><span class="note" data-lang="en">Methods, equipment, team, results, files, milestones and project updates.</span><span class="note" data-lang="ru">Методы, оборудование, команда, результаты, файлы, этапы и обновления проекта.</span></div>
-          <div class="service"><strong data-lang="en">Small business and service sites</strong><strong data-lang="ru">Сайты малого бизнеса и услуг</strong><span class="note" data-lang="en">Service descriptions, pricing blocks, contact forms, maps, schedules and calls to action.</span><span class="note" data-lang="ru">Описание услуг, цены, формы связи, карты, расписания и призывы к действию.</span></div>
-          <div class="service"><strong data-lang="en">Catalogues and information pages</strong><strong data-lang="ru">Каталоги и информационные страницы</strong><span class="note" data-lang="en">Filterable lists of products, methods, publications, documents or resources without a complex store backend.</span><span class="note" data-lang="ru">Фильтруемые списки товаров, методов, публикаций, документов или ресурсов без сложной серверной части магазина.</span></div>
-          <div class="service"><strong data-lang="en">Documentation and knowledge pages</strong><strong data-lang="ru">Документация и базы знаний</strong><span class="note" data-lang="en">Instructions, FAQs, technical notes, project documentation and searchable reference pages.</span><span class="note" data-lang="ru">Инструкции, FAQ, технические заметки, документация проекта и страницы со справочной информацией.</span></div>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="LUMÉ home">
+      <img src="assets/lume-camellia.webp" alt="" width="52" height="52">
+      <span>LUMÉ<small>RIVIERA SIGNATURE</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#studio" data-i18n="navStudio">Studio</a>
+      <a href="#gallery" data-i18n="navGallery">Gallery</a>
+      <a href="#reviews" data-i18n="navReviews">Reviews</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="language-picker">
+        <button class="language-button" type="button" aria-haspopup="menu" aria-expanded="false"><span>EN</span><svg class="language-chevron" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg></button>
+        <div class="language-menu" role="menu" aria-label="Language">
+          <button type="button" data-lang="en" role="menuitem">English <span>EN</span></button>
+          <button type="button" data-lang="ru" role="menuitem">Русский <span>RU</span></button>
+          <button type="button" data-lang="tr" role="menuitem">Türkçe <span>TR</span></button>
+          <button type="button" data-lang="de" role="menuitem">Deutsch <span>DE</span></button>
         </div>
       </div>
-      <div class="card span-5">
-        <h4 data-lang="en">How interactive can the site be?</h4><h4 data-lang="ru">Насколько интерактивным может быть сайт?</h4>
-        <p data-lang="en">For a static site on free hosting, I can add responsive navigation, language and theme switching, tabs, accordions, search and filters, galleries, timelines, interactive charts, data tables, simple calculators, downloadable files, contact forms through external services and content loaded from JSON or public APIs.</p>
-        <p data-lang="ru">Для статического сайта на бесплатном хостинге можно добавить адаптивную навигацию, переключение языка и темы, вкладки, раскрывающиеся блоки, поиск и фильтры, галереи, временные шкалы, интерактивные графики, таблицы данных, простые калькуляторы, файлы для скачивания, формы связи через внешние сервисы и загрузку данных из JSON или открытых API.</p>
-        <details>
-          <summary data-lang="en">Technical boundary</summary><summary data-lang="ru">Технические ограничения</summary>
-          <p data-lang="en">Secure user accounts, private databases, payment processing, complex administration panels and confidential data normally require a backend or specialised external service. Those features can be integrated, but they are beyond a purely static GitHub Pages site.</p>
-          <p data-lang="ru">Защищённые аккаунты, закрытые базы данных, приём платежей, сложные панели управления и конфиденциальные данные обычно требуют серверной части или специализированного внешнего сервиса. Их можно интегрировать, но это уже выходит за рамки чисто статического сайта на GitHub Pages.</p>
-        </details>
-        <h5 data-lang="en">Fast changes</h5><h5 data-lang="ru">Быстрые изменения</h5>
-        <p data-lang="en">Colours, typography, layout, sections, wording, images, links, languages and current information can be revised quickly while keeping the site lightweight and mobile-friendly.</p>
-        <p data-lang="ru">Цвета, шрифты, расположение блоков, формулировки, изображения, ссылки, языки и актуальную информацию можно быстро менять, сохраняя лёгкость и удобство сайта на телефоне.</p>
+      <button class="favorite-trigger" type="button" aria-label="Saved services"><span>♡</span><i id="favoriteCount">0</i></button>
+      <button class="button button-small" type="button" data-book data-i18n="book">Book now</button>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" inert>
+    <nav aria-label="Mobile navigation">
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#studio" data-i18n="navStudio">Studio</a>
+      <a href="#gallery" data-i18n="navGallery">Gallery</a>
+      <a href="#reviews" data-i18n="navReviews">Reviews</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </nav>
+    <button class="button" type="button" data-book data-i18n="book">Book now</button>
+  </div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-image" role="img" aria-label="Sunlit Mediterranean beauty studio portrait"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span></span><b data-i18n="heroEyebrow">Signature beauty · Antalya Riviera</b></div>
+        <h1 data-i18n-html="heroTitle">Beauty, made<br><em>luminous.</em></h1>
+        <p data-i18n="heroText">Thoughtful hair, nail, brow and skin rituals shaped around you — unrushed, personal and full of light.</p>
+        <div class="hero-actions">
+          <button class="button button-large" type="button" data-book data-i18n="bookVisit">Book a visit</button>
+          <a class="text-button" href="#services"><span data-i18n="exploreServices">Explore services</span><b>↓</b></a>
+        </div>
+        <div class="hero-proof">
+          <div><strong>32</strong><span data-i18n="proofServices">thoughtful services</span></div>
+          <div><strong>4</strong><span data-i18n="proofLanguages">languages</span></div>
+          <div><strong>1:1</strong><span data-i18n="proofCare">personal care</span></div>
+        </div>
       </div>
+      <div class="hero-stamp" aria-hidden="true"><span>BOOK · GLOW · REPEAT · </span><img src="assets/lume-camellia.webp" alt=""></div>
+      <a class="scroll-cue" href="#services" aria-label="Scroll to services"><span></span></a>
+    </section>
+
+    <section class="trust-strip" aria-label="Studio values">
+      <div><span>✦</span><b data-i18n="trust1">Personal consultation</b></div>
+      <div><span>✦</span><b data-i18n="trust2">Transparent pricing</b></div>
+      <div><span>✦</span><b data-i18n="trust3">Hygiene-first care</b></div>
+      <div><span>✦</span><b data-i18n="trust4">Easy WhatsApp booking</b></div>
+    </section>
+
+    <section class="section services-section" id="services">
+      <div class="section-heading reveal">
+        <div><span class="kicker" data-i18n="servicesKicker">Our menu</span><h2 data-i18n-html="servicesTitle">Find your<br><em>feel-good ritual</em></h2></div>
+        <p data-i18n="servicesIntro">Browse all 32 services, save your favourites and book the right treatment in a few taps.</p>
+      </div>
+      <div class="service-toolbar reveal">
+        <label class="service-search"><span>⌕</span><input id="serviceSearch" type="search" autocomplete="off" data-i18n-placeholder="searchPlaceholder" placeholder="Search services"></label>
+        <div class="filter-scroll" id="categoryFilters" role="group" aria-label="Service categories">
+          <button class="filter active" type="button" data-category="all" data-i18n="filterAll">All</button>
+          <button class="filter" type="button" data-category="hair" data-i18n="filterHair">Hair</button>
+          <button class="filter" type="button" data-category="nails" data-i18n="filterNails">Nails &amp; brows</button>
+          <button class="filter" type="button" data-category="skin" data-i18n="filterSkin">Skin &amp; makeup</button>
+          <button class="filter" type="button" data-category="saved"><span>♡</span> <span data-i18n="filterSaved">Saved</span></button>
+        </div>
+        <div class="currency-toggle" role="group" aria-label="Currency">
+          <button class="active" type="button" data-currency="TRY">₺</button><button type="button" data-currency="EUR">€</button>
+        </div>
+      </div>
+      <div class="service-summary"><span id="serviceResultCount">32 services</span><small data-i18n="priceNote">Portfolio prices are illustrative</small></div>
+      <div class="service-grid" id="serviceGrid" aria-live="polite"></div>
+      <div class="center"><button class="button button-outline" id="showMore" type="button" data-i18n="showMore">Show all services</button></div>
+    </section>
+
+    <section class="section story-section" id="studio">
+      <div class="story-visual reveal">
+        <img src="assets/hair.webp" alt="Hair styling in a bright Mediterranean studio" loading="lazy" width="1100" height="1100">
+        <div class="story-card"><b>01</b><span data-i18n="storyCard">care that starts with listening</span></div>
+      </div>
+      <div class="story-copy reveal">
+        <span class="kicker" data-i18n="storyKicker">The LUMÉ way</span>
+        <h2 data-i18n-html="storyTitle">A little more light<br><em>in your day</em></h2>
+        <p class="lead" data-i18n="storyLead">We believe beauty care should feel like time returned to you — never rushed, never generic.</p>
+        <p data-i18n="storyText">Every visit begins with a clear consultation. We agree on the result, explain the process and price, and adapt the ritual to your style and comfort.</p>
+        <div class="story-points">
+          <div><b>01</b><span><strong data-i18n="point1Title">Listen first</strong><small data-i18n="point1Text">Your routine, wishes and boundaries shape the plan.</small></span></div>
+          <div><b>02</b><span><strong data-i18n="point2Title">Create together</strong><small data-i18n="point2Text">You know what to expect before we begin.</small></span></div>
+          <div><b>03</b><span><strong data-i18n="point3Title">Care beyond</strong><small data-i18n="point3Text">Simple aftercare helps the result last.</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-section" id="gallery">
+      <div class="section-heading reveal">
+        <div><span class="kicker" data-i18n="galleryKicker">Inside the ritual</span><h2 data-i18n-html="galleryTitle">Warm details.<br><em>Beautiful results.</em></h2></div>
+        <p data-i18n="galleryIntro">A signature visual direction shaped by Mediterranean light, refined textures and quiet confidence.</p>
+      </div>
+      <div class="gallery-grid reveal">
+        <button class="gallery-item gallery-hero" type="button" data-lightbox="assets/hero.webp"><img src="assets/hero.webp" alt="LUMÉ campaign portrait" loading="lazy"><span data-i18n="gallery1">The LUMÉ glow</span></button>
+        <button class="gallery-item" type="button" data-lightbox="assets/hair.webp"><img src="assets/hair.webp" alt="Glossy hair styling" loading="lazy"><span data-i18n="gallery2">Hair with movement</span></button>
+        <button class="gallery-item" type="button" data-lightbox="assets/nails.webp"><img src="assets/nails.webp" alt="Coral manicure and hand care" loading="lazy"><span data-i18n="gallery3">Care in every detail</span></button>
+        <div class="gallery-quote"><img src="assets/lume-camellia.webp" alt="" loading="lazy"><p data-i18n-html="galleryQuote">Your beauty.<br><em>Your rhythm.</em></p></div>
+      </div>
+    </section>
+
+    <section class="section reviews-section" id="reviews">
+      <div class="review-heading reveal"><span class="kicker" data-i18n="reviewsKicker">Kind words</span><h2 data-i18n-html="reviewsTitle">Confidence looks<br><em>beautiful on you</em></h2></div>
+      <div class="review-shell reveal">
+        <button class="review-arrow" id="reviewPrev" type="button" aria-label="Previous review">←</button>
+        <div class="review-track" id="reviewTrack" aria-live="polite"></div>
+        <button class="review-arrow" id="reviewNext" type="button" aria-label="Next review">→</button>
+      </div>
+      <div class="review-dots" id="reviewDots"></div>
+    </section>
+
+    <section class="section booking-banner">
+      <img src="assets/lume-camellia.webp" alt="" loading="lazy">
+      <div><span class="kicker" data-i18n="bannerKicker">A little time for you</span><h2 data-i18n-html="bannerTitle">Ready for your<br><em>LUMÉ moment?</em></h2><p data-i18n="bannerText">Choose a service and prepare a WhatsApp booking request in under a minute.</p></div>
+      <button class="button button-dark button-large" type="button" data-book data-i18n="bookVisit">Book a visit</button>
+    </section>
+
+    <section class="section faq-section">
+      <div class="faq-heading reveal"><span class="kicker">FAQ</span><h2 data-i18n-html="faqTitle">Before your<br><em>first visit</em></h2></div>
+      <div class="faq-list reveal" id="faqList">
+        <details><summary data-i18n="faq1q">How do I book?</summary><p data-i18n="faq1a">Choose a service, preferred date and time, then send the prepared request through WhatsApp. This portfolio demo does not transmit your data to a server.</p></details>
+        <details><summary data-i18n="faq2q">Can I change or cancel?</summary><p data-i18n="faq2a">In a live studio version, you would reply in the same WhatsApp chat. A cancellation policy should be confirmed by the business before launch.</p></details>
+        <details><summary data-i18n="faq3q">Which language can I use?</summary><p data-i18n="faq3a">The interface is available in English, Russian, Turkish and German. The studio can later specify which languages are available for each appointment.</p></details>
+        <details><summary data-i18n="faq4q">Are the prices final?</summary><p data-i18n="faq4a">Prices on this concept site are examples. Hair length, material or treatment complexity may change a final quote.</p></details>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-card reveal">
+        <span class="kicker" data-i18n="contactKicker">Come say hello</span>
+        <h2>LUMÉ</h2>
+        <p data-i18n="contactText">A signature beauty studio concept inspired by the Antalya Riviera, Mediterranean light and understated luxury.</p>
+        <div class="contact-list">
+          <a href="https://www.google.com/maps/search/?api=1&query=beauty+studio+Antalya" target="_blank" rel="noopener"><span>⌖</span><b data-i18n="openMap">Open location in Maps</b><i>↗</i></a>
+          <a id="whatsappContact" href="https://wa.me/?text=Hello%20LUM%C3%89" target="_blank" rel="noopener"><span>◉</span><b>WhatsApp</b><i>↗</i></a>
+          <a href="mailto:ivan.med.tr@gmail.com"><span>✉</span><b>ivan.med.tr@gmail.com</b><i>↗</i></a>
+        </div>
+        <div class="hours"><b data-i18n="hoursTitle">Concept opening hours</b><span data-i18n="hoursWeek">Mon–Sat · 09:00–20:00</span><span data-i18n="hoursSun">Sunday · by appointment</span></div>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe title="Map of central Antalya" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=30.674%2C36.870%2C30.735%2C36.905&amp;layer=mapnik&amp;marker=36.887%2C30.704"></iframe>
+        <span data-i18n="mapNote">Demo map · exact studio address to be added before launch</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <a class="brand footer-brand" href="#top"><img src="assets/lume-camellia.webp" alt="" width="60" height="60"><span>LUMÉ<small>RIVIERA SIGNATURE</small></span></a>
+      <p data-i18n="footerText">Natural beauty, thoughtful care and luminous detail.</p>
+      <button class="button button-dark" type="button" data-book data-i18n="book">Book now</button>
     </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="card" style="text-align:center;padding:40px">
-      <div class="eyebrow" data-lang="en">Open to collaboration</div><div class="eyebrow" data-lang="ru">Открыт к сотрудничеству</div>
-      <h3 style="font-size:clamp(1.8rem,5vw,3rem);margin:.25em 0" data-lang="en">Scientific support, materials R&amp;D, engineering calculations, documentation and lightweight websites</h3>
-      <h3 style="font-size:clamp(1.8rem,5vw,3rem);margin:.25em 0" data-lang="ru">Научная поддержка, R&amp;D материалов, инженерные расчёты, документация и лёгкие сайты</h3>
-      <p data-lang="en">Remote international projects and roles during EU business hours.</p><p data-lang="ru">Международные дистанционные проекты и позиции в рабочее время ЕС.</p>
-      <div class="actions" style="justify-content:center"><a class="btn primary" href="mailto:ivan.med.tr@gmail.com">ivan.med.tr@gmail.com</a></div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> LUMÉ</span>
+      <span data-i18n="demoDisclaimer">Portfolio concept · No real appointments are processed</span>
+      <a href="https://github.com/ivan-kashuba-rd" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
+  </footer>
+
+  <button class="floating-book" type="button" data-book><span>＋</span><b data-i18n="book">Book now</b></button>
+  <button class="back-top" type="button" aria-label="Back to top">↑</button>
+
+  <div class="modal" id="bookingModal" inert>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="booking-panel" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+      <header><div><span class="kicker" data-i18n="bookingKicker">Your LUMÉ moment</span><h2 id="bookingTitle" data-i18n="bookingTitle">Book a visit</h2></div><button type="button" class="modal-close" data-close-modal aria-label="Close">×</button></header>
+      <div class="booking-progress"><i class="active"></i><i></i><i></i></div>
+      <form id="bookingForm" novalidate>
+        <fieldset class="booking-step active" data-step="0">
+          <legend data-i18n="step1">1. Choose a service</legend>
+          <label><span data-i18n="serviceLabel">Service</span><select id="bookingService" required></select></label>
+          <div class="selection-preview" id="selectionPreview"></div>
+        </fieldset>
+        <fieldset class="booking-step" data-step="1">
+          <legend data-i18n="step2">2. Pick a preferred time</legend>
+          <label><span data-i18n="dateLabel">Preferred date</span><input id="bookingDate" type="date" required></label>
+          <label><span data-i18n="timeLabel">Preferred time</span><select id="bookingTime" required><option value="">—</option><option>09:00</option><option>10:30</option><option>12:00</option><option>13:30</option><option>15:00</option><option>16:30</option><option>18:00</option><option>19:30</option></select></label>
+          <p class="form-note" data-i18n="timeNote">This creates a preferred-time request; the studio would confirm availability in WhatsApp.</p>
+        </fieldset>
+        <fieldset class="booking-step" data-step="2">
+          <legend data-i18n="step3">3. Your contact details</legend>
+          <label><span data-i18n="nameLabel">Name</span><input id="bookingName" type="text" autocomplete="name" required maxlength="80"></label>
+          <label><span data-i18n="phoneLabel">Phone / WhatsApp</span><input id="bookingPhone" type="tel" autocomplete="tel" required placeholder="+90 …" maxlength="30"></label>
+          <label><span data-i18n="noteLabel">Notes (optional)</span><textarea id="bookingNotes" rows="3" maxlength="300" data-i18n-placeholder="notePlaceholder" placeholder="Anything we should know?"></textarea></label>
+          <label class="check"><input id="bookingConsent" type="checkbox" required><span data-i18n="consent">I agree to include these details in the WhatsApp message I send.</span></label>
+        </fieldset>
+        <div class="form-error" id="formError" role="alert"></div>
+        <div class="booking-controls"><button class="button button-outline" id="bookingBack" type="button" data-i18n="back">Back</button><button class="button" id="bookingNext" type="submit" data-i18n="continue">Continue</button></div>
+      </form>
+      <div class="booking-success" id="bookingSuccess">
+        <img src="assets/lume-camellia.webp" alt="" width="120" height="120">
+        <h3 data-i18n="readyTitle">Your request is ready</h3>
+        <p data-i18n="readyText">Open WhatsApp to review and send it. The demo does not store or transmit your contact details.</p>
+        <a class="button button-large" id="sendWhatsapp" href="#" target="_blank" rel="noopener" data-i18n="openWhatsapp">Open WhatsApp</a>
+        <button class="text-button" id="startAgain" type="button" data-i18n="startAgain">Start again</button>
+      </div>
+    </section>
   </div>
-</section>
-</main>
 
-<footer><div class="wrap">© <span id="year"></span> Ivan Kashuba · Lightweight bilingual static website</div></footer>
-<button id="topBtn" aria-label="Back to top">↑</button>
-<script>
-  const body = document.body;
-  const langBtn = document.getElementById('langBtn');
-  const themeBtn = document.getElementById('themeBtn');
-  const topBtn = document.getElementById('topBtn');
+  <div class="favorites-drawer" id="favoritesDrawer" inert>
+    <div class="drawer-backdrop" data-close-favorites></div>
+    <aside><header><h2 data-i18n="savedTitle">Saved services</h2><button type="button" data-close-favorites aria-label="Close">×</button></header><div id="favoritesList"></div><button class="button" type="button" data-book data-i18n="bookSaved">Book a saved service</button></aside>
+  </div>
 
-  if (localStorage.getItem('lang') === 'ru') body.classList.add('ru');
-  if (localStorage.getItem('theme') === 'light') body.classList.add('light');
+  <div class="lightbox" id="lightbox" inert><button type="button" aria-label="Close">×</button><img src="assets/hero.webp" alt=""></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  function syncLanguage() {
-    const ru = body.classList.contains('ru');
-    langBtn.textContent = ru ? 'EN' : 'RU';
-    document.documentElement.lang = ru ? 'ru' : 'en';
-  }
-  function syncTheme() {
-    const light = body.classList.contains('light');
-    themeBtn.textContent = light ? '☾' : '◐';
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', light ? '#eef6fb' : '#07111f');
-  }
-  langBtn.addEventListener('click', () => {
-    body.classList.toggle('ru');
-    localStorage.setItem('lang', body.classList.contains('ru') ? 'ru' : 'en');
-    syncLanguage();
-  });
-  themeBtn.addEventListener('click', () => {
-    body.classList.toggle('light');
-    localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
-    syncTheme();
-  });
-  window.addEventListener('scroll', () => { topBtn.style.display = window.scrollY > 700 ? 'block' : 'none'; });
-  topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-  document.getElementById('year').textContent = new Date().getFullYear();
-  syncLanguage();
-  syncTheme();
-</script>
+  <script src="app.js" defer></script>
 </body>
 </html>
