@@ -49,8 +49,9 @@ img { display: block; max-width: 100%; }
 .language-picker { position: relative; }
 .language-button, .favorite-trigger { height: 42px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.72); cursor: pointer; }
 .language-button { width: 64px; font-size: .78rem; font-weight: 700; }
-.language-button b { font-size: .9rem; transition: transform .2s; }
-.language-button[aria-expanded="true"] b { transform: rotate(180deg); }
+.language-chevron { width: 16px; height: 16px; flex: none; color: var(--ink); transition: transform .25s ease; }
+.language-chevron path { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.language-button[aria-expanded="true"] .language-chevron { transform: rotate(180deg); }
 .language-menu { position: absolute; top: calc(100% + 10px); right: 0; width: 170px; padding: 8px; visibility: hidden; transform: translateY(-8px); border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: var(--shadow); opacity: 0; transition: .2s; }
 .language-menu.open { visibility: visible; transform: translateY(0); opacity: 1; }
 .language-menu button { width: 100%; display: flex; justify-content: space-between; padding: 10px 11px; border: 0; border-radius: 11px; background: transparent; cursor: pointer; text-align: left; font-size: .85rem; }
