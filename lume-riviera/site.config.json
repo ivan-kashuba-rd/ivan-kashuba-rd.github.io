@@ -1,0 +1,108 @@
+{
+  "$schema": "./site-config.schema.json",
+  "version": 1,
+  "mode": "demo",
+  "business": {
+    "name": "LUMÉ",
+    "signature": "RIVIERA SIGNATURE",
+    "legalName": "",
+    "email": "ivan.med.tr@gmail.com",
+    "phone": "",
+    "whatsappNumber": "905518923874",
+    "whatsappDisplay": "+90 551 892 3874",
+    "portfolioUrl": "https://github.com/ivan-kashuba-rd",
+    "privacyUrl": "",
+    "termsUrl": "",
+    "location": {
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=beauty+studio+Antalya",
+      "embedUrl": "https://www.openstreetmap.org/export/embed.html?bbox=30.674%2C36.870%2C30.735%2C36.905&layer=mapnik&marker=36.887%2C30.704",
+      "address": "",
+      "locality": "Antalya",
+      "country": "TR"
+    },
+    "hours": {
+      "en": ["Mon–Sat · 09:00–20:00", "Sunday · by appointment"],
+      "ru": ["Пн–Сб · 09:00–20:00", "Воскресенье · по записи"],
+      "tr": ["Pzt–Cmt · 09:00–20:00", "Pazar · randevu ile"],
+      "de": ["Mo–Sa · 09:00–20:00", "Sonntag · nach Termin"]
+    }
+  },
+  "booking": {
+    "adapter": "whatsapp",
+    "externalUrl": "",
+    "serviceQueryParameter": "service",
+    "phone": ""
+  },
+  "features": {
+    "favorites": true,
+    "reviews": true,
+    "map": true,
+    "currencySwitcher": true
+  },
+  "pricing": {
+    "defaultCurrency": "TRY",
+    "currencies": {
+      "TRY": {
+        "rate": 1,
+        "increment": 1,
+        "minimum": 0
+      },
+      "EUR": {
+        "rate": 0.0263157895,
+        "increment": 5,
+        "minimum": 10
+      }
+    }
+  },
+  "seo": {
+    "siteUrl": "https://ivan-kashuba-rd.github.io/lume-riviera/",
+    "index": true,
+    "image": "assets/hero.webp",
+    "title": {
+      "en": "LUMÉ Riviera — Beauty, made luminous",
+      "ru": "LUMÉ Riviera — Красота, наполненная светом",
+      "tr": "LUMÉ Riviera — Güzellik ışıkla buluşuyor",
+      "de": "LUMÉ Riviera — Schönheit aus Licht"
+    },
+    "description": {
+      "en": "A multilingual signature beauty studio concept with services, prices and WhatsApp booking.",
+      "ru": "Многоязычный концепт студии красоты с услугами, ценами и записью через WhatsApp.",
+      "tr": "Hizmetler, fiyatlar ve WhatsApp randevusu sunan çok dilli güzellik stüdyosu konsepti.",
+      "de": "Ein mehrsprachiges Beauty-Studio-Konzept mit Services, Preisen und WhatsApp-Buchung."
+    }
+  },
+  "services": [
+    ["cut-style", "hair", "✂", 1200, 60, {"en": "Signature cut & style", "ru": "Стрижка и укладка", "tr": "Kesim ve şekillendirme", "de": "Schnitt & Styling"}],
+    ["blow-dry", "hair", "〰", 700, 45, {"en": "Glossy blow-dry", "ru": "Укладка брашинг", "tr": "Fön ve şekillendirme", "de": "Glanz-Föhnstyling"}],
+    ["color-consult", "hair", "◌", 500, 30, {"en": "Colour consultation", "ru": "Консультация по окрашиванию", "tr": "Renk danışmanlığı", "de": "Farbberatung"}],
+    ["root-color", "hair", "◒", 1600, 90, {"en": "Root colour", "ru": "Окрашивание корней", "tr": "Dip boya", "de": "Ansatzfarbe"}],
+    ["balayage", "hair", "◐", 3600, 180, {"en": "Sun-kissed balayage", "ru": "Балаяж", "tr": "Işıltılı balyaj", "de": "Sun-kissed Balayage"}],
+    ["highlights", "hair", "✧", 3000, 150, {"en": "Dimensional highlights", "ru": "Объёмное мелирование", "tr": "Boyutlu röfle", "de": "Dimensionale Highlights"}],
+    ["hair-treatment", "hair", "◇", 1100, 60, {"en": "Deep repair ritual", "ru": "Глубокое восстановление", "tr": "Yoğun onarım bakımı", "de": "Intensiv-Aufbaupflege"}],
+    ["keratin", "hair", "≈", 3200, 150, {"en": "Keratin smoothing", "ru": "Кератиновое разглаживание", "tr": "Keratin düzleştirme", "de": "Keratin-Glättung"}],
+    ["bridal-hair", "hair", "♕", 4200, 150, {"en": "Bridal hair", "ru": "Свадебная причёска", "tr": "Gelin saçı", "de": "Brautfrisur"}],
+    ["braids", "hair", "∞", 900, 60, {"en": "Modern braids", "ru": "Современные косы", "tr": "Modern örgüler", "de": "Moderne Flechtfrisuren"}],
+    ["kids-cut", "hair", "☀", 650, 35, {"en": "Kids haircut", "ru": "Детская стрижка", "tr": "Çocuk saç kesimi", "de": "Kinderhaarschnitt"}],
+    ["classic-manicure", "nails", "◡", 650, 45, {"en": "Classic manicure", "ru": "Классический маникюр", "tr": "Klasik manikür", "de": "Klassische Maniküre"}],
+    ["gel-manicure", "nails", "●", 950, 75, {"en": "Gel manicure", "ru": "Маникюр с гель-лаком", "tr": "Kalıcı oje manikür", "de": "Gel-Maniküre"}],
+    ["precision-manicure", "nails", "◎", 1100, 90, {"en": "Precision manicure", "ru": "Комбинированный маникюр", "tr": "Detaylı manikür", "de": "Präzisionsmaniküre"}],
+    ["pedicure", "nails", "◟", 900, 60, {"en": "Spa pedicure", "ru": "Спа-педикюр", "tr": "Spa pedikür", "de": "Spa-Pediküre"}],
+    ["gel-pedicure", "nails", "◉", 1250, 90, {"en": "Gel pedicure", "ru": "Педикюр с гель-лаком", "tr": "Kalıcı oje pedikür", "de": "Gel-Pediküre"}],
+    ["nail-art", "nails", "✦", 350, 30, {"en": "Minimal nail art", "ru": "Минималистичный нейл-арт", "tr": "Minimal nail art", "de": "Minimal Nail Art"}],
+    ["gel-removal", "nails", "○", 300, 25, {"en": "Gentle gel removal", "ru": "Бережное снятие покрытия", "tr": "Nazik kalıcı oje çıkarma", "de": "Sanfte Gelentfernung"}],
+    ["brow-shape", "nails", "⌒", 500, 30, {"en": "Brow shaping", "ru": "Коррекция бровей", "tr": "Kaş şekillendirme", "de": "Brauenformung"}],
+    ["brow-tint", "nails", "◓", 650, 40, {"en": "Brow tint & shape", "ru": "Окрашивание и коррекция бровей", "tr": "Kaş boyama ve şekillendirme", "de": "Brauen färben & formen"}],
+    ["lash-lift", "nails", "⌁", 1200, 75, {"en": "Lash lift", "ru": "Ламинирование ресниц", "tr": "Kirpik lifting", "de": "Wimpernlifting"}],
+    ["brow-lamination", "nails", "≋", 1150, 60, {"en": "Brow lamination", "ru": "Ламинирование бровей", "tr": "Kaş laminasyonu", "de": "Brauenlaminierung"}],
+    ["express-facial", "skin", "☼", 1100, 45, {"en": "Express glow facial", "ru": "Экспресс-уход для сияния", "tr": "Hızlı ışıltı bakımı", "de": "Express-Glow-Facial"}],
+    ["deep-cleanse", "skin", "◍", 1600, 75, {"en": "Deep cleansing facial", "ru": "Глубокое очищение лица", "tr": "Derin cilt temizliği", "de": "Tiefenreinigung"}],
+    ["hydration", "skin", "♢", 1500, 60, {"en": "Mediterranean hydration", "ru": "Средиземноморское увлажнение", "tr": "Akdeniz nem bakımı", "de": "Mediterrane Feuchtigkeitspflege"}],
+    ["renewal", "skin", "✺", 1900, 75, {"en": "Renewal facial", "ru": "Обновляющий уход", "tr": "Yenileyici cilt bakımı", "de": "Renewal Facial"}],
+    ["face-massage", "skin", "〽", 900, 45, {"en": "Sculpting face massage", "ru": "Скульптурный массаж лица", "tr": "Yüz şekillendirme masajı", "de": "Modellierende Gesichtsmassage"}],
+    ["day-makeup", "skin", "♡", 1300, 60, {"en": "Fresh day makeup", "ru": "Дневной макияж", "tr": "Doğal gündüz makyajı", "de": "Frisches Tages-Make-up"}],
+    ["evening-makeup", "skin", "★", 1900, 75, {"en": "Evening makeup", "ru": "Вечерний макияж", "tr": "Gece makyajı", "de": "Abend-Make-up"}],
+    ["bridal-makeup", "skin", "♕", 3600, 120, {"en": "Bridal makeup", "ru": "Свадебный макияж", "tr": "Gelin makyajı", "de": "Braut-Make-up"}],
+    ["face-wax", "skin", "◠", 550, 30, {"en": "Face waxing", "ru": "Восковая депиляция лица", "tr": "Yüz ağda", "de": "Gesichts-Waxing"}],
+    ["body-wax", "skin", "△", 1400, 75, {"en": "Body waxing", "ru": "Восковая депиляция тела", "tr": "Vücut ağda", "de": "Körper-Waxing"}]
+  ]
+}

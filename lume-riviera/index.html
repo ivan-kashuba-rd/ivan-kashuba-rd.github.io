@@ -2,31 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src https://www.openstreetmap.org https://www.google.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; style-src-attr 'none'; script-src 'self' 'sha256-ZkvFX39Mx+C1CTc6sG9BxJg4X45NVNRlbvD0yF9E1MQ='; script-src-attr 'none'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types 'none'">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="LUMÉ Riviera — a signature four-language beauty studio concept with services, prices and WhatsApp booking.">
-  <meta name="author" content="Ivan Kashuba">
+  <meta id="metaDescription" name="description" content="A multilingual signature beauty studio concept with services, prices and WhatsApp booking.">
+  <meta id="robotsMeta" name="robots" content="index,follow">
   <meta name="theme-color" content="#fff8f0">
   <meta name="color-scheme" content="light">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="LUMÉ Riviera — Signature Beauty Studio">
-  <meta property="og:description" content="Hair, nails, brows, skin and makeup — signature care inspired by the Antalya Riviera.">
-  <meta property="og:image" content="assets/hero.webp">
+  <meta id="ogTitle" property="og:title" content="LUMÉ Riviera — Beauty, made luminous">
+  <meta id="ogDescription" property="og:description" content="A multilingual signature beauty studio concept with services, prices and WhatsApp booking.">
+  <meta id="ogImage" property="og:image" content="https://ivan-kashuba-rd.github.io/lume-riviera/assets/hero.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <title>LUMÉ Riviera — Signature Beauty Studio</title>
+  <title>LUMÉ Riviera — Beauty, made luminous</title>
+  <link id="canonicalUrl" rel="canonical" href="https://ivan-kashuba-rd.github.io/lume-riviera/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"LUMÉ Riviera — Signature Beauty Studio","description":"A multilingual signature beauty studio portfolio concept.","inLanguage":["en","ru","tr","de"],"isAccessibleForFree":true,"creator":{"@type":"Person","name":"Ivan Kashuba"}}
+  <script id="structuredData" type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"LUMÉ Riviera — Beauty, made luminous","description":"A multilingual signature beauty studio concept with services, prices and WhatsApp booking.","inLanguage":["en","ru","tr","de"],"isAccessibleForFree":true}
   </script>
 </head>
-<body>
+<body data-mode="demo">
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
-  <div class="announcement" role="status">
+  <div class="announcement demo-only" role="status">
     <span data-i18n="announcement">Portfolio concept · Explore the complete booking experience</span>
     <button class="announcement-close" type="button" aria-label="Close">×</button>
   </div>
@@ -40,7 +43,7 @@
       <a href="#services" data-i18n="navServices">Services</a>
       <a href="#studio" data-i18n="navStudio">Studio</a>
       <a href="#gallery" data-i18n="navGallery">Gallery</a>
-      <a href="#reviews" data-i18n="navReviews">Reviews</a>
+      <a href="#reviews" data-feature-nav="reviews" data-i18n="navReviews">Reviews</a>
       <a href="#contact" data-i18n="navContact">Contact</a>
     </nav>
     <div class="header-actions">
@@ -53,7 +56,7 @@
           <button type="button" data-lang="de" role="menuitem">Deutsch <span>DE</span></button>
         </div>
       </div>
-      <button class="favorite-trigger" type="button" aria-label="Saved services"><span>♡</span><i id="favoriteCount">0</i></button>
+      <button class="favorite-trigger" data-feature="favorites" type="button" aria-label="Saved services"><span>♡</span><i id="favoriteCount">0</i></button>
       <button class="button button-small" type="button" data-book data-i18n="book">Book now</button>
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
     </div>
@@ -64,7 +67,7 @@
       <a href="#services" data-i18n="navServices">Services</a>
       <a href="#studio" data-i18n="navStudio">Studio</a>
       <a href="#gallery" data-i18n="navGallery">Gallery</a>
-      <a href="#reviews" data-i18n="navReviews">Reviews</a>
+      <a href="#reviews" data-feature-nav="reviews" data-i18n="navReviews">Reviews</a>
       <a href="#contact" data-i18n="navContact">Contact</a>
     </nav>
     <button class="button" type="button" data-book data-i18n="book">Book now</button>
@@ -111,9 +114,9 @@
           <button class="filter" type="button" data-category="hair" data-i18n="filterHair">Hair</button>
           <button class="filter" type="button" data-category="nails" data-i18n="filterNails">Nails &amp; brows</button>
           <button class="filter" type="button" data-category="skin" data-i18n="filterSkin">Skin &amp; makeup</button>
-          <button class="filter" type="button" data-category="saved"><span>♡</span> <span data-i18n="filterSaved">Saved</span></button>
+          <button class="filter" data-feature="favorites" type="button" data-category="saved"><span>♡</span> <span data-i18n="filterSaved">Saved</span></button>
         </div>
-        <div class="currency-toggle" role="group" aria-label="Currency">
+        <div class="currency-toggle" data-feature="currencySwitcher" role="group" aria-label="Currency">
           <button class="active" type="button" data-currency="TRY">₺</button><button type="button" data-currency="EUR">€</button>
         </div>
       </div>
@@ -153,7 +156,7 @@
       </div>
     </section>
 
-    <section class="section reviews-section" id="reviews">
+    <section class="section reviews-section" id="reviews" data-feature="reviews">
       <div class="review-heading reveal"><span class="kicker" data-i18n="reviewsKicker">Kind words</span><h2 data-i18n-html="reviewsTitle">Confidence looks<br><em>beautiful on you</em></h2></div>
       <div class="review-shell reveal">
         <button class="review-arrow" id="reviewPrev" type="button" aria-label="Previous review">←</button>
@@ -182,17 +185,18 @@
     <section class="contact-section" id="contact">
       <div class="contact-card reveal">
         <span class="kicker" data-i18n="contactKicker">Come say hello</span>
-        <h2>LUMÉ</h2>
+        <h2 id="contactBusinessName">LUMÉ</h2>
         <p data-i18n="contactText">A signature beauty studio concept inspired by the Antalya Riviera, Mediterranean light and understated luxury.</p>
         <div class="contact-list">
-          <a href="https://www.google.com/maps/search/?api=1&query=beauty+studio+Antalya" target="_blank" rel="noopener"><span>⌖</span><b data-i18n="openMap">Open location in Maps</b><i>↗</i></a>
-          <a id="whatsappContact" href="https://wa.me/905518923874?text=Hello%20LUM%C3%89" target="_blank" rel="noopener" aria-label="WhatsApp: +90 551 892 3874"><span>◉</span><b>WhatsApp · +90 551 892 3874</b><i>↗</i></a>
-          <a href="mailto:ivan.med.tr@gmail.com"><span>✉</span><b>ivan.med.tr@gmail.com</b><i>↗</i></a>
+          <a id="mapContact" href="https://www.google.com/maps/search/?api=1&query=beauty+studio+Antalya" target="_blank" rel="noopener noreferrer"><span>⌖</span><b data-i18n="openMap">Open location in Maps</b><i>↗</i></a>
+          <a id="phoneContact" href="#" hidden><span>☎</span><b>Phone</b><i>↗</i></a>
+          <a id="whatsappContact" href="https://wa.me/905518923874?text=Hello%20LUM%C3%89" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp: +90 551 892 3874"><span>◉</span><b>WhatsApp · +90 551 892 3874</b><i>↗</i></a>
+          <a id="emailContact" href="mailto:ivan.med.tr@gmail.com"><span>✉</span><b>ivan.med.tr@gmail.com</b><i>↗</i></a>
         </div>
-        <div class="hours"><b data-i18n="hoursTitle">Concept opening hours</b><span data-i18n="hoursWeek">Mon–Sat · 09:00–20:00</span><span data-i18n="hoursSun">Sunday · by appointment</span></div>
+        <div class="hours" id="businessHours"><b data-i18n="hoursTitle">Concept opening hours</b><span>Mon–Sat · 09:00–20:00</span><span>Sunday · by appointment</span></div>
       </div>
-      <div class="map-wrap reveal">
-        <iframe title="Map of central Antalya" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=30.674%2C36.870%2C30.735%2C36.905&amp;layer=mapnik&amp;marker=36.887%2C30.704"></iframe>
+      <div class="map-wrap reveal" data-feature="map">
+        <iframe id="mapEmbed" title="Map of central Antalya" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.openstreetmap.org/export/embed.html?bbox=30.674%2C36.870%2C30.735%2C36.905&amp;layer=mapnik&amp;marker=36.887%2C30.704"></iframe>
         <span data-i18n="mapNote">Demo map · exact studio address to be added before launch</span>
       </div>
     </section>
@@ -205,9 +209,11 @@
       <button class="button button-dark" type="button" data-book data-i18n="book">Book now</button>
     </div>
     <div class="footer-bottom">
-      <span>© <span id="year"></span> LUMÉ</span>
-      <span data-i18n="demoDisclaimer">Portfolio concept · No real appointments are processed</span>
-      <a href="https://github.com/ivan-kashuba-rd" target="_blank" rel="noopener">GitHub ↗</a>
+      <span>© <span id="year"></span> <span id="footerBusinessName">LUMÉ</span></span>
+      <span class="demo-only" data-i18n="demoDisclaimer">Portfolio concept · No real appointments are processed</span>
+      <a id="privacyLink" href="#" hidden>Privacy</a>
+      <a id="termsLink" href="#" hidden>Terms</a>
+      <a id="portfolioLink" class="demo-only" href="https://github.com/ivan-kashuba-rd" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     </div>
   </footer>
 
@@ -233,9 +239,8 @@
         </fieldset>
         <fieldset class="booking-step" data-step="2">
           <legend data-i18n="step3">3. Your contact details</legend>
-          <label><span data-i18n="nameLabel">Name</span><input id="bookingName" type="text" autocomplete="name" required maxlength="80"></label>
-          <label><span data-i18n="phoneLabel">Phone / WhatsApp</span><input id="bookingPhone" type="tel" autocomplete="tel" required placeholder="+90 …" maxlength="30"></label>
-          <label><span data-i18n="noteLabel">Notes (optional)</span><textarea id="bookingNotes" rows="3" maxlength="300" data-i18n-placeholder="notePlaceholder" placeholder="Anything we should know?"></textarea></label>
+          <label><span data-i18n="nameLabel">Name</span><input id="bookingName" type="text" autocomplete="name" required minlength="2" maxlength="80"></label>
+          <label><span data-i18n="phoneLabel">Phone / WhatsApp</span><input id="bookingPhone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+90 …" minlength="7" maxlength="30"></label>
           <label class="check"><input id="bookingConsent" type="checkbox" required><span data-i18n="consent">I agree to include these details in the WhatsApp message I send.</span></label>
         </fieldset>
         <div class="form-error" id="formError" role="alert"></div>
@@ -245,13 +250,13 @@
         <img src="assets/lume-camellia.webp" alt="" width="120" height="120">
         <h3 data-i18n="readyTitle">Your request is ready</h3>
         <p data-i18n="readyText">Open WhatsApp to review and send it. The demo does not store or transmit your contact details.</p>
-        <a class="button button-large" id="sendWhatsapp" href="#" target="_blank" rel="noopener" data-i18n="openWhatsapp">Open WhatsApp</a>
+        <a class="button button-large" id="sendWhatsapp" href="#" target="_blank" rel="noopener noreferrer" data-i18n="openWhatsapp">Open WhatsApp</a>
         <button class="text-button" id="startAgain" type="button" data-i18n="startAgain">Start again</button>
       </div>
     </section>
   </div>
 
-  <div class="favorites-drawer" id="favoritesDrawer" inert>
+  <div class="favorites-drawer" id="favoritesDrawer" data-feature="favorites" inert>
     <div class="drawer-backdrop" data-close-favorites></div>
     <aside><header><h2 data-i18n="savedTitle">Saved services</h2><button type="button" data-close-favorites aria-label="Close">×</button></header><div id="favoritesList"></div><button class="button" type="button" data-book data-i18n="bookSaved">Book a saved service</button></aside>
   </div>
