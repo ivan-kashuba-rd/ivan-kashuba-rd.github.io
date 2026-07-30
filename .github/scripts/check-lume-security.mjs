@@ -8,6 +8,12 @@ const site = resolve(repository, 'lume-riviera');
 const read = path => readFileSync(resolve(site, path), 'utf8');
 const html = read('index.html');
 const plan = read('launch-plan.html');
+const projectDocuments = [
+  ['launch-plan.html', plan],
+  ['client-questionnaire.html', read('client-questionnaire.html')],
+  ['commercial-offer.html', read('commercial-offer.html')],
+  ['account-matrix.html', read('account-matrix.html')]
+];
 const app = read('app.js');
 const worker = read('sw.js');
 const headers = read('_headers');
@@ -19,6 +25,7 @@ const checkedFiles = [
   worker,
   read('styles.css'),
   read('launch-plan.css'),
+  read('project-docs.css'),
   read('site.config.json'),
   read('site-config.schema.json'),
   read('manifest.webmanifest'),
@@ -73,13 +80,22 @@ assert(!/\sstyle\s*=/i.test(html), 'An inline style was added to index.html.');
 assert(!/<script(?![^>]*type="application\/ld\+json")(?![^>]*\bsrc="app\.js")/i.test(html),
   'Only the JSON-LD block and the local app.js script are allowed.');
 
-assert(/<meta\b[^>]*name="robots"[^>]*content="noindex,nofollow,noarchive"/i.test(plan),
-  'The handover plan must remain excluded from search indexing.');
-assert(!/<script\b/i.test(plan), 'Scripts are not allowed on the handover plan.');
-assert(!/\son[a-z]+\s*=/i.test(plan), 'An inline event handler was added to the handover plan.');
-assert(!/\sstyle\s*=/i.test(plan), 'An inline style was added to the handover plan.');
-assert(headers.includes('X-Robots-Tag: noindex, nofollow, noarchive'),
-  'The handover plan is missing its X-Robots-Tag deployment header.');
+for (const [path, document] of projectDocuments) {
+  assert(/<meta\b[^>]*name="robots"[^>]*content="noindex,nofollow,noarchive"/i.test(document),
+    `${path} must remain excluded from search indexing.`);
+  assert(!/<script\b/i.test(document), `Scripts are not allowed in ${path}.`);
+  assert(!/\son[a-z]+\s*=/i.test(document), `An inline event handler was added to ${path}.`);
+  assert(!/\sstyle\s*=/i.test(document), `An inline style was added to ${path}.`);
+  assert(headers.includes(`/${path}\n  Cache-Control: no-cache\n  X-Robots-Tag: noindex, nofollow, noarchive`),
+    `${path} is missing its no-cache and X-Robots-Tag deployment headers.`);
+}
+
+for (const [path, document] of projectDocuments.slice(1)) {
+  assert(!/<form\b[^>]*\baction=/i.test(document),
+    `${path} must not define a form submission endpoint.`);
+  assert(/<button\b[^>]*class="offline-submit"[^>]*type="submit"[^>]*disabled/i.test(document),
+    `${path} must keep its submit control disabled.`);
+}
 
 for (const anchor of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/gi)) {
   assert(/\brel="[^"]*\bnoopener\b[^"]*\bnoreferrer\b[^"]*"/i.test(anchor[0]),

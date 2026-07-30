@@ -20,10 +20,19 @@
 безопасности. Она не включена в публичное меню и закрыта от индексации, но
 `noindex` не заменяет контроль доступа для конфиденциальных материалов.
 
+К плану подключены заполняемые документы без серверной отправки данных:
+
+- [`client-questionnaire.html`](client-questionnaire.html) — анкета клиента;
+- [`commercial-offer.html`](commercial-offer.html) — предложение на €1 250,
+  scope и критерии приёмки;
+- [`account-matrix.html`](account-matrix.html) — владельцы аккаунтов, MFA и
+  аварийные контакты.
+
 ## Быстрый путь
 
 1. Заполнить [`site.config.json`](site.config.json).
-2. Пройти [`CLIENT-QUESTIONNAIRE.md`](CLIENT-QUESTIONNAIRE.md) вместе с клиентом.
+2. Пройти [`client-questionnaire.html`](client-questionnaire.html) вместе с
+   клиентом.
 3. Выполнить `npm run build:lume:metadata`.
 4. Выполнить [`CUSTOMIZATION.md`](CUSTOMIZATION.md).
 5. Запустить проверки из раздела «Проверка перед публикацией».

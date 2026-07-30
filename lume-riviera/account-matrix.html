@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'none'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f8f5ef">
+  <title>LUMÉ Riviera — матрица аккаунтов</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="project-docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">К матрице</a>
+  <header class="document-header">
+    <a class="brand" href="./" aria-label="Открыть LUMÉ Riviera">
+      <img src="assets/favicon.svg" alt="" width="38" height="38">
+      <span>LUMÉ <small>RIVIERA</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Документы проекта">
+      <a href="launch-plan.html">План запуска</a>
+      <a href="client-questionnaire.html">Анкета</a>
+      <a href="commercial-offer.html">Предложение</a>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="document-intro">
+      <div>
+        <p class="eyebrow">Заполняемый документ</p>
+        <h1>Матрица аккаунтов,<br>владельцев и контактов</h1>
+        <p class="lede">Фиксирует, кому принадлежат внешние сервисы, кто ими управляет и к кому обращаться при сбое или инциденте.</p>
+      </div>
+      <aside class="document-meta">
+        <p><strong>Правило:</strong> бизнес — владелец</p>
+        <p><strong>Доступ:</strong> личные аккаунты + MFA</p>
+        <p><strong>Секреты:</strong> только в password manager</p>
+      </aside>
+    </section>
+
+    <div class="privacy-note">
+      <strong>Никаких паролей и recovery-кодов.</strong> Указывайте только владельцев, роли, публичные контакты и место хранения recovery‑процедуры. Сами секреты должны находиться в защищённом менеджере паролей бизнеса.
+    </div>
+
+    <form class="document-form" autocomplete="off">
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">01 · Владение</p>
+          <h2>Ключевые системы</h2>
+          <p>«Владелец» — представитель бизнеса с правом восстановления и оплаты. «Администратор» — человек, выполняющий технические изменения.</p>
+        </header>
+        <div class="matrix-wrap">
+          <table class="matrix">
+            <thead>
+              <tr>
+                <th>Система</th>
+                <th>Провайдер / URL</th>
+                <th>Владелец бизнеса</th>
+                <th>Тех. администратор</th>
+                <th>MFA</th>
+                <th>Recovery‑процедура</th>
+                <th>Оплата / продление</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Домен / registrar</td>
+                <td><input name="domain_provider" type="text" aria-label="Провайдер домена"></td>
+                <td><input name="domain_owner" type="text" aria-label="Владелец домена"></td>
+                <td><input name="domain_admin" type="text" aria-label="Администратор домена"></td>
+                <td><select name="domain_mfa" aria-label="MFA домена"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="domain_recovery" type="text" aria-label="Recovery-процедура домена"></td>
+                <td><input name="domain_billing" type="text" aria-label="Оплата домена"></td>
+              </tr>
+              <tr>
+                <td>DNS / CDN</td>
+                <td><input name="dns_provider" type="text" aria-label="Провайдер DNS"></td>
+                <td><input name="dns_owner" type="text" aria-label="Владелец DNS"></td>
+                <td><input name="dns_admin" type="text" aria-label="Администратор DNS"></td>
+                <td><select name="dns_mfa" aria-label="MFA DNS"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="dns_recovery" type="text" aria-label="Recovery-процедура DNS"></td>
+                <td><input name="dns_billing" type="text" aria-label="Оплата DNS"></td>
+              </tr>
+              <tr>
+                <td>Хостинг</td>
+                <td><input name="hosting_provider" type="text" aria-label="Провайдер хостинга"></td>
+                <td><input name="hosting_owner" type="text" aria-label="Владелец хостинга"></td>
+                <td><input name="hosting_admin" type="text" aria-label="Администратор хостинга"></td>
+                <td><select name="hosting_mfa" aria-label="MFA хостинга"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="hosting_recovery" type="text" aria-label="Recovery-процедура хостинга"></td>
+                <td><input name="hosting_billing" type="text" aria-label="Оплата хостинга"></td>
+              </tr>
+              <tr>
+                <td>GitHub / код</td>
+                <td><input name="github_provider" type="text" aria-label="Репозиторий GitHub"></td>
+                <td><input name="github_owner" type="text" aria-label="Владелец GitHub"></td>
+                <td><input name="github_admin" type="text" aria-label="Администратор GitHub"></td>
+                <td><select name="github_mfa" aria-label="MFA GitHub"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="github_recovery" type="text" aria-label="Recovery-процедура GitHub"></td>
+                <td><input name="github_billing" type="text" aria-label="Оплата GitHub"></td>
+              </tr>
+              <tr>
+                <td>Booking / CRM</td>
+                <td><input name="booking_provider" type="text" aria-label="Провайдер booking"></td>
+                <td><input name="booking_owner" type="text" aria-label="Владелец booking"></td>
+                <td><input name="booking_admin" type="text" aria-label="Администратор booking"></td>
+                <td><select name="booking_mfa" aria-label="MFA booking"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="booking_recovery" type="text" aria-label="Recovery-процедура booking"></td>
+                <td><input name="booking_billing" type="text" aria-label="Оплата booking"></td>
+              </tr>
+              <tr>
+                <td>Платёжный провайдер</td>
+                <td><input name="payment_provider" type="text" aria-label="Платёжный провайдер"></td>
+                <td><input name="payment_owner" type="text" aria-label="Владелец платежей"></td>
+                <td><input name="payment_admin" type="text" aria-label="Администратор платежей"></td>
+                <td><select name="payment_mfa" aria-label="MFA платежей"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="payment_recovery" type="text" aria-label="Recovery-процедура платежей"></td>
+                <td><input name="payment_billing" type="text" aria-label="Оплата провайдера"></td>
+              </tr>
+              <tr>
+                <td>Рабочая почта</td>
+                <td><input name="email_provider" type="text" aria-label="Провайдер почты"></td>
+                <td><input name="email_owner" type="text" aria-label="Владелец почты"></td>
+                <td><input name="email_admin" type="text" aria-label="Администратор почты"></td>
+                <td><select name="email_mfa" aria-label="MFA почты"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="email_recovery" type="text" aria-label="Recovery-процедура почты"></td>
+                <td><input name="email_billing" type="text" aria-label="Оплата почты"></td>
+              </tr>
+              <tr>
+                <td>Мониторинг</td>
+                <td><input name="monitor_provider" type="text" aria-label="Провайдер мониторинга"></td>
+                <td><input name="monitor_owner" type="text" aria-label="Владелец мониторинга"></td>
+                <td><input name="monitor_admin" type="text" aria-label="Администратор мониторинга"></td>
+                <td><select name="monitor_mfa" aria-label="MFA мониторинга"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
+                <td><input name="monitor_recovery" type="text" aria-label="Recovery-процедура мониторинга"></td>
+                <td><input name="monitor_billing" type="text" aria-label="Оплата мониторинга"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">02 · Инциденты</p>
+          <h2>Аварийные контакты</h2>
+        </header>
+        <div class="field-grid">
+          <div class="field">
+            <label for="business-emergency">Владелец бизнеса <small>принимает решение</small></label>
+            <input id="business-emergency" name="business_emergency" type="text" placeholder="Имя, телефон, email">
+          </div>
+          <div class="field">
+            <label for="technical-emergency">Технический специалист</label>
+            <input id="technical-emergency" name="technical_emergency" type="text" placeholder="Имя, телефон, email">
+          </div>
+          <div class="field">
+            <label for="booking-emergency">Booking / CRM</label>
+            <input id="booking-emergency" name="booking_emergency" type="text" placeholder="Поддержка и номер договора">
+          </div>
+          <div class="field">
+            <label for="payment-emergency">Платёжный провайдер</label>
+            <input id="payment-emergency" name="payment_emergency" type="text" placeholder="Аварийный контакт">
+          </div>
+          <div class="field">
+            <label for="legal-emergency">Юрист / privacy</label>
+            <input id="legal-emergency" name="legal_emergency" type="text" placeholder="Имя, телефон, email">
+          </div>
+          <div class="field">
+            <label for="vulnerability-emergency">Сообщения об уязвимостях</label>
+            <input id="vulnerability-emergency" name="vulnerability_emergency" type="email" placeholder="security@example.com">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">03 · Готовность</p>
+          <h2>Проверка передачи</h2>
+        </header>
+        <div class="choice-grid">
+          <label class="choice"><input name="check_business_owner" type="checkbox"> Бизнес владеет доменом и оплатой</label>
+          <label class="choice"><input name="check_personal_accounts" type="checkbox"> У сотрудников личные аккаунты</label>
+          <label class="choice"><input name="check_mfa" type="checkbox"> MFA включена везде, где доступна</label>
+          <label class="choice"><input name="check_recovery" type="checkbox"> Recovery проверено без раскрытия кодов</label>
+          <label class="choice"><input name="check_billing" type="checkbox"> Автопродление и плательщик известны</label>
+          <label class="choice"><input name="check_emergency" type="checkbox"> Аварийные контакты подтвердили доступность</label>
+          <label class="choice"><input name="check_offboarding" type="checkbox"> Есть процедура удаления бывших сотрудников</label>
+          <label class="choice"><input name="check_backup" type="checkbox"> Восстановление backup проверено</label>
+          <label class="choice"><input name="check_shutdown" type="checkbox"> Известно, как отключить запись и оплату</label>
+        </div>
+        <div class="wide-field">
+          <label for="matrix-notes">Примечания и следующий пересмотр</label>
+          <textarea id="matrix-notes" name="matrix_notes" placeholder="Дата следующей проверки, открытые риски и ответственные"></textarea>
+        </div>
+      </section>
+      <button class="offline-submit" type="submit" disabled>Данные не отправляются · сохраните заполненную матрицу через печать в PDF</button>
+    </form>
+
+    <div class="print-help">
+      <span aria-hidden="true">⌘</span>
+      <div><strong>Сохранение:</strong> заполните матрицу и сохраните её через печать в PDF. Храните итоговый документ в доступном владельцу бизнеса защищённом месте; не добавляйте в него секреты.</div>
+    </div>
+
+    <footer>
+      <p><strong>LUMÉ Riviera</strong> · Матрица аккаунтов</p>
+      <p>Матрицу следует пересматривать ежеквартально и после увольнения сотрудника, смены подрядчика или инцидента.</p>
+    </footer>
+  </main>
+</body>
+</html>

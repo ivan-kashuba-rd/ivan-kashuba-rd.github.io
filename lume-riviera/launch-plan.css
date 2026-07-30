@@ -517,7 +517,7 @@ td:first-child {
   line-height: 1;
 }
 
-.handover {
+.document-links {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
   gap: 3rem;
@@ -528,25 +528,55 @@ td:first-child {
   color: var(--white);
 }
 
-.handover .eyebrow {
+.document-links .eyebrow {
   color: #dfa997;
 }
 
-.handover h2 {
+.document-links h2 {
   font-size: clamp(2rem, 4.5vw, 3.4rem);
 }
 
-.handover ul {
-  margin: 0;
-  padding-left: 1.2rem;
+.document-links > div > p:last-child {
+  margin: 1rem 0 0;
   color: #d7dbd8;
+  font-size: 0.9rem;
 }
 
-.handover li + li {
-  margin-top: 0.65rem;
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
-.handover a {
+.resource-grid article {
+  padding: 1rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 5%);
+}
+
+.resource-grid article:last-child {
+  grid-column: 1 / -1;
+}
+
+.resource-grid span {
+  color: #dfa997;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+}
+
+.resource-grid h3 {
+  margin-top: 0.55rem;
+  color: var(--white);
+}
+
+.resource-grid p {
+  margin: 0.35rem 0 0;
+  color: #cbd0cc;
+  font-size: 0.8rem;
+}
+
+.resource-grid a {
   color: #f2c6b6;
 }
 
@@ -571,7 +601,7 @@ footer p:last-child {
 @media (max-width: 800px) {
   .hero,
   .split-heading,
-  .handover {
+  .document-links {
     grid-template-columns: 1fr;
   }
 
@@ -600,8 +630,16 @@ footer p:last-child {
     min-height: 0;
   }
 
-  .handover {
+  .document-links {
     padding: 2rem;
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-grid article:last-child {
+    grid-column: auto;
   }
 }
 
@@ -694,7 +732,7 @@ footer p:last-child {
   .recommendation,
   .decision-grid article,
   .table-wrap,
-  .handover,
+  .document-links,
   .danger-grid p {
     break-inside: avoid;
   }
@@ -704,7 +742,7 @@ footer p:last-child {
     padding-inline: 0;
   }
 
-  .handover {
+  .document-links {
     padding: 28px;
   }
 
