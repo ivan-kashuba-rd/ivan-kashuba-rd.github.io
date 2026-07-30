@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'none'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'self'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,76 +11,63 @@
   <title>LUMÉ Riviera — коммерческое предложение</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="project-docs.css">
+  <script src="project-docs-i18n.js" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#content">К предложению</a>
+<body data-doc-page="offer" data-i18n-title="offer.title">
+  <a class="skip-link" href="#content" data-i18n="common.skip">К содержанию</a>
   <header class="document-header">
-    <a class="brand" href="./" aria-label="Открыть LUMÉ Riviera">
+    <a class="brand" href="./" aria-label="LUMÉ Riviera">
       <img src="assets/favicon.svg" alt="" width="38" height="38">
       <span>LUMÉ <small>RIVIERA</small></span>
     </a>
-    <nav class="header-nav" aria-label="Документы проекта">
-      <a href="launch-plan.html">План запуска</a>
-      <a href="client-questionnaire.html">Анкета</a>
-      <a href="account-matrix.html">Матрица доступов</a>
-    </nav>
+    <div class="header-actions">
+      <a class="back-link" href="launch-plan.html" data-doc-link data-i18n="common.plan">План</a>
+      <div class="language-switcher" role="group" aria-label="Language">
+        <button type="button" data-doc-lang="ru">RU</button>
+        <button type="button" data-doc-lang="en">EN</button>
+        <button type="button" data-doc-lang="uk">UA</button>
+        <button type="button" data-doc-lang="tr">TR</button>
+      </div>
+    </div>
   </header>
 
   <main id="content">
-    <section class="document-intro">
+    <section class="document-intro compact-intro">
       <div>
-        <p class="eyebrow">Фиксированное предложение</p>
-        <h1>Адаптация и запуск<br>LUMÉ Riviera</h1>
-        <p class="lede">Готовый многоязычный бизнес‑сайт на основе существующего концепта: настройка под бренд клиента, подключение записи, домен, проверка и передача.</p>
+        <p class="eyebrow" data-i18n="offer.eyebrow">Предложение для клиента</p>
+        <h1 data-i18n="offer.heading">Адаптация и запуск сайта</h1>
+        <p class="lede" data-i18n="offer.lead">Настроим готовый сайт под реальный бизнес, подключим выбранную запись и опубликуем на домене клиента.</p>
       </div>
       <aside class="document-meta">
-        <p><strong>Срок:</strong> 7–10 рабочих дней</p>
-        <p><strong>Действительно:</strong> 30 календарных дней</p>
-        <p><strong>Налоги:</strong> если применимы, указываются в договоре</p>
+        <p><strong data-i18n="offer.termLabel">Срок:</strong> <span data-i18n="offer.term">7–10 рабочих дней</span></p>
+        <p><strong data-i18n="offer.validLabel">Предложение действует:</strong> <span data-i18n="offer.valid">30 дней</span></p>
       </aside>
     </section>
 
     <form class="document-form" autocomplete="off">
-      <section class="form-section">
-        <header>
-          <p class="eyebrow">Стороны</p>
-          <h2>Реквизиты предложения</h2>
-        </header>
+      <section class="form-section compact-form-section">
         <div class="field-grid three">
           <div class="field">
-            <label for="offer-client">Клиент</label>
-            <input id="offer-client" name="client" type="text" placeholder="Компания / имя">
+            <label for="offer-client" data-i18n="offer.client">Клиент</label>
+            <input id="offer-client" name="client" type="text" data-i18n-placeholder="offer.clientPh" placeholder="Компания или имя">
           </div>
           <div class="field">
-            <label for="offer-contact">Контакт клиента</label>
-            <input id="offer-contact" name="client_contact" type="text" placeholder="Имя, email / телефон">
+            <label for="offer-contact" data-i18n="offer.contact">Контакт клиента</label>
+            <input id="offer-contact" name="client_contact" type="text" data-i18n-placeholder="questionnaire.contactPh" placeholder="Имя, телефон, email">
           </div>
           <div class="field">
-            <label for="offer-domain">Домен проекта</label>
-            <input id="offer-domain" name="domain" type="url" placeholder="https://example.com">
-          </div>
-          <div class="field">
-            <label for="offer-date">Дата предложения</label>
+            <label for="offer-date" data-i18n="offer.date">Дата предложения</label>
             <input id="offer-date" name="offer_date" type="date">
-          </div>
-          <div class="field">
-            <label for="offer-start">Желаемая дата старта</label>
-            <input id="offer-start" name="start_date" type="date">
-          </div>
-          <div class="field">
-            <label for="offer-author">Исполнитель</label>
-            <input id="offer-author" name="contractor" type="text" placeholder="Имя / реквизиты">
           </div>
         </div>
       </section>
-      <button class="offline-submit" type="submit" disabled>Реквизиты не отправляются · сохраните предложение через печать в PDF</button>
+      <button class="offline-submit" type="submit" disabled data-i18n="common.offlineButton">Данные не отправляются · сохраните страницу как PDF</button>
     </form>
 
     <section class="offer-price">
       <div>
-        <p class="eyebrow">Стоимость проекта</p>
-        <h2>Не простой лендинг, а готовая многоязычная система привлечения и записи</h2>
-        <p>Фиксированная цена действует при полном и своевременном предоставлении материалов клиентом.</p>
+        <p class="eyebrow" data-i18n="offer.priceEyebrow">Фиксированная стоимость</p>
+        <h2 data-i18n="offer.priceHeading">Готовый многоязычный сайт, а не простой одностраничный шаблон</h2>
       </div>
       <div class="price">€1 250</div>
     </section>
@@ -88,156 +75,119 @@
     <div class="payment-grid">
       <article class="payment-card">
         <span>€500</span>
-        <h3>Аванс перед стартом</h3>
-        <p>Бронирование работ, сбор материалов и начало адаптации.</p>
+        <h3 data-i18n="offer.advance">Перед началом</h3>
+        <p data-i18n="offer.advanceText">После оплаты начинаются работы и бронируется время.</p>
       </article>
       <article class="payment-card">
         <span>€750</span>
-        <h3>После приёмки</h3>
-        <p>После выполнения критериев и до закрытия проекта и передачи финальной документации.</p>
+        <h3 data-i18n="offer.balance">После проверки</h3>
+        <p data-i18n="offer.balanceText">После выполнения согласованных критериев и до закрытия проекта.</p>
       </article>
     </div>
 
     <section class="content-section">
       <header>
-        <p class="eyebrow">Scope</p>
-        <h2>Что входит</h2>
-      </header>
-      <div class="scope-grid">
-        <div>
-          <h3>Адаптация</h3>
-          <ul class="plain-list">
-            <li>Настройка бренда, публичных контактов, адреса, часов и ссылок.</li>
-            <li>Размещение предоставленных клиентом текстов, фото и подтверждённых отзывов.</li>
-            <li>Настройка до 32 услуг, цен и длительности в существующей структуре.</li>
-            <li>Четыре готовых языковых интерфейса; клиент предоставляет и утверждает переводы бизнес‑контента.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Запуск</h3>
-          <ul class="plain-list">
-            <li>Один канал записи: WhatsApp, телефон или ссылка на внешний booking‑сервис.</li>
-            <li>Подключение одного домена и статического хостинга с HTTPS.</li>
-            <li>SEO‑метаданные, sitemap, robots и структурированные данные.</li>
-            <li>Production‑конфигурация, security/HTML/CI‑проверки и финальный smoke test.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Передача</h3>
-          <ul class="plain-list">
-            <li>План запуска, инструкция адаптации и модель безопасной эксплуатации.</li>
-            <li>Заполняемые анкета клиента и матрица владельцев аккаунтов.</li>
-            <li>Одна онлайн‑встреча передачи до 60 минут.</li>
-            <li>14 календарных дней исправления дефектов после публикации.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Правки</h3>
-          <ul class="plain-list">
-            <li>Два консолидированных раунда правок в согласованном scope.</li>
-            <li>Исправление ошибок, из‑за которых согласованный сценарий не работает.</li>
-            <li>Дополнительные изменения — после оценки; ориентир €35/час.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <header>
-        <p class="eyebrow">Границы</p>
-        <h2>Что не входит</h2>
-      </header>
-      <div class="scope-grid">
-        <ul class="plain-list">
-          <li>Собственный backend, CRM, личный кабинет, календарь или база данных.</li>
-          <li>Глубокая API‑интеграция booking‑сервиса и автоматизация внутренних процессов.</li>
-          <li>Приём карт на сайте; платёж возможен отдельным Hosted Checkout после оценки.</li>
-          <li>Покупка домена, платные тарифы хостинга, CRM, почты и платёжного провайдера.</li>
-        </ul>
-        <ul class="plain-list">
-          <li>Юридические консультации и написание Privacy/KVKK/GDPR‑документов.</li>
-          <li>Профессиональный перевод, копирайтинг, фото‑ и видеосъёмка.</li>
-          <li>Реклама, аналитика, маркетинговые пиксели, SEO‑продвижение и ведение соцсетей.</li>
-          <li>Поддержка после 14 дней и новые функции вне зафиксированного scope.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <header>
-        <p class="eyebrow">Приёмка</p>
-        <h2>Критерии готовности</h2>
-        <p>Работа считается выполненной, когда соблюдены применимые пункты ниже и клиент передал необходимые материалы.</p>
+        <p class="eyebrow">01</p>
+        <h2 data-i18n="offer.includedHeading">Что входит в цену</h2>
       </header>
       <ul class="criteria-list">
-        <li>Сайт открывается по согласованному HTTPS‑домену.</li>
-        <li>Production‑конфигурация проходит автоматическую проверку.</li>
-        <li>Публичные контакты, адрес, часы и юридические ссылки согласованы.</li>
-        <li>Услуги, цены и предоставленные переводы отображаются корректно.</li>
-        <li>Запись передаёт выбранную услугу правильному получателю или сервису.</li>
-        <li>Основные сценарии работают на мобильном и десктопном экране.</li>
-        <li>Security, HTML, dependency audit и Lighthouse‑порог проходят в CI.</li>
-        <li>Владелец получил доступы к домену, хостингу и выбранным сервисам.</li>
-        <li>Нет известных критических или high‑уязвимостей в согласованном scope.</li>
-        <li>Клиент получил документацию и завершил встречу передачи.</li>
+        <li data-i18n="offer.included1">Название, логотип, контакты, адрес и часы работы.</li>
+        <li data-i18n="offer.included2">До 32 услуг, цены и длительность.</li>
+        <li data-i18n="offer.included3">Четыре языка интерфейса; клиент предоставляет переводы своих текстов.</li>
+        <li data-i18n="offer.included4">Один способ записи: WhatsApp, телефон или готовый сервис.</li>
+        <li data-i18n="offer.included5">Один домен, защищённое соединение и публикация.</li>
+        <li data-i18n="offer.included6">Настройка отображения сайта в поиске и при отправке ссылки.</li>
+        <li data-i18n="offer.included7">Проверка мобильной версии, записи и основных функций.</li>
+        <li data-i18n="offer.included8">Два общих списка правок и 14 дней исправления ошибок после запуска.</li>
       </ul>
     </section>
 
     <section class="content-section">
       <header>
-        <p class="eyebrow">Условия старта</p>
-        <h2>Что предоставляет клиент</h2>
+        <p class="eyebrow">02</p>
+        <h2 data-i18n="offer.notIncludedHeading">Что оплачивается отдельно</h2>
+      </header>
+      <div class="scope-grid">
+        <ul class="plain-list">
+          <li data-i18n="offer.extra1">Собственная система записи, календарь, база клиентов или личный кабинет.</li>
+          <li data-i18n="offer.extra2">Сложное соединение сайта с другими программами.</li>
+          <li data-i18n="offer.extra3">Приём банковских карт внутри сайта.</li>
+          <li data-i18n="offer.extra4">Домен и платные тарифы внешних сервисов.</li>
+        </ul>
+        <ul class="plain-list">
+          <li data-i18n="offer.extra5">Юридические тексты и консультация юриста.</li>
+          <li data-i18n="offer.extra6">Перевод, копирайтинг, фото, видео и реклама.</li>
+          <li data-i18n="offer.extra7">Новые функции после утверждения списка работ.</li>
+          <li><span data-i18n="offer.extraRate">Дополнительные работы:</span> <strong>€35 / <span data-i18n="offer.hour">час</span></strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <header>
+        <p class="eyebrow">03</p>
+        <h2 data-i18n="offer.readyHeading">Когда работа считается готовой</h2>
+      </header>
+      <ul class="criteria-list">
+        <li data-i18n="offer.ready1">Сайт открывается по согласованному адресу через защищённое соединение.</li>
+        <li data-i18n="offer.ready2">Контакты, адрес, услуги и цены проверены клиентом.</li>
+        <li data-i18n="offer.ready3">Предоставленные переводы отображаются корректно.</li>
+        <li data-i18n="offer.ready4">Запись приходит правильному человеку или сервису.</li>
+        <li data-i18n="offer.ready5">Основные функции работают на телефоне и компьютере.</li>
+        <li data-i18n="offer.ready6">Автоматические проверки сайта проходят без серьёзных ошибок.</li>
+        <li data-i18n="offer.ready7">Клиент владеет доменом и основными аккаунтами.</li>
+        <li data-i18n="offer.ready8">Клиент получил инструкции и одну встречу передачи до 60 минут.</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <header>
+        <p class="eyebrow">04</p>
+        <h2 data-i18n="offer.clientProvidesHeading">Что нужно от клиента</h2>
       </header>
       <ul class="plain-list">
-        <li>Заполненную <a href="client-questionnaire.html">анкету</a> и одного ответственного за решения.</li>
-        <li>Логотип, фотографии, тексты, переводы, услуги, цены и подтверждение прав на материалы.</li>
-        <li>Утверждённые юридические ссылки и реквизиты бизнеса.</li>
-        <li>Владельческие аккаунты домена, хостинга и booking‑сервиса с MFA.</li>
-        <li>Консолидированную обратную связь в согласованные сроки.</li>
+        <li data-i18n="offer.clientProvides1">Заполненная анкета и один человек, который принимает решения.</li>
+        <li data-i18n="offer.clientProvides2">Логотип, фото, тексты, переводы, услуги и цены.</li>
+        <li data-i18n="offer.clientProvides3">Разрешение на публикацию фотографий и отзывов.</li>
+        <li data-i18n="offer.clientProvides4">Утверждённые правила конфиденциальности, записи и отмены.</li>
+        <li data-i18n="offer.clientProvides5">Аккаунты домена и выбранного сервиса записи, принадлежащие бизнесу.</li>
       </ul>
-      <div class="price-note">
-        <strong>Изменение объёма:</strong> новая CRM, оплата, дополнительные языки, переработка структуры или задержка материалов оцениваются отдельно до начала дополнительной работы.
-      </div>
     </section>
 
     <form class="document-form" autocomplete="off">
       <section class="form-section">
         <header>
-          <p class="eyebrow">Подтверждение</p>
-          <h2>Согласование предложения</h2>
+          <p class="eyebrow">05</p>
+          <h2 data-i18n="offer.acceptHeading">Подтверждение</h2>
         </header>
         <div class="signature-grid">
           <div class="signature-box">
-            <h3>Клиент</h3>
-            <label for="client-sign-name">Имя и должность</label>
+            <h3 data-i18n="offer.client">Клиент</h3>
+            <label for="client-sign-name" data-i18n="offer.nameRole">Имя и должность</label>
             <input id="client-sign-name" name="client_sign_name" type="text">
-            <label for="client-sign-date">Дата</label>
+            <label for="client-sign-date" data-i18n="offer.date">Дата</label>
             <input id="client-sign-date" name="client_sign_date" type="date">
-            <label for="client-sign-note">Подпись / отметка согласования</label>
-            <input id="client-sign-note" name="client_sign_note" type="text">
           </div>
           <div class="signature-box">
-            <h3>Исполнитель</h3>
-            <label for="contractor-sign-name">Имя и реквизиты</label>
+            <h3 data-i18n="offer.contractor">Исполнитель</h3>
+            <label for="contractor-sign-name" data-i18n="offer.nameDetails">Имя и реквизиты</label>
             <input id="contractor-sign-name" name="contractor_sign_name" type="text">
-            <label for="contractor-sign-date">Дата</label>
+            <label for="contractor-sign-date" data-i18n="offer.date">Дата</label>
             <input id="contractor-sign-date" name="contractor_sign_date" type="date">
-            <label for="contractor-sign-note">Подпись / отметка согласования</label>
-            <input id="contractor-sign-note" name="contractor_sign_note" type="text">
           </div>
         </div>
       </section>
-      <button class="offline-submit" type="submit" disabled>Согласование не отправляется · сохраните предложение через печать в PDF</button>
+      <button class="offline-submit" type="submit" disabled data-i18n="common.offlineButton">Данные не отправляются · сохраните страницу как PDF</button>
     </form>
 
     <div class="print-help">
       <span aria-hidden="true">⌘</span>
-      <div><strong>Как использовать:</strong> заполните реквизиты, выберите в браузере «Печать» → «Сохранить как PDF» и приложите к договору. Заполненные значения не отправляются на сервер и исчезнут после закрытия вкладки.</div>
+      <div><strong data-i18n="common.howToSave">Как сохранить:</strong> <span data-i18n="common.saveInstruction">откройте печать браузера, выберите «Сохранить как PDF» и отправьте файл исполнителю безопасным способом.</span></div>
     </div>
 
     <footer>
-      <p><strong>LUMÉ Riviera</strong> · Коммерческое предложение €1 250</p>
-      <p>Финальные налоги, реквизиты, порядок электронной подписи и применимое право фиксируются в договоре.</p>
+      <p><strong>LUMÉ Riviera</strong> · <span data-i18n="offer.footer">Предложение €1 250</span></p>
+      <p data-i18n="offer.footerNote">Налоги, реквизиты, подпись и применимое право уточняются в договоре.</p>
     </footer>
   </main>
 </body>

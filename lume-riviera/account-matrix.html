@@ -2,140 +2,124 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'none'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'self'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#f8f5ef">
-  <title>LUMÉ Riviera — матрица аккаунтов</title>
+  <title>LUMÉ Riviera — аккаунты и контакты</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="project-docs.css">
+  <script src="project-docs-i18n.js" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#content">К матрице</a>
+<body data-doc-page="matrix" data-i18n-title="matrix.title">
+  <a class="skip-link" href="#content" data-i18n="common.skip">К содержанию</a>
   <header class="document-header">
-    <a class="brand" href="./" aria-label="Открыть LUMÉ Riviera">
+    <a class="brand" href="./" aria-label="LUMÉ Riviera">
       <img src="assets/favicon.svg" alt="" width="38" height="38">
       <span>LUMÉ <small>RIVIERA</small></span>
     </a>
-    <nav class="header-nav" aria-label="Документы проекта">
-      <a href="launch-plan.html">План запуска</a>
-      <a href="client-questionnaire.html">Анкета</a>
-      <a href="commercial-offer.html">Предложение</a>
-    </nav>
+    <div class="header-actions">
+      <a class="back-link" href="launch-plan.html" data-doc-link data-i18n="common.plan">План</a>
+      <div class="language-switcher" role="group" aria-label="Language">
+        <button type="button" data-doc-lang="ru">RU</button>
+        <button type="button" data-doc-lang="en">EN</button>
+        <button type="button" data-doc-lang="uk">UA</button>
+        <button type="button" data-doc-lang="tr">TR</button>
+      </div>
+    </div>
   </header>
 
   <main id="content">
-    <section class="document-intro">
+    <section class="document-intro compact-intro">
       <div>
-        <p class="eyebrow">Заполняемый документ</p>
-        <h1>Матрица аккаунтов,<br>владельцев и контактов</h1>
-        <p class="lede">Фиксирует, кому принадлежат внешние сервисы, кто ими управляет и к кому обращаться при сбое или инциденте.</p>
+        <p class="eyebrow" data-i18n="matrix.eyebrow">Заполнить перед запуском</p>
+        <h1 data-i18n="matrix.heading">Кто владеет аккаунтами и кому звонить</h1>
+        <p class="lede" data-i18n="matrix.lead">Эта таблица помогает не потерять домен, сайт или запись при смене сотрудника или подрядчика.</p>
       </div>
       <aside class="document-meta">
-        <p><strong>Правило:</strong> бизнес — владелец</p>
-        <p><strong>Доступ:</strong> личные аккаунты + MFA</p>
-        <p><strong>Секреты:</strong> только в password manager</p>
+        <p><strong data-i18n="matrix.ownerRule">Владелец:</strong> <span data-i18n="matrix.ownerRuleText">бизнес, не разработчик</span></p>
+        <p><strong data-i18n="matrix.loginRule">Вход:</strong> <span data-i18n="matrix.loginRuleText">личный аккаунт + дополнительная защита</span></p>
       </aside>
     </section>
 
     <div class="privacy-note">
-      <strong>Никаких паролей и recovery-кодов.</strong> Указывайте только владельцев, роли, публичные контакты и место хранения recovery‑процедуры. Сами секреты должны находиться в защищённом менеджере паролей бизнеса.
+      <strong data-i18n="common.noSecrets">Не вводите секреты.</strong>
+      <span data-i18n="matrix.noSecretsText">В таблице нужны только имена, роли и контакты. Пароли и коды восстановления хранятся отдельно в защищённом менеджере паролей.</span>
+    </div>
+
+    <div class="info-note">
+      <strong data-i18n="matrix.simpleWords">Простыми словами:</strong>
+      <span data-i18n="matrix.simpleWordsText">«Владелец» может восстановить доступ и оплатить сервис. «Администратор» меняет настройки. «Дополнительная защита» — код, приложение или электронный ключ кроме пароля.</span>
     </div>
 
     <form class="document-form" autocomplete="off">
       <section class="form-section">
         <header>
-          <p class="eyebrow">01 · Владение</p>
-          <h2>Ключевые системы</h2>
-          <p>«Владелец» — представитель бизнеса с правом восстановления и оплаты. «Администратор» — человек, выполняющий технические изменения.</p>
+          <p class="eyebrow">01</p>
+          <h2 data-i18n="matrix.systemsHeading">Основные сервисы</h2>
         </header>
         <div class="matrix-wrap">
-          <table class="matrix">
+          <table class="matrix compact-matrix">
             <thead>
               <tr>
-                <th>Система</th>
-                <th>Провайдер / URL</th>
-                <th>Владелец бизнеса</th>
-                <th>Тех. администратор</th>
-                <th>MFA</th>
-                <th>Recovery‑процедура</th>
-                <th>Оплата / продление</th>
+                <th data-i18n="matrix.system">Что</th>
+                <th data-i18n="matrix.provider">Сервис / ссылка</th>
+                <th data-i18n="matrix.owner">Владелец бизнеса</th>
+                <th data-i18n="matrix.admin">Кто настраивает</th>
+                <th data-i18n="matrix.protection">Защита входа</th>
+                <th data-i18n="matrix.renewal">Оплата / восстановление</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Домен / registrar</td>
-                <td><input name="domain_provider" type="text" aria-label="Провайдер домена"></td>
-                <td><input name="domain_owner" type="text" aria-label="Владелец домена"></td>
-                <td><input name="domain_admin" type="text" aria-label="Администратор домена"></td>
-                <td><select name="domain_mfa" aria-label="MFA домена"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="domain_recovery" type="text" aria-label="Recovery-процедура домена"></td>
-                <td><input name="domain_billing" type="text" aria-label="Оплата домена"></td>
+                <td data-i18n="matrix.domain">Адрес сайта</td>
+                <td><input name="domain_provider" type="text" data-i18n-aria="matrix.provider" aria-label="Сервис / ссылка"></td>
+                <td><input name="domain_owner" type="text" data-i18n-aria="matrix.owner" aria-label="Владелец бизнеса"></td>
+                <td><input name="domain_admin" type="text" data-i18n-aria="matrix.admin" aria-label="Кто настраивает"></td>
+                <td><select name="domain_mfa" data-i18n-aria="matrix.protection" aria-label="Защита входа"><option value="">—</option><option data-i18n="common.yes">Да</option><option data-i18n="common.no">Нет</option></select></td>
+                <td><input name="domain_recovery" type="text" data-i18n-aria="matrix.renewal" aria-label="Оплата / восстановление"></td>
               </tr>
               <tr>
-                <td>DNS / CDN</td>
-                <td><input name="dns_provider" type="text" aria-label="Провайдер DNS"></td>
-                <td><input name="dns_owner" type="text" aria-label="Владелец DNS"></td>
-                <td><input name="dns_admin" type="text" aria-label="Администратор DNS"></td>
-                <td><select name="dns_mfa" aria-label="MFA DNS"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="dns_recovery" type="text" aria-label="Recovery-процедура DNS"></td>
-                <td><input name="dns_billing" type="text" aria-label="Оплата DNS"></td>
+                <td data-i18n="matrix.hosting">Публикация сайта</td>
+                <td><input name="hosting_provider" type="text" data-i18n-aria="matrix.provider" aria-label="Сервис / ссылка"></td>
+                <td><input name="hosting_owner" type="text" data-i18n-aria="matrix.owner" aria-label="Владелец бизнеса"></td>
+                <td><input name="hosting_admin" type="text" data-i18n-aria="matrix.admin" aria-label="Кто настраивает"></td>
+                <td><select name="hosting_mfa" data-i18n-aria="matrix.protection" aria-label="Защита входа"><option value="">—</option><option data-i18n="common.yes">Да</option><option data-i18n="common.no">Нет</option></select></td>
+                <td><input name="hosting_recovery" type="text" data-i18n-aria="matrix.renewal" aria-label="Оплата / восстановление"></td>
               </tr>
               <tr>
-                <td>Хостинг</td>
-                <td><input name="hosting_provider" type="text" aria-label="Провайдер хостинга"></td>
-                <td><input name="hosting_owner" type="text" aria-label="Владелец хостинга"></td>
-                <td><input name="hosting_admin" type="text" aria-label="Администратор хостинга"></td>
-                <td><select name="hosting_mfa" aria-label="MFA хостинга"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="hosting_recovery" type="text" aria-label="Recovery-процедура хостинга"></td>
-                <td><input name="hosting_billing" type="text" aria-label="Оплата хостинга"></td>
+                <td data-i18n="matrix.code">Код сайта / GitHub</td>
+                <td><input name="code_provider" type="text" data-i18n-aria="matrix.provider" aria-label="Сервис / ссылка"></td>
+                <td><input name="code_owner" type="text" data-i18n-aria="matrix.owner" aria-label="Владелец бизнеса"></td>
+                <td><input name="code_admin" type="text" data-i18n-aria="matrix.admin" aria-label="Кто настраивает"></td>
+                <td><select name="code_mfa" data-i18n-aria="matrix.protection" aria-label="Защита входа"><option value="">—</option><option data-i18n="common.yes">Да</option><option data-i18n="common.no">Нет</option></select></td>
+                <td><input name="code_recovery" type="text" data-i18n-aria="matrix.renewal" aria-label="Оплата / восстановление"></td>
               </tr>
               <tr>
-                <td>GitHub / код</td>
-                <td><input name="github_provider" type="text" aria-label="Репозиторий GitHub"></td>
-                <td><input name="github_owner" type="text" aria-label="Владелец GitHub"></td>
-                <td><input name="github_admin" type="text" aria-label="Администратор GitHub"></td>
-                <td><select name="github_mfa" aria-label="MFA GitHub"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="github_recovery" type="text" aria-label="Recovery-процедура GitHub"></td>
-                <td><input name="github_billing" type="text" aria-label="Оплата GitHub"></td>
+                <td data-i18n="matrix.booking">Запись клиентов</td>
+                <td><input name="booking_provider" type="text" data-i18n-aria="matrix.provider" aria-label="Сервис / ссылка"></td>
+                <td><input name="booking_owner" type="text" data-i18n-aria="matrix.owner" aria-label="Владелец бизнеса"></td>
+                <td><input name="booking_admin" type="text" data-i18n-aria="matrix.admin" aria-label="Кто настраивает"></td>
+                <td><select name="booking_mfa" data-i18n-aria="matrix.protection" aria-label="Защита входа"><option value="">—</option><option data-i18n="common.yes">Да</option><option data-i18n="common.no">Нет</option></select></td>
+                <td><input name="booking_recovery" type="text" data-i18n-aria="matrix.renewal" aria-label="Оплата / восстановление"></td>
               </tr>
               <tr>
-                <td>Booking / CRM</td>
-                <td><input name="booking_provider" type="text" aria-label="Провайдер booking"></td>
-                <td><input name="booking_owner" type="text" aria-label="Владелец booking"></td>
-                <td><input name="booking_admin" type="text" aria-label="Администратор booking"></td>
-                <td><select name="booking_mfa" aria-label="MFA booking"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="booking_recovery" type="text" aria-label="Recovery-процедура booking"></td>
-                <td><input name="booking_billing" type="text" aria-label="Оплата booking"></td>
+                <td data-i18n="matrix.payment">Оплата клиентов</td>
+                <td><input name="payment_provider" type="text" data-i18n-aria="matrix.provider" aria-label="Сервис / ссылка"></td>
+                <td><input name="payment_owner" type="text" data-i18n-aria="matrix.owner" aria-label="Владелец бизнеса"></td>
+                <td><input name="payment_admin" type="text" data-i18n-aria="matrix.admin" aria-label="Кто настраивает"></td>
+                <td><select name="payment_mfa" data-i18n-aria="matrix.protection" aria-label="Защита входа"><option value="">—</option><option data-i18n="common.yes">Да</option><option data-i18n="common.no">Нет</option></select></td>
+                <td><input name="payment_recovery" type="text" data-i18n-aria="matrix.renewal" aria-label="Оплата / восстановление"></td>
               </tr>
               <tr>
-                <td>Платёжный провайдер</td>
-                <td><input name="payment_provider" type="text" aria-label="Платёжный провайдер"></td>
-                <td><input name="payment_owner" type="text" aria-label="Владелец платежей"></td>
-                <td><input name="payment_admin" type="text" aria-label="Администратор платежей"></td>
-                <td><select name="payment_mfa" aria-label="MFA платежей"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="payment_recovery" type="text" aria-label="Recovery-процедура платежей"></td>
-                <td><input name="payment_billing" type="text" aria-label="Оплата провайдера"></td>
-              </tr>
-              <tr>
-                <td>Рабочая почта</td>
-                <td><input name="email_provider" type="text" aria-label="Провайдер почты"></td>
-                <td><input name="email_owner" type="text" aria-label="Владелец почты"></td>
-                <td><input name="email_admin" type="text" aria-label="Администратор почты"></td>
-                <td><select name="email_mfa" aria-label="MFA почты"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="email_recovery" type="text" aria-label="Recovery-процедура почты"></td>
-                <td><input name="email_billing" type="text" aria-label="Оплата почты"></td>
-              </tr>
-              <tr>
-                <td>Мониторинг</td>
-                <td><input name="monitor_provider" type="text" aria-label="Провайдер мониторинга"></td>
-                <td><input name="monitor_owner" type="text" aria-label="Владелец мониторинга"></td>
-                <td><input name="monitor_admin" type="text" aria-label="Администратор мониторинга"></td>
-                <td><select name="monitor_mfa" aria-label="MFA мониторинга"><option value="">—</option><option>Да</option><option>Нет</option></select></td>
-                <td><input name="monitor_recovery" type="text" aria-label="Recovery-процедура мониторинга"></td>
-                <td><input name="monitor_billing" type="text" aria-label="Оплата мониторинга"></td>
+                <td data-i18n="matrix.email">Рабочая почта</td>
+                <td><input name="email_provider" type="text" data-i18n-aria="matrix.provider" aria-label="Сервис / ссылка"></td>
+                <td><input name="email_owner" type="text" data-i18n-aria="matrix.owner" aria-label="Владелец бизнеса"></td>
+                <td><input name="email_admin" type="text" data-i18n-aria="matrix.admin" aria-label="Кто настраивает"></td>
+                <td><select name="email_mfa" data-i18n-aria="matrix.protection" aria-label="Защита входа"><option value="">—</option><option data-i18n="common.yes">Да</option><option data-i18n="common.no">Нет</option></select></td>
+                <td><input name="email_recovery" type="text" data-i18n-aria="matrix.renewal" aria-label="Оплата / восстановление"></td>
               </tr>
             </tbody>
           </table>
@@ -144,69 +128,59 @@
 
       <section class="form-section">
         <header>
-          <p class="eyebrow">02 · Инциденты</p>
-          <h2>Аварийные контакты</h2>
+          <p class="eyebrow">02</p>
+          <h2 data-i18n="matrix.contactsHeading">Кому звонить при проблеме</h2>
         </header>
         <div class="field-grid">
           <div class="field">
-            <label for="business-emergency">Владелец бизнеса <small>принимает решение</small></label>
-            <input id="business-emergency" name="business_emergency" type="text" placeholder="Имя, телефон, email">
+            <label for="business-emergency" data-i18n="matrix.businessContact">Владелец бизнеса — принимает решение</label>
+            <input id="business-emergency" name="business_emergency" type="text" data-i18n-placeholder="questionnaire.contactPh" placeholder="Имя, телефон, email">
           </div>
           <div class="field">
-            <label for="technical-emergency">Технический специалист</label>
-            <input id="technical-emergency" name="technical_emergency" type="text" placeholder="Имя, телефон, email">
+            <label for="technical-emergency" data-i18n="matrix.techContact">Технический специалист</label>
+            <input id="technical-emergency" name="technical_emergency" type="text" data-i18n-placeholder="questionnaire.contactPh" placeholder="Имя, телефон, email">
           </div>
           <div class="field">
-            <label for="booking-emergency">Booking / CRM</label>
-            <input id="booking-emergency" name="booking_emergency" type="text" placeholder="Поддержка и номер договора">
+            <label for="booking-emergency" data-i18n="matrix.bookingContact">Поддержка сервиса записи</label>
+            <input id="booking-emergency" name="booking_emergency" type="text" data-i18n-placeholder="matrix.supportPh" placeholder="Контакт поддержки и номер клиента">
           </div>
           <div class="field">
-            <label for="payment-emergency">Платёжный провайдер</label>
-            <input id="payment-emergency" name="payment_emergency" type="text" placeholder="Аварийный контакт">
-          </div>
-          <div class="field">
-            <label for="legal-emergency">Юрист / privacy</label>
-            <input id="legal-emergency" name="legal_emergency" type="text" placeholder="Имя, телефон, email">
-          </div>
-          <div class="field">
-            <label for="vulnerability-emergency">Сообщения об уязвимостях</label>
-            <input id="vulnerability-emergency" name="vulnerability_emergency" type="email" placeholder="security@example.com">
+            <label for="payment-emergency" data-i18n="matrix.paymentContact">Поддержка платёжного сервиса</label>
+            <input id="payment-emergency" name="payment_emergency" type="text" data-i18n-placeholder="matrix.supportPh" placeholder="Контакт поддержки и номер клиента">
           </div>
         </div>
       </section>
 
       <section class="form-section">
         <header>
-          <p class="eyebrow">03 · Готовность</p>
-          <h2>Проверка передачи</h2>
+          <p class="eyebrow">03</p>
+          <h2 data-i18n="matrix.checkHeading">Проверка перед запуском</h2>
         </header>
         <div class="choice-grid">
-          <label class="choice"><input name="check_business_owner" type="checkbox"> Бизнес владеет доменом и оплатой</label>
-          <label class="choice"><input name="check_personal_accounts" type="checkbox"> У сотрудников личные аккаунты</label>
-          <label class="choice"><input name="check_mfa" type="checkbox"> MFA включена везде, где доступна</label>
-          <label class="choice"><input name="check_recovery" type="checkbox"> Recovery проверено без раскрытия кодов</label>
-          <label class="choice"><input name="check_billing" type="checkbox"> Автопродление и плательщик известны</label>
-          <label class="choice"><input name="check_emergency" type="checkbox"> Аварийные контакты подтвердили доступность</label>
-          <label class="choice"><input name="check_offboarding" type="checkbox"> Есть процедура удаления бывших сотрудников</label>
-          <label class="choice"><input name="check_backup" type="checkbox"> Восстановление backup проверено</label>
-          <label class="choice"><input name="check_shutdown" type="checkbox"> Известно, как отключить запись и оплату</label>
+          <label class="choice"><input name="check_business_owner" type="checkbox"> <span data-i18n="matrix.checkOwner">Бизнес владеет доменом и оплатой</span></label>
+          <label class="choice"><input name="check_personal_accounts" type="checkbox"> <span data-i18n="matrix.checkAccounts">У каждого сотрудника свой вход</span></label>
+          <label class="choice"><input name="check_mfa" type="checkbox"> <span data-i18n="matrix.checkMfa">Дополнительная защита входа включена</span></label>
+          <label class="choice"><input name="check_recovery" type="checkbox"> <span data-i18n="matrix.checkRecovery">Понятно, как восстановить доступ</span></label>
+          <label class="choice"><input name="check_billing" type="checkbox"> <span data-i18n="matrix.checkBilling">Понятно, кто и когда оплачивает продление</span></label>
+          <label class="choice"><input name="check_shutdown" type="checkbox"> <span data-i18n="matrix.checkShutdown">Понятно, как быстро отключить запись и оплату</span></label>
         </div>
         <div class="wide-field">
-          <label for="matrix-notes">Примечания и следующий пересмотр</label>
-          <textarea id="matrix-notes" name="matrix_notes" placeholder="Дата следующей проверки, открытые риски и ответственные"></textarea>
+          <label for="matrix-notes" data-i18n="matrix.notes">Что ещё нужно сделать и кто отвечает?</label>
+          <textarea id="matrix-notes" name="matrix_notes" data-i18n-placeholder="matrix.notesPh" placeholder="Задача, ответственный и срок"></textarea>
         </div>
       </section>
-      <button class="offline-submit" type="submit" disabled>Данные не отправляются · сохраните заполненную матрицу через печать в PDF</button>
+
+      <button class="offline-submit" type="submit" disabled data-i18n="common.offlineButton">Данные не отправляются · сохраните страницу как PDF</button>
     </form>
 
     <div class="print-help">
       <span aria-hidden="true">⌘</span>
-      <div><strong>Сохранение:</strong> заполните матрицу и сохраните её через печать в PDF. Храните итоговый документ в доступном владельцу бизнеса защищённом месте; не добавляйте в него секреты.</div>
+      <div><strong data-i18n="common.howToSave">Как сохранить:</strong> <span data-i18n="common.saveInstruction">откройте печать браузера, выберите «Сохранить как PDF» и отправьте файл исполнителю безопасным способом.</span></div>
     </div>
 
     <footer>
-      <p><strong>LUMÉ Riviera</strong> · Матрица аккаунтов</p>
-      <p>Матрицу следует пересматривать ежеквартально и после увольнения сотрудника, смены подрядчика или инцидента.</p>
+      <p><strong>LUMÉ Riviera</strong> · <span data-i18n="matrix.footer">Аккаунты и контакты</span></p>
+      <p data-i18n="matrix.footerNote">Проверяйте таблицу раз в три месяца и после смены сотрудника или подрядчика.</p>
     </footer>
   </main>
 </body>

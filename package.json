@@ -6,10 +6,11 @@
   },
   "scripts": {
     "build:lume:metadata": "node .github/scripts/build-lume-metadata.mjs",
-    "check:lume": "npm run check:lume:syntax && npm run check:lume:config && npm run check:lume:security && npm run check:lume:html",
-    "check:lume:syntax": "node --check lume-riviera/app.js && node --check lume-riviera/sw.js",
+    "check:lume": "npm run check:lume:syntax && npm run check:lume:config && npm run check:lume:security && npm run check:lume:docs-i18n && npm run check:lume:html",
+    "check:lume:syntax": "node --check lume-riviera/app.js && node --check lume-riviera/project-docs-i18n.js && node --check lume-riviera/sw.js",
     "check:lume:config": "node .github/scripts/check-lume-config.mjs",
     "check:lume:security": "node .github/scripts/check-lume-security.mjs",
+    "check:lume:docs-i18n": "node .github/scripts/check-lume-docs-i18n.mjs",
     "check:lume:html": "html-validate lume-riviera/index.html lume-riviera/launch-plan.html lume-riviera/client-questionnaire.html lume-riviera/commercial-offer.html lume-riviera/account-matrix.html",
     "check:lume:lighthouse-report": "node .github/scripts/check-lighthouse-report.mjs"
   },
