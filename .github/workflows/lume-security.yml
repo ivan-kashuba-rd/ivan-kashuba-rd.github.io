@@ -39,6 +39,7 @@ jobs:
       - name: Validate JavaScript syntax
         run: |
           node --check lume-riviera/app.js
+          node --check lume-riviera/project-docs-i18n.js
           node --check lume-riviera/sw.js
 
       - name: Validate client configuration
@@ -46,6 +47,9 @@ jobs:
 
       - name: Enforce static security controls
         run: node .github/scripts/check-lume-security.mjs
+
+      - name: Validate project-document translations
+        run: node .github/scripts/check-lume-docs-i18n.mjs
 
   quality:
     runs-on: ubuntu-latest

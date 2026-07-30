@@ -103,6 +103,51 @@ main {
   font-weight: 700;
 }
 
+.header-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.back-link {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.language-switcher {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 70%);
+}
+
+.language-switcher button {
+  min-width: 40px;
+  min-height: 34px;
+  padding: 0.3rem 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-switcher button.active {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.language-switcher button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .header-nav a {
   color: var(--muted);
 }
@@ -113,6 +158,10 @@ main {
   gap: 3rem;
   align-items: end;
   padding: clamp(3.5rem, 8vw, 6.5rem) 0 3rem;
+}
+
+.compact-intro {
+  padding-block: clamp(2.8rem, 7vw, 5rem) 2.5rem;
 }
 
 .eyebrow {
@@ -208,6 +257,10 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 22px;
   background: rgb(255 255 255 / 85%);
+}
+
+.compact-form-section {
+  padding-block: 1.3rem;
 }
 
 .form-section > header,
@@ -457,6 +510,10 @@ fieldset {
   font-size: 0.76rem;
 }
 
+.compact-matrix {
+  min-width: 820px;
+}
+
 .matrix th,
 .matrix td {
   padding: 0.65rem;
@@ -567,6 +624,15 @@ footer p:last-child {
     display: none;
   }
 
+  .back-link {
+    display: none;
+  }
+
+  .language-switcher button {
+    min-width: 36px;
+    padding-inline: 0.4rem;
+  }
+
   footer {
     display: block;
   }
@@ -589,6 +655,7 @@ footer p:last-child {
 
   .skip-link,
   .header-nav,
+  .header-actions,
   .offline-submit,
   .print-help {
     display: none;

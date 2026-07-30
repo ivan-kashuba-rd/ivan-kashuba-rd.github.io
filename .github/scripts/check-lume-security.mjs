@@ -15,6 +15,7 @@ const projectDocuments = [
   ['account-matrix.html', read('account-matrix.html')]
 ];
 const app = read('app.js');
+const projectDocsI18n = read('project-docs-i18n.js');
 const worker = read('sw.js');
 const headers = read('_headers');
 const workflow = readFileSync(resolve(repository, '.github/workflows/lume-security.yml'), 'utf8');
@@ -22,6 +23,7 @@ const checkedFiles = [
   html,
   plan,
   app,
+  projectDocsI18n,
   worker,
   read('styles.css'),
   read('launch-plan.css'),
@@ -83,11 +85,40 @@ assert(!/<script(?![^>]*type="application\/ld\+json")(?![^>]*\bsrc="app\.js")/i.
 for (const [path, document] of projectDocuments) {
   assert(/<meta\b[^>]*name="robots"[^>]*content="noindex,nofollow,noarchive"/i.test(document),
     `${path} must remain excluded from search indexing.`);
-  assert(!/<script\b/i.test(document), `Scripts are not allowed in ${path}.`);
+  const scripts = [...document.matchAll(/<script\b[^>]*>/gi)];
+  assert(scripts.length === 1
+    && /\bsrc="project-docs-i18n\.js"/i.test(scripts[0][0])
+    && /\bdefer\b/i.test(scripts[0][0]),
+  `${path} may load only the deferred local translation script.`);
+  assert(/script-src 'self'/.test(document), `${path} must limit scripts to local files.`);
   assert(!/\son[a-z]+\s*=/i.test(document), `An inline event handler was added to ${path}.`);
   assert(!/\sstyle\s*=/i.test(document), `An inline style was added to ${path}.`);
+  ['ru', 'en', 'uk', 'tr'].forEach(language => {
+    assert(document.includes(`data-doc-lang="${language}"`),
+      `${path} is missing the ${language} language control.`);
+  });
   assert(headers.includes(`/${path}\n  Cache-Control: no-cache\n  X-Robots-Tag: noindex, nofollow, noarchive`),
     `${path} is missing its no-cache and X-Robots-Tag deployment headers.`);
+}
+
+assert(!/\b(?:fetch|XMLHttpRequest|sendBeacon|WebSocket|localStorage|sessionStorage|indexedDB|document\.cookie|innerHTML|outerHTML|insertAdjacentHTML|document\.write|eval\s*\(|new\s+Function)\b/.test(projectDocsI18n),
+  'The project-document translation script must not use network, storage, cookies, HTML sinks or code generation.');
+[
+  "const languages = ['ru', 'en', 'uk', 'tr']",
+  'element.textContent = value',
+  "url.searchParams.set('lang', language)",
+  'window.history.replaceState'
+].forEach(control => assert(projectDocsI18n.includes(control),
+  `The project-document translation control is missing: ${control}.`));
+
+const declaredTranslationKeys = new Set(
+  [...projectDocsI18n.matchAll(/^\s*'([^']+)':\s*m\(/gm)].map(match => match[1])
+);
+for (const [path, document] of projectDocuments) {
+  for (const match of document.matchAll(/\bdata-i18n(?:-title|-placeholder|-aria)?="([^"]+)"/g)) {
+    assert(declaredTranslationKeys.has(match[1]),
+      `${path} uses an undeclared translation key: ${match[1]}.`);
+  }
 }
 
 for (const [path, document] of projectDocuments.slice(1)) {

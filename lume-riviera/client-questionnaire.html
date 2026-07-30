@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'none'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'self'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,298 +11,222 @@
   <title>LUMÉ Riviera — анкета клиента</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="project-docs.css">
+  <script src="project-docs-i18n.js" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#content">К анкете</a>
+<body data-doc-page="questionnaire" data-i18n-title="questionnaire.title">
+  <a class="skip-link" href="#content" data-i18n="common.skip">К содержанию</a>
   <header class="document-header">
-    <a class="brand" href="./" aria-label="Открыть LUMÉ Riviera">
+    <a class="brand" href="./" aria-label="LUMÉ Riviera">
       <img src="assets/favicon.svg" alt="" width="38" height="38">
       <span>LUMÉ <small>RIVIERA</small></span>
     </a>
-    <nav class="header-nav" aria-label="Документы проекта">
-      <a href="launch-plan.html">План запуска</a>
-      <a href="commercial-offer.html">Предложение</a>
-      <a href="account-matrix.html">Матрица доступов</a>
-    </nav>
+    <div class="header-actions">
+      <a class="back-link" href="launch-plan.html" data-doc-link data-i18n="common.plan">План</a>
+      <div class="language-switcher" role="group" aria-label="Language">
+        <button type="button" data-doc-lang="ru">RU</button>
+        <button type="button" data-doc-lang="en">EN</button>
+        <button type="button" data-doc-lang="uk">UA</button>
+        <button type="button" data-doc-lang="tr">TR</button>
+      </div>
+    </div>
   </header>
 
   <main id="content">
-    <section class="document-intro">
+    <section class="document-intro compact-intro">
       <div>
-        <p class="eyebrow">Заполняемый документ</p>
-        <h1>Анкета клиента<br>перед запуском</h1>
-        <p class="lede">Ответы становятся источником истины для сайта, scope и настройки записи. Заполняет владелец бизнеса вместе с исполнителем.</p>
+        <p class="eyebrow" data-i18n="questionnaire.eyebrow">Заполнить за 10–15 минут</p>
+        <h1 data-i18n="questionnaire.heading">Анкета перед запуском</h1>
+        <p class="lede" data-i18n="questionnaire.lead">Заполните только то, что уже известно. Неясные пункты можно обсудить с исполнителем.</p>
       </div>
       <aside class="document-meta">
-        <p><strong>Проект:</strong> LUMÉ Riviera</p>
-        <p><strong>Статус:</strong> до production</p>
-        <p><strong>Формат:</strong> заполнить → проверить → сохранить PDF</p>
+        <p><strong data-i18n="common.howToSave">Как сохранить:</strong> <span data-i18n="common.savePdf">Печать → Сохранить как PDF</span></p>
+        <p><strong data-i18n="common.dataStatus">Данные:</strong> <span data-i18n="common.notSent">не отправляются с этой страницы</span></p>
       </aside>
     </section>
 
     <div class="privacy-note">
-      <strong>Не вводите секреты.</strong> Эта страница ничего не отправляет и не сохраняет. Не указывайте пароли, recovery-коды, API-ключи, данные карт или персональные данные посетителей. После заполнения используйте печать браузера → «Сохранить как PDF».
+      <strong data-i18n="common.noSecrets">Не вводите секреты.</strong>
+      <span data-i18n="common.noSecretsText">Не указывайте пароли, коды восстановления, ключи доступа или данные банковских карт.</span>
     </div>
 
     <form class="document-form" autocomplete="off">
       <section class="form-section">
         <header>
-          <p class="eyebrow">01 · Идентификация</p>
-          <h2>Владелец и бренд</h2>
+          <p class="eyebrow">01</p>
+          <h2 data-i18n="questionnaire.businessHeading">Бизнес</h2>
         </header>
         <div class="field-grid">
           <div class="field">
-            <label for="public-name">Публичное название</label>
-            <input id="public-name" name="public_name" type="text" placeholder="Название на сайте">
+            <label for="public-name" data-i18n="questionnaire.publicName">Название на сайте</label>
+            <input id="public-name" name="public_name" type="text" data-i18n-placeholder="questionnaire.publicNamePh" placeholder="Например: LUMÉ Riviera">
           </div>
           <div class="field">
-            <label for="legal-name">Полное юридическое имя</label>
-            <input id="legal-name" name="legal_name" type="text" placeholder="Компания / ИП">
+            <label for="legal-name" data-i18n="questionnaire.legalName">Юридическое имя</label>
+            <input id="legal-name" name="legal_name" type="text" data-i18n-placeholder="questionnaire.legalNamePh" placeholder="Компания или имя предпринимателя">
           </div>
           <div class="field">
-            <label for="country">Страна регистрации и оказания услуг</label>
-            <input id="country" name="country" type="text" placeholder="Например: Türkiye">
+            <label for="country" data-i18n="questionnaire.country">Страна работы</label>
+            <input id="country" name="country" type="text" placeholder="Türkiye">
           </div>
           <div class="field">
-            <label for="approver">Кто утверждает сайт</label>
-            <input id="approver" name="approver" type="text" placeholder="Имя, должность">
+            <label for="approver" data-i18n="questionnaire.approver">Кто принимает решения</label>
+            <input id="approver" name="approver" type="text" data-i18n-placeholder="questionnaire.personPh" placeholder="Имя и должность">
           </div>
           <div class="field">
-            <label for="domain">Итоговый домен</label>
+            <label for="domain" data-i18n="questionnaire.domain">Желаемый адрес сайта</label>
             <input id="domain" name="domain" type="url" placeholder="https://example.com">
           </div>
           <div class="field">
-            <label for="domain-owner">Владелец домена</label>
-            <input id="domain-owner" name="domain_owner" type="text" placeholder="Юридическое лицо / владелец бизнеса">
-          </div>
-          <div class="wide-field">
-            <label for="brand-rights">Логотип, цвета и права использования</label>
-            <textarea id="brand-rights" name="brand_rights" placeholder="Где находятся исходники и кто подтвердил право использования"></textarea>
+            <label for="languages" data-i18n="questionnaire.serviceLanguages">Языки обслуживания</label>
+            <input id="languages" name="languages" type="text" data-i18n-placeholder="questionnaire.languagesPh" placeholder="Например: TR, EN, RU">
           </div>
         </div>
       </section>
 
       <section class="form-section">
         <header>
-          <p class="eyebrow">02 · Публичные данные</p>
-          <h2>Контакты и локация</h2>
+          <p class="eyebrow">02</p>
+          <h2 data-i18n="questionnaire.contactsHeading">Контакты и материалы</h2>
         </header>
         <div class="field-grid">
           <div class="field">
-            <label for="email">Публичный email</label>
+            <label for="email" data-i18n="questionnaire.publicEmail">Email для клиентов</label>
             <input id="email" name="email" type="email" placeholder="hello@example.com">
           </div>
           <div class="field">
-            <label for="phone">Публичный телефон</label>
+            <label for="phone" data-i18n="questionnaire.publicPhone">Телефон для клиентов</label>
             <input id="phone" name="phone" type="tel" placeholder="+90 …">
           </div>
           <div class="field">
-            <label for="whatsapp">WhatsApp в международном формате</label>
+            <label for="whatsapp" data-i18n="questionnaire.whatsapp">WhatsApp</label>
             <input id="whatsapp" name="whatsapp" type="tel" placeholder="+90 …">
           </div>
           <div class="field">
-            <label for="languages">Языки обслуживания</label>
-            <input id="languages" name="languages" type="text" placeholder="RU, TR, EN, DE">
+            <label for="hours" data-i18n="questionnaire.hours">Часы работы</label>
+            <input id="hours" name="hours" type="text" data-i18n-placeholder="questionnaire.hoursPh" placeholder="Пн–Сб 09:00–20:00">
           </div>
           <div class="wide-field">
-            <label for="address">Полный адрес</label>
-            <textarea id="address" name="address" placeholder="Адрес, индекс, ориентир"></textarea>
+            <label for="address" data-i18n="questionnaire.address">Адрес салона</label>
+            <textarea id="address" name="address" data-i18n-placeholder="questionnaire.addressPh" placeholder="Полный адрес и ориентир"></textarea>
           </div>
-          <div class="field">
-            <label for="map-url">Ссылка на карту</label>
-            <input id="map-url" name="map_url" type="url" placeholder="https://…">
+          <div class="wide-field">
+            <label for="materials" data-i18n="questionnaire.materials">Где находятся логотип, фото и тексты?</label>
+            <textarea id="materials" name="materials" data-i18n-placeholder="questionnaire.materialsPh" placeholder="Ссылка на папку и имя владельца материалов"></textarea>
           </div>
-          <div class="field">
-            <label for="hours">Часы работы и выходные</label>
-            <input id="hours" name="hours" type="text" placeholder="Пн–Сб 09:00–20:00">
+          <div class="wide-field">
+            <label for="services" data-i18n="questionnaire.services">Услуги и цены</label>
+            <textarea id="services" name="services" data-i18n-placeholder="questionnaire.servicesPh" placeholder="Ссылка на таблицу или краткий список"></textarea>
           </div>
         </div>
       </section>
 
       <section class="form-section">
         <header>
-          <p class="eyebrow">03 · Предложение</p>
-          <h2>Услуги и контент</h2>
-          <p>Точный перечень услуг и переводы можно передать отдельной таблицей. Здесь фиксируются правила и ответственные.</p>
-        </header>
-        <div class="field-grid">
-          <div class="wide-field">
-            <label for="services">Утверждённые услуги, цены, валюты и длительность</label>
-            <textarea id="services" name="services" placeholder="Ссылка на таблицу или краткое описание"></textarea>
-          </div>
-          <div class="field">
-            <label for="from-price">Что означает цена «от»</label>
-            <textarea id="from-price" name="from_price" placeholder="От чего меняется итоговая стоимость"></textarea>
-          </div>
-          <div class="field">
-            <label for="restrictions">Ограничения</label>
-            <textarea id="restrictions" name="restrictions" placeholder="Возрастные и иные публичные ограничения"></textarea>
-          </div>
-          <div class="field">
-            <label for="translation-owner">Кто утверждает переводы</label>
-            <input id="translation-owner" name="translation_owner" type="text" placeholder="Имя / подрядчик">
-          </div>
-          <div class="field">
-            <label for="content-owner">Кто владеет фото и текстами</label>
-            <input id="content-owner" name="content_owner" type="text" placeholder="Правообладатель">
-          </div>
-          <div class="wide-field">
-            <label for="reviews">Фото, модели и отзывы</label>
-            <textarea id="reviews" name="reviews" placeholder="Есть ли письменные согласия и подтверждение реальности отзывов"></textarea>
-          </div>
-        </div>
-      </section>
-
-      <section class="form-section">
-        <header>
-          <p class="eyebrow">04 · Конверсия</p>
-          <h2>Запись и платежи</h2>
+          <p class="eyebrow">03</p>
+          <h2 data-i18n="questionnaire.bookingHeading">Как клиенты будут записываться?</h2>
         </header>
         <fieldset>
-          <legend>Основной канал записи</legend>
+          <legend data-i18n="questionnaire.bookingChoice">Выберите один основной вариант</legend>
           <div class="choice-grid">
-            <label class="choice"><input name="booking_channel" type="radio" value="whatsapp"> WhatsApp Business</label>
-            <label class="choice"><input name="booking_channel" type="radio" value="external"> Внешний booking/CRM</label>
-            <label class="choice"><input name="booking_channel" type="radio" value="phone"> Телефон</label>
+            <label class="choice"><input name="booking_channel" type="radio" value="whatsapp"> <span data-i18n="questionnaire.bookingWa">WhatsApp — время подтверждает администратор</span></label>
+            <label class="choice"><input name="booking_channel" type="radio" value="external"> <span data-i18n="questionnaire.bookingExternal">Готовый сервис — клиент видит свободное время</span></label>
+            <label class="choice"><input name="booking_channel" type="radio" value="phone"> <span data-i18n="questionnaire.bookingPhone">Телефон</span></label>
           </div>
         </fieldset>
         <div class="field-grid">
           <div class="field">
-            <label for="booking-provider">Сервис записи и URL</label>
-            <input id="booking-provider" name="booking_provider" type="url" placeholder="https://booking-provider.example/…">
+            <label for="booking-url" data-i18n="questionnaire.bookingUrl">Ссылка на сервис записи <small data-i18n="common.ifAny">если есть</small></label>
+            <input id="booking-url" name="booking_url" type="url" placeholder="https://…">
           </div>
           <div class="field">
-            <label for="booking-owner">Кто обрабатывает заявки</label>
-            <input id="booking-owner" name="booking_owner" type="text" placeholder="Роль / сотрудник">
-          </div>
-          <div class="field">
-            <label for="booking-fields">Какие данные нужны для записи</label>
-            <textarea id="booking-fields" name="booking_fields" placeholder="Минимальный необходимый набор"></textarea>
-          </div>
-          <div class="field">
-            <label for="confirmation">Как подтверждается время</label>
-            <textarea id="confirmation" name="confirmation" placeholder="Автоматически / администратором"></textarea>
+            <label for="booking-owner" data-i18n="questionnaire.bookingOwner">Кто отвечает на заявки?</label>
+            <input id="booking-owner" name="booking_owner" type="text" data-i18n-placeholder="questionnaire.personPh" placeholder="Имя и должность">
           </div>
           <div class="wide-field">
-            <label for="cancellation">Перенос, отмена и возврат</label>
-            <textarea id="cancellation" name="cancellation" placeholder="Сроки, условия, кто принимает решение"></textarea>
+            <label for="cancellation" data-i18n="questionnaire.cancellation">Правила переноса и отмены</label>
+            <textarea id="cancellation" name="cancellation" data-i18n-placeholder="questionnaire.cancellationPh" placeholder="За сколько часов можно отменить и возвращается ли предоплата"></textarea>
           </div>
         </div>
         <fieldset>
-          <legend>Нужна ли предоплата</legend>
+          <legend data-i18n="questionnaire.prepayment">Нужна ли предоплата?</legend>
           <div class="choice-grid">
-            <label class="choice"><input name="prepayment" type="radio" value="no"> Нет</label>
-            <label class="choice"><input name="prepayment" type="radio" value="hosted"> Да, Hosted Checkout</label>
-            <label class="choice"><input name="prepayment" type="radio" value="later"> Решить позже</label>
+            <label class="choice"><input name="prepayment" type="radio" value="no"> <span data-i18n="common.no">Нет</span></label>
+            <label class="choice"><input name="prepayment" type="radio" value="yes"> <span data-i18n="questionnaire.prepaymentYes">Да, через безопасную страницу платёжного сервиса</span></label>
+            <label class="choice"><input name="prepayment" type="radio" value="later"> <span data-i18n="common.decideLater">Решить позже</span></label>
           </div>
         </fieldset>
-        <div class="field-grid">
-          <div class="field">
-            <label for="payment-provider">Платёжный провайдер</label>
-            <input id="payment-provider" name="payment_provider" type="text" placeholder="Название, без ключей и паролей">
-          </div>
-          <div class="field">
-            <label for="refund-owner">Кто подтверждает возврат</label>
-            <input id="refund-owner" name="refund_owner" type="text" placeholder="Роль / сотрудник">
-          </div>
-        </div>
       </section>
 
       <section class="form-section">
         <header>
-          <p class="eyebrow">05 · Право и данные</p>
-          <h2>Персональные данные</h2>
+          <p class="eyebrow">04</p>
+          <h2 data-i18n="questionnaire.rulesHeading">Правила и данные клиентов</h2>
+          <p data-i18n="questionnaire.rulesHelp">Если ответов пока нет, их нужно согласовать с владельцем бизнеса и местным юристом до запуска.</p>
         </header>
         <div class="field-grid">
           <div class="field">
-            <label for="controller">Оператор / контролёр данных</label>
-            <input id="controller" name="controller" type="text" placeholder="Юридическое лицо">
-          </div>
-          <div class="field">
-            <label for="privacy-contact">Контакт для запросов о данных</label>
-            <input id="privacy-contact" name="privacy_contact" type="email" placeholder="privacy@example.com">
-          </div>
-          <div class="field">
-            <label for="privacy-url">Утверждённая политика</label>
+            <label for="privacy-url" data-i18n="questionnaire.privacyUrl">Ссылка на политику конфиденциальности</label>
             <input id="privacy-url" name="privacy_url" type="url" placeholder="https://…">
           </div>
           <div class="field">
-            <label for="terms-url">Условия записи и отмены</label>
+            <label for="terms-url" data-i18n="questionnaire.termsUrl">Ссылка на правила записи и отмены</label>
             <input id="terms-url" name="terms_url" type="url" placeholder="https://…">
           </div>
           <div class="wide-field">
-            <label for="data-flow">Что собирается, зачем, где хранится и сколько</label>
-            <textarea id="data-flow" name="data_flow" placeholder="Данные → цель → система → срок удаления"></textarea>
+            <label for="data-use" data-i18n="questionnaire.dataUse">Какие данные получает бизнес и зачем?</label>
+            <textarea id="data-use" name="data_use" data-i18n-placeholder="questionnaire.dataUsePh" placeholder="Например: имя и телефон — чтобы подтвердить запись"></textarea>
           </div>
-          <div class="field">
-            <label for="processors">Получатели и подрядчики</label>
-            <textarea id="processors" name="processors" placeholder="WhatsApp, CRM, email/SMS, аналитика"></textarea>
-          </div>
-          <div class="field">
-            <label for="transfers">Трансграничная передача</label>
-            <textarea id="transfers" name="transfers" placeholder="Страны и договорное основание"></textarea>
+          <div class="wide-field">
+            <label for="data-delete" data-i18n="questionnaire.dataDelete">Когда ненужные данные удаляются?</label>
+            <textarea id="data-delete" name="data_delete" data-i18n-placeholder="questionnaire.dataDeletePh" placeholder="Срок и ответственный человек"></textarea>
           </div>
         </div>
-        <fieldset>
-          <legend>Юридическая проверка</legend>
-          <div class="choice-grid">
-            <label class="choice"><input name="legal_review" type="radio" value="done"> Выполнена</label>
-            <label class="choice"><input name="legal_review" type="radio" value="needed"> Нужна консультация</label>
-            <label class="choice"><input name="legal_review" type="radio" value="owner"> Ответственность клиента</label>
-          </div>
-        </fieldset>
       </section>
 
       <section class="form-section">
         <header>
-          <p class="eyebrow">06 · Эксплуатация</p>
-          <h2>Доступы и сопровождение</h2>
+          <p class="eyebrow">05</p>
+          <h2 data-i18n="questionnaire.launchHeading">Запуск и поддержка</h2>
         </header>
         <div class="field-grid">
           <div class="field">
-            <label for="account-owner">Владелец ключевых аккаунтов</label>
-            <input id="account-owner" name="account_owner" type="text" placeholder="Имя / юридическое лицо">
+            <label for="account-owner" data-i18n="questionnaire.accountOwner">Кому принадлежат домен и основные аккаунты?</label>
+            <input id="account-owner" name="account_owner" type="text" data-i18n-placeholder="questionnaire.businessOwnerPh" placeholder="Владелец бизнеса или компания">
           </div>
           <div class="field">
-            <label for="incident-contact">Аварийный контакт</label>
-            <input id="incident-contact" name="incident_contact" type="text" placeholder="Имя, телефон/email">
+            <label for="incident-contact" data-i18n="questionnaire.incidentContact">Кому звонить при сбое?</label>
+            <input id="incident-contact" name="incident_contact" type="text" data-i18n-placeholder="questionnaire.contactPh" placeholder="Имя, телефон, email">
           </div>
           <div class="field">
-            <label for="support-term">Срок поддержки</label>
-            <input id="support-term" name="support_term" type="text" placeholder="Например: 14 дней после запуска">
+            <label for="content-owner" data-i18n="questionnaire.contentOwner">Кто обновляет цены и услуги?</label>
+            <input id="content-owner" name="content_owner" type="text" data-i18n-placeholder="questionnaire.personPh" placeholder="Имя и должность">
           </div>
           <div class="field">
-            <label for="vulnerability-contact">Контакт для уязвимостей</label>
-            <input id="vulnerability-contact" name="vulnerability_contact" type="email" placeholder="security@example.com">
-          </div>
-          <div class="wide-field">
-            <label for="backup">Backup и восстановление</label>
-            <textarea id="backup" name="backup" placeholder="Что резервируется, где, кем и когда проверялось восстановление"></textarea>
+            <label for="launch-date" data-i18n="questionnaire.launchDate">Желаемая дата запуска</label>
+            <input id="launch-date" name="launch_date" type="date">
           </div>
         </div>
         <fieldset>
-          <legend>Подтверждение владельца</legend>
+          <legend data-i18n="questionnaire.confirmHeading">Перед отправкой анкеты</legend>
           <div class="choice-grid">
-            <label class="choice"><input name="approval_identity" type="checkbox"> Реквизиты и контакты проверены</label>
-            <label class="choice"><input name="approval_content" type="checkbox"> Услуги, цены и права утверждены</label>
-            <label class="choice"><input name="approval_booking" type="checkbox"> Запись протестирована</label>
-            <label class="choice"><input name="approval_legal" type="checkbox"> Политика и условия утверждены</label>
-            <label class="choice"><input name="approval_accounts" type="checkbox"> Владение аккаунтами подтверждено</label>
-            <label class="choice"><input name="approval_incident" type="checkbox"> Ответственные назначены</label>
+            <label class="choice"><input name="confirm_contacts" type="checkbox"> <span data-i18n="questionnaire.confirmContacts">Контакты и адрес проверены</span></label>
+            <label class="choice"><input name="confirm_prices" type="checkbox"> <span data-i18n="questionnaire.confirmPrices">Услуги и цены утверждены</span></label>
+            <label class="choice"><input name="confirm_rights" type="checkbox"> <span data-i18n="questionnaire.confirmRights">Фото и отзывы можно публиковать</span></label>
           </div>
         </fieldset>
       </section>
-      <button class="offline-submit" type="submit" disabled>Данные не отправляются · сохраните заполненную анкету через печать в PDF</button>
+
+      <button class="offline-submit" type="submit" disabled data-i18n="common.offlineButton">Данные не отправляются · сохраните страницу как PDF</button>
     </form>
 
     <div class="print-help">
       <span aria-hidden="true">⌘</span>
-      <div><strong>Сохранение:</strong> данные остаются только в текущей вкладке. После заполнения выберите в браузере «Печать» → «Сохранить как PDF» и передайте файл согласованным защищённым способом.</div>
+      <div><strong data-i18n="common.howToSave">Как сохранить:</strong> <span data-i18n="common.saveInstruction">откройте печать браузера, выберите «Сохранить как PDF» и отправьте файл исполнителю безопасным способом.</span></div>
     </div>
 
     <footer>
-      <p><strong>LUMÉ Riviera</strong> · Анкета клиента</p>
-      <p>Анкета не заменяет юридическую проверку и не предназначена для секретов или данных посетителей.</p>
+      <p><strong>LUMÉ Riviera</strong> · <span data-i18n="questionnaire.footer">Анкета клиента</span></p>
+      <p data-i18n="common.noLegal">Документ помогает собрать информацию, но не заменяет юридическую консультацию.</p>
     </footer>
   </main>
 </body>
