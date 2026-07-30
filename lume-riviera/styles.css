@@ -41,7 +41,7 @@ img { display: block; max-width: 100%; }
 .brand img { width: 46px; height: 46px; object-fit: contain; }
 .brand span { display: grid; gap: 1px; }
 .brand small { font-size: .46rem; letter-spacing: .2em; font-weight: 600; }
-.desktop-nav { display: flex; align-items: center; justify-content: center; gap: clamp(18px, 2.3vw, 34px); }
+.desktop-nav { display: none; align-items: center; justify-content: center; gap: clamp(18px, 2.3vw, 34px); }
 .desktop-nav a { position: relative; padding: 26px 0; color: #40514d; font-size: .88rem; font-weight: 600; }
 .desktop-nav a::after { content: ""; position: absolute; bottom: 18px; left: 0; width: 0; height: 2px; background: var(--coral); transition: width .22s; }
 .desktop-nav a:hover::after { width: 100%; }
@@ -68,7 +68,7 @@ img { display: block; max-width: 100%; }
 .button-outline:hover { background: var(--ink); color: white; box-shadow: none; }
 .button-dark { border-color: var(--ink); background: var(--ink); color: white; box-shadow: none; }
 .button-dark:hover { background: #101f1c; }
-.menu-toggle { width: 44px; height: 44px; display: none; place-content: center; gap: 6px; border: 1px solid var(--line); border-radius: 50%; background: rgba(255,255,255,.7); cursor: pointer; }
+.menu-toggle { width: 44px; height: 44px; display: grid; place-content: center; gap: 6px; border: 1px solid var(--line); border-radius: 50%; background: rgba(255,255,255,.7); cursor: pointer; }
 .menu-toggle i { width: 19px; height: 2px; display: block; background: var(--ink); transition: .25s; }
 .menu-toggle.active i:first-child { transform: translateY(4px) rotate(45deg); }
 .menu-toggle.active i:last-child { transform: translateY(-4px) rotate(-45deg); }
