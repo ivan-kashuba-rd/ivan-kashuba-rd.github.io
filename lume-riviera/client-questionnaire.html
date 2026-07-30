@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'none'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f8f5ef">
+  <title>LUMÉ Riviera — анкета клиента</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="project-docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">К анкете</a>
+  <header class="document-header">
+    <a class="brand" href="./" aria-label="Открыть LUMÉ Riviera">
+      <img src="assets/favicon.svg" alt="" width="38" height="38">
+      <span>LUMÉ <small>RIVIERA</small></span>
+    </a>
+    <nav class="header-nav" aria-label="Документы проекта">
+      <a href="launch-plan.html">План запуска</a>
+      <a href="commercial-offer.html">Предложение</a>
+      <a href="account-matrix.html">Матрица доступов</a>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="document-intro">
+      <div>
+        <p class="eyebrow">Заполняемый документ</p>
+        <h1>Анкета клиента<br>перед запуском</h1>
+        <p class="lede">Ответы становятся источником истины для сайта, scope и настройки записи. Заполняет владелец бизнеса вместе с исполнителем.</p>
+      </div>
+      <aside class="document-meta">
+        <p><strong>Проект:</strong> LUMÉ Riviera</p>
+        <p><strong>Статус:</strong> до production</p>
+        <p><strong>Формат:</strong> заполнить → проверить → сохранить PDF</p>
+      </aside>
+    </section>
+
+    <div class="privacy-note">
+      <strong>Не вводите секреты.</strong> Эта страница ничего не отправляет и не сохраняет. Не указывайте пароли, recovery-коды, API-ключи, данные карт или персональные данные посетителей. После заполнения используйте печать браузера → «Сохранить как PDF».
+    </div>
+
+    <form class="document-form" autocomplete="off">
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">01 · Идентификация</p>
+          <h2>Владелец и бренд</h2>
+        </header>
+        <div class="field-grid">
+          <div class="field">
+            <label for="public-name">Публичное название</label>
+            <input id="public-name" name="public_name" type="text" placeholder="Название на сайте">
+          </div>
+          <div class="field">
+            <label for="legal-name">Полное юридическое имя</label>
+            <input id="legal-name" name="legal_name" type="text" placeholder="Компания / ИП">
+          </div>
+          <div class="field">
+            <label for="country">Страна регистрации и оказания услуг</label>
+            <input id="country" name="country" type="text" placeholder="Например: Türkiye">
+          </div>
+          <div class="field">
+            <label for="approver">Кто утверждает сайт</label>
+            <input id="approver" name="approver" type="text" placeholder="Имя, должность">
+          </div>
+          <div class="field">
+            <label for="domain">Итоговый домен</label>
+            <input id="domain" name="domain" type="url" placeholder="https://example.com">
+          </div>
+          <div class="field">
+            <label for="domain-owner">Владелец домена</label>
+            <input id="domain-owner" name="domain_owner" type="text" placeholder="Юридическое лицо / владелец бизнеса">
+          </div>
+          <div class="wide-field">
+            <label for="brand-rights">Логотип, цвета и права использования</label>
+            <textarea id="brand-rights" name="brand_rights" placeholder="Где находятся исходники и кто подтвердил право использования"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">02 · Публичные данные</p>
+          <h2>Контакты и локация</h2>
+        </header>
+        <div class="field-grid">
+          <div class="field">
+            <label for="email">Публичный email</label>
+            <input id="email" name="email" type="email" placeholder="hello@example.com">
+          </div>
+          <div class="field">
+            <label for="phone">Публичный телефон</label>
+            <input id="phone" name="phone" type="tel" placeholder="+90 …">
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp в международном формате</label>
+            <input id="whatsapp" name="whatsapp" type="tel" placeholder="+90 …">
+          </div>
+          <div class="field">
+            <label for="languages">Языки обслуживания</label>
+            <input id="languages" name="languages" type="text" placeholder="RU, TR, EN, DE">
+          </div>
+          <div class="wide-field">
+            <label for="address">Полный адрес</label>
+            <textarea id="address" name="address" placeholder="Адрес, индекс, ориентир"></textarea>
+          </div>
+          <div class="field">
+            <label for="map-url">Ссылка на карту</label>
+            <input id="map-url" name="map_url" type="url" placeholder="https://…">
+          </div>
+          <div class="field">
+            <label for="hours">Часы работы и выходные</label>
+            <input id="hours" name="hours" type="text" placeholder="Пн–Сб 09:00–20:00">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">03 · Предложение</p>
+          <h2>Услуги и контент</h2>
+          <p>Точный перечень услуг и переводы можно передать отдельной таблицей. Здесь фиксируются правила и ответственные.</p>
+        </header>
+        <div class="field-grid">
+          <div class="wide-field">
+            <label for="services">Утверждённые услуги, цены, валюты и длительность</label>
+            <textarea id="services" name="services" placeholder="Ссылка на таблицу или краткое описание"></textarea>
+          </div>
+          <div class="field">
+            <label for="from-price">Что означает цена «от»</label>
+            <textarea id="from-price" name="from_price" placeholder="От чего меняется итоговая стоимость"></textarea>
+          </div>
+          <div class="field">
+            <label for="restrictions">Ограничения</label>
+            <textarea id="restrictions" name="restrictions" placeholder="Возрастные и иные публичные ограничения"></textarea>
+          </div>
+          <div class="field">
+            <label for="translation-owner">Кто утверждает переводы</label>
+            <input id="translation-owner" name="translation_owner" type="text" placeholder="Имя / подрядчик">
+          </div>
+          <div class="field">
+            <label for="content-owner">Кто владеет фото и текстами</label>
+            <input id="content-owner" name="content_owner" type="text" placeholder="Правообладатель">
+          </div>
+          <div class="wide-field">
+            <label for="reviews">Фото, модели и отзывы</label>
+            <textarea id="reviews" name="reviews" placeholder="Есть ли письменные согласия и подтверждение реальности отзывов"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">04 · Конверсия</p>
+          <h2>Запись и платежи</h2>
+        </header>
+        <fieldset>
+          <legend>Основной канал записи</legend>
+          <div class="choice-grid">
+            <label class="choice"><input name="booking_channel" type="radio" value="whatsapp"> WhatsApp Business</label>
+            <label class="choice"><input name="booking_channel" type="radio" value="external"> Внешний booking/CRM</label>
+            <label class="choice"><input name="booking_channel" type="radio" value="phone"> Телефон</label>
+          </div>
+        </fieldset>
+        <div class="field-grid">
+          <div class="field">
+            <label for="booking-provider">Сервис записи и URL</label>
+            <input id="booking-provider" name="booking_provider" type="url" placeholder="https://booking-provider.example/…">
+          </div>
+          <div class="field">
+            <label for="booking-owner">Кто обрабатывает заявки</label>
+            <input id="booking-owner" name="booking_owner" type="text" placeholder="Роль / сотрудник">
+          </div>
+          <div class="field">
+            <label for="booking-fields">Какие данные нужны для записи</label>
+            <textarea id="booking-fields" name="booking_fields" placeholder="Минимальный необходимый набор"></textarea>
+          </div>
+          <div class="field">
+            <label for="confirmation">Как подтверждается время</label>
+            <textarea id="confirmation" name="confirmation" placeholder="Автоматически / администратором"></textarea>
+          </div>
+          <div class="wide-field">
+            <label for="cancellation">Перенос, отмена и возврат</label>
+            <textarea id="cancellation" name="cancellation" placeholder="Сроки, условия, кто принимает решение"></textarea>
+          </div>
+        </div>
+        <fieldset>
+          <legend>Нужна ли предоплата</legend>
+          <div class="choice-grid">
+            <label class="choice"><input name="prepayment" type="radio" value="no"> Нет</label>
+            <label class="choice"><input name="prepayment" type="radio" value="hosted"> Да, Hosted Checkout</label>
+            <label class="choice"><input name="prepayment" type="radio" value="later"> Решить позже</label>
+          </div>
+        </fieldset>
+        <div class="field-grid">
+          <div class="field">
+            <label for="payment-provider">Платёжный провайдер</label>
+            <input id="payment-provider" name="payment_provider" type="text" placeholder="Название, без ключей и паролей">
+          </div>
+          <div class="field">
+            <label for="refund-owner">Кто подтверждает возврат</label>
+            <input id="refund-owner" name="refund_owner" type="text" placeholder="Роль / сотрудник">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">05 · Право и данные</p>
+          <h2>Персональные данные</h2>
+        </header>
+        <div class="field-grid">
+          <div class="field">
+            <label for="controller">Оператор / контролёр данных</label>
+            <input id="controller" name="controller" type="text" placeholder="Юридическое лицо">
+          </div>
+          <div class="field">
+            <label for="privacy-contact">Контакт для запросов о данных</label>
+            <input id="privacy-contact" name="privacy_contact" type="email" placeholder="privacy@example.com">
+          </div>
+          <div class="field">
+            <label for="privacy-url">Утверждённая политика</label>
+            <input id="privacy-url" name="privacy_url" type="url" placeholder="https://…">
+          </div>
+          <div class="field">
+            <label for="terms-url">Условия записи и отмены</label>
+            <input id="terms-url" name="terms_url" type="url" placeholder="https://…">
+          </div>
+          <div class="wide-field">
+            <label for="data-flow">Что собирается, зачем, где хранится и сколько</label>
+            <textarea id="data-flow" name="data_flow" placeholder="Данные → цель → система → срок удаления"></textarea>
+          </div>
+          <div class="field">
+            <label for="processors">Получатели и подрядчики</label>
+            <textarea id="processors" name="processors" placeholder="WhatsApp, CRM, email/SMS, аналитика"></textarea>
+          </div>
+          <div class="field">
+            <label for="transfers">Трансграничная передача</label>
+            <textarea id="transfers" name="transfers" placeholder="Страны и договорное основание"></textarea>
+          </div>
+        </div>
+        <fieldset>
+          <legend>Юридическая проверка</legend>
+          <div class="choice-grid">
+            <label class="choice"><input name="legal_review" type="radio" value="done"> Выполнена</label>
+            <label class="choice"><input name="legal_review" type="radio" value="needed"> Нужна консультация</label>
+            <label class="choice"><input name="legal_review" type="radio" value="owner"> Ответственность клиента</label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="form-section">
+        <header>
+          <p class="eyebrow">06 · Эксплуатация</p>
+          <h2>Доступы и сопровождение</h2>
+        </header>
+        <div class="field-grid">
+          <div class="field">
+            <label for="account-owner">Владелец ключевых аккаунтов</label>
+            <input id="account-owner" name="account_owner" type="text" placeholder="Имя / юридическое лицо">
+          </div>
+          <div class="field">
+            <label for="incident-contact">Аварийный контакт</label>
+            <input id="incident-contact" name="incident_contact" type="text" placeholder="Имя, телефон/email">
+          </div>
+          <div class="field">
+            <label for="support-term">Срок поддержки</label>
+            <input id="support-term" name="support_term" type="text" placeholder="Например: 14 дней после запуска">
+          </div>
+          <div class="field">
+            <label for="vulnerability-contact">Контакт для уязвимостей</label>
+            <input id="vulnerability-contact" name="vulnerability_contact" type="email" placeholder="security@example.com">
+          </div>
+          <div class="wide-field">
+            <label for="backup">Backup и восстановление</label>
+            <textarea id="backup" name="backup" placeholder="Что резервируется, где, кем и когда проверялось восстановление"></textarea>
+          </div>
+        </div>
+        <fieldset>
+          <legend>Подтверждение владельца</legend>
+          <div class="choice-grid">
+            <label class="choice"><input name="approval_identity" type="checkbox"> Реквизиты и контакты проверены</label>
+            <label class="choice"><input name="approval_content" type="checkbox"> Услуги, цены и права утверждены</label>
+            <label class="choice"><input name="approval_booking" type="checkbox"> Запись протестирована</label>
+            <label class="choice"><input name="approval_legal" type="checkbox"> Политика и условия утверждены</label>
+            <label class="choice"><input name="approval_accounts" type="checkbox"> Владение аккаунтами подтверждено</label>
+            <label class="choice"><input name="approval_incident" type="checkbox"> Ответственные назначены</label>
+          </div>
+        </fieldset>
+      </section>
+      <button class="offline-submit" type="submit" disabled>Данные не отправляются · сохраните заполненную анкету через печать в PDF</button>
+    </form>
+
+    <div class="print-help">
+      <span aria-hidden="true">⌘</span>
+      <div><strong>Сохранение:</strong> данные остаются только в текущей вкладке. После заполнения выберите в браузере «Печать» → «Сохранить как PDF» и передайте файл согласованным защищённым способом.</div>
+    </div>
+
+    <footer>
+      <p><strong>LUMÉ Riviera</strong> · Анкета клиента</p>
+      <p>Анкета не заменяет юридическую проверку и не предназначена для секретов или данных посетителей.</p>
+    </footer>
+  </main>
+</body>
+</html>
