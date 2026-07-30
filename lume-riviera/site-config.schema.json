@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:lume-riviera:site-config:v1",
+  "title": "LUMÉ Riviera site configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "mode", "business", "booking", "features", "pricing", "seo", "services"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "version": {"const": 1},
+    "mode": {"enum": ["demo", "production"]},
+    "business": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "signature", "email", "phone", "whatsappNumber", "location", "hours"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "maxLength": 60},
+        "signature": {"type": "string", "maxLength": 80},
+        "legalName": {"type": "string", "maxLength": 160},
+        "email": {"type": "string", "maxLength": 254},
+        "phone": {"type": "string", "maxLength": 30},
+        "whatsappNumber": {"type": "string", "pattern": "^$|^[0-9]{7,15}$"},
+        "whatsappDisplay": {"type": "string", "maxLength": 30},
+        "portfolioUrl": {"type": "string", "maxLength": 2048},
+        "privacyUrl": {"type": "string", "maxLength": 2048},
+        "termsUrl": {"type": "string", "maxLength": 2048},
+        "location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mapUrl", "embedUrl", "address", "locality", "country"],
+          "properties": {
+            "mapUrl": {"type": "string", "maxLength": 2048},
+            "embedUrl": {"type": "string", "maxLength": 2048},
+            "address": {"type": "string", "maxLength": 240},
+            "locality": {"type": "string", "maxLength": 120},
+            "country": {"type": "string", "pattern": "^[A-Z]{2}$"}
+          }
+        },
+        "hours": {
+          "type": "object",
+          "required": ["en", "ru", "tr", "de"],
+          "additionalProperties": false,
+          "properties": {
+            "en": {"$ref": "#/$defs/hours"},
+            "ru": {"$ref": "#/$defs/hours"},
+            "tr": {"$ref": "#/$defs/hours"},
+            "de": {"$ref": "#/$defs/hours"}
+          }
+        }
+      }
+    },
+    "booking": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter", "externalUrl", "serviceQueryParameter", "phone"],
+      "properties": {
+        "adapter": {"enum": ["whatsapp", "external", "phone", "disabled"]},
+        "externalUrl": {"type": "string", "maxLength": 2048},
+        "serviceQueryParameter": {"type": "string", "pattern": "^[A-Za-z0-9_-]{1,40}$"},
+        "phone": {"type": "string", "maxLength": 30}
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["favorites", "reviews", "map", "currencySwitcher"],
+      "properties": {
+        "favorites": {"type": "boolean"},
+        "reviews": {"type": "boolean"},
+        "map": {"type": "boolean"},
+        "currencySwitcher": {"type": "boolean"}
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defaultCurrency", "currencies"],
+      "properties": {
+        "defaultCurrency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+        "currencies": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/currency"}
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["siteUrl", "index", "image", "title", "description"],
+      "properties": {
+        "siteUrl": {"type": "string", "pattern": "^https://"},
+        "index": {"type": "boolean"},
+        "image": {"type": "string", "minLength": 1, "maxLength": 2048},
+        "title": {"$ref": "#/$defs/localized"},
+        "description": {"$ref": "#/$defs/localized"}
+      }
+    },
+    "services": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          {"enum": ["hair", "nails", "skin"]},
+          {"type": "string", "minLength": 1, "maxLength": 4},
+          {"type": "number", "minimum": 0},
+          {"type": "integer", "minimum": 5, "maximum": 720},
+          {"$ref": "#/$defs/localized"}
+        ],
+        "minItems": 6,
+        "maxItems": 6
+      }
+    }
+  },
+  "$defs": {
+    "localized": {
+      "type": "object",
+      "required": ["en", "ru", "tr", "de"],
+      "additionalProperties": false,
+      "properties": {
+        "en": {"type": "string", "minLength": 1},
+        "ru": {"type": "string", "minLength": 1},
+        "tr": {"type": "string", "minLength": 1},
+        "de": {"type": "string", "minLength": 1}
+      }
+    },
+    "hours": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 100},
+      "minItems": 1,
+      "maxItems": 4
+    },
+    "currency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rate", "increment", "minimum"],
+      "properties": {
+        "rate": {"type": "number", "exclusiveMinimum": 0},
+        "increment": {"type": "number", "exclusiveMinimum": 0},
+        "minimum": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

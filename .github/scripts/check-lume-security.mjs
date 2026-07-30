@@ -1,0 +1,110 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const repository = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
+const site = resolve(repository, 'lume-riviera');
+const read = path => readFileSync(resolve(site, path), 'utf8');
+const html = read('index.html');
+const app = read('app.js');
+const worker = read('sw.js');
+const headers = read('_headers');
+const workflow = readFileSync(resolve(repository, '.github/workflows/lume-security.yml'), 'utf8');
+const checkedFiles = [
+  html,
+  app,
+  worker,
+  read('styles.css'),
+  read('site.config.json'),
+  read('site-config.schema.json'),
+  read('manifest.webmanifest'),
+  read('sitemap.xml'),
+  read('robots.txt'),
+  headers
+];
+
+const failures = [];
+const assert = (condition, message) => {
+  if (!condition) failures.push(message);
+};
+
+const jsonLd = html.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
+assert(jsonLd, 'The JSON-LD block is missing.');
+if (jsonLd) {
+  try {
+    JSON.parse(jsonLd[1]);
+  } catch {
+    failures.push('The JSON-LD block is not valid JSON.');
+  }
+  const hash = `sha256-${createHash('sha256').update(jsonLd[1]).digest('base64')}`;
+  assert(html.includes(`'${hash}'`), 'The meta CSP does not contain the current JSON-LD hash.');
+  assert(headers.includes(`'${hash}'`), 'The response-header CSP does not contain the current JSON-LD hash.');
+}
+
+const metaPolicy = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)?.[1] || '';
+[
+  "default-src 'self'",
+  "object-src 'none'",
+  "base-uri 'none'",
+  "form-action 'none'",
+  "script-src-attr 'none'",
+  "style-src-attr 'none'",
+  "require-trusted-types-for 'script'",
+  "trusted-types 'none'"
+].forEach(directive => assert(metaPolicy.includes(directive), `Meta CSP is missing: ${directive}.`));
+
+[
+  "frame-ancestors 'none'",
+  'Permissions-Policy:',
+  'Referrer-Policy: no-referrer',
+  'Strict-Transport-Security:',
+  'X-Content-Type-Options: nosniff',
+  'X-Frame-Options: DENY'
+].forEach(header => assert(headers.includes(header), `The deployment headers are missing: ${header}.`));
+
+assert(!/\b(?:innerHTML|outerHTML|insertAdjacentHTML|document\.write|eval\s*\(|new\s+Function)\b/.test(app),
+  'A prohibited DOM or code-generation sink was added to app.js.');
+assert(!/\son[a-z]+\s*=/i.test(html), 'An inline event handler was added to index.html.');
+assert(!/\sstyle\s*=/i.test(html), 'An inline style was added to index.html.');
+assert(!/<script(?![^>]*type="application\/ld\+json")(?![^>]*\bsrc="app\.js")/i.test(html),
+  'Only the JSON-LD block and the local app.js script are allowed.');
+
+for (const anchor of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/gi)) {
+  assert(/\brel="[^"]*\bnoopener\b[^"]*\bnoreferrer\b[^"]*"/i.test(anchor[0]),
+    `External-window link lacks noopener noreferrer: ${anchor[0]}`);
+}
+
+const mapFrame = html.match(/<iframe\b[^>]*>/i)?.[0] || '';
+assert(/\breferrerpolicy="no-referrer"/i.test(mapFrame), 'The map iframe lacks a no-referrer policy.');
+assert(/\bsandbox="/i.test(mapFrame), 'The map iframe is not sandboxed.');
+
+[
+  'url.origin === self.location.origin',
+  'url.pathname.startsWith(SCOPE_PATH)',
+  "request.mode === 'navigate'",
+  'configurationResponse(request)',
+  "fetch(request, { cache: 'no-cache' })",
+  'response.ok',
+  'key.startsWith(CACHE_PREFIX)'
+].forEach(control => assert(worker.includes(control), `Service Worker control is missing: ${control}.`));
+
+for (const action of workflow.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/g)) {
+  assert(/^[0-9a-f]{40}$/.test(action[1]), `GitHub Action is not pinned to a full commit SHA: ${action[0]}.`);
+}
+
+const combined = checkedFiles.join('\n');
+[
+  /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,
+  /\bAKIA[0-9A-Z]{16}\b/,
+  /\bgh[pousr]_[A-Za-z0-9]{30,}\b/,
+  /\bsk_(?:live|test)_[A-Za-z0-9]{16,}\b/
+].forEach(pattern => assert(!pattern.test(combined), `Potential secret detected by ${pattern}.`));
+
+if (failures.length) {
+  console.error('LUMÉ security checks failed:');
+  failures.forEach(failure => console.error(`- ${failure}`));
+  process.exitCode = 1;
+} else {
+  console.log('LUMÉ static security controls are valid.');
+}

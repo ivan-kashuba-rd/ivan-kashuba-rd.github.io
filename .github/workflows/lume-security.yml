@@ -1,0 +1,91 @@
+name: LUMÉ security checks
+
+on:
+  pull_request:
+    paths:
+      - "lume-riviera/**"
+      - ".github/scripts/**"
+      - ".github/workflows/lume-security.yml"
+      - "package.json"
+      - "package-lock.json"
+  push:
+    branches:
+      - main
+    paths:
+      - "lume-riviera/**"
+      - ".github/scripts/**"
+      - ".github/workflows/lume-security.yml"
+      - "package.json"
+      - "package-lock.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lume-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Validate JavaScript syntax
+        run: |
+          node --check lume-riviera/app.js
+          node --check lume-riviera/sw.js
+
+      - name: Validate client configuration
+        run: node .github/scripts/check-lume-config.mjs
+
+      - name: Enforce static security controls
+        run: node .github/scripts/check-lume-security.mjs
+
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Install locked quality tools
+        run: npm ci --ignore-scripts
+
+      - name: Audit quality-tool dependencies
+        run: npm audit --audit-level=high
+
+      - name: Validate HTML
+        run: npm run check:lume:html
+
+      - name: Run Lighthouse budgets
+        run: |
+          mkdir -p .lighthouseci
+          python3 -m http.server 4173 --directory lume-riviera > /tmp/lume-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in 1 2 3 4 5; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          npx lighthouse http://127.0.0.1:4173/ \
+            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+            --output=json \
+            --output-path=.lighthouseci/lume.json \
+            --quiet
+          npm run check:lume:lighthouse-report

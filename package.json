@@ -1,0 +1,20 @@
+{
+  "name": "ivan-kashuba-rd-github-io",
+  "private": true,
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "build:lume:metadata": "node .github/scripts/build-lume-metadata.mjs",
+    "check:lume": "npm run check:lume:syntax && npm run check:lume:config && npm run check:lume:security && npm run check:lume:html",
+    "check:lume:syntax": "node --check lume-riviera/app.js && node --check lume-riviera/sw.js",
+    "check:lume:config": "node .github/scripts/check-lume-config.mjs",
+    "check:lume:security": "node .github/scripts/check-lume-security.mjs",
+    "check:lume:html": "html-validate lume-riviera/index.html",
+    "check:lume:lighthouse-report": "node .github/scripts/check-lighthouse-report.mjs"
+  },
+  "devDependencies": {
+    "html-validate": "11.6.0",
+    "lighthouse": "13.4.1"
+  }
+}
