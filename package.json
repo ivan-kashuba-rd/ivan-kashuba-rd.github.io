@@ -10,7 +10,7 @@
     "check:lume:syntax": "node --check lume-riviera/app.js && node --check lume-riviera/sw.js",
     "check:lume:config": "node .github/scripts/check-lume-config.mjs",
     "check:lume:security": "node .github/scripts/check-lume-security.mjs",
-    "check:lume:html": "html-validate lume-riviera/index.html",
+    "check:lume:html": "html-validate lume-riviera/index.html lume-riviera/launch-plan.html",
     "check:lume:lighthouse-report": "node .github/scripts/check-lighthouse-report.mjs"
   },
   "devDependencies": {

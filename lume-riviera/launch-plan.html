@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self'; style-src-attr 'none'; script-src 'none'; script-src-attr 'none'; connect-src 'none'; manifest-src 'none'; worker-src 'none'; media-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f6f1e8">
+  <title>LUMÉ Riviera — план запуска и передачи</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="launch-plan.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">К плану</a>
+
+  <header class="document-header">
+    <a class="brand" href="./" aria-label="Открыть демоверсию LUMÉ Riviera">
+      <img src="assets/favicon.svg" alt="" width="42" height="42">
+      <span>LUMÉ <small>RIVIERA</small></span>
+    </a>
+    <div class="document-kind">План запуска · версия для передачи</div>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Рабочая карта проекта</p>
+        <h1>Что нужно сделать,<br><em>чтобы сайт работал полноценно</em></h1>
+        <p class="hero-copy">Документ для владельца бизнеса, разработчика и специалиста по безопасности. Он фиксирует готовую основу, обязательные решения до запуска и критерии приёмки.</p>
+      </div>
+      <aside class="status-card" aria-label="Текущий статус">
+        <span class="status-pill">Сейчас: безопасное demo</span>
+        <strong>Основа готова</strong>
+        <p>Сайт не хранит данные клиентов и не принимает оплату. Публикация как рабочего сайта блокируется, пока не заполнены реальные данные бизнеса.</p>
+      </aside>
+    </section>
+
+    <section class="summary-grid" aria-label="Краткое резюме">
+      <article>
+        <span>01</span>
+        <strong>Можно продавать</strong>
+        <p>Как готовый дизайн и техническую основу с документированной адаптацией.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <strong>Нельзя включать вслепую</strong>
+        <p>Реальную запись, оплату, аналитику и CRM без выбора владельцев и провайдеров.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <strong>Рекомендация</strong>
+        <p>Оставить витрину статической, а запись и оплату передать зрелым внешним сервисам.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Уже реализовано</p>
+        <h2>Безопасная стартовая точка</h2>
+      </div>
+      <div class="done-grid">
+        <ul class="checklist complete">
+          <li>Четыре языка, адаптивная вёрстка, каталог и сценарий записи.</li>
+          <li>Режимы <code>demo</code> и <code>production</code> с безопасной блокировкой неполной настройки.</li>
+          <li>Единая конфигурация бренда, контактов, услуг, SEO и канала записи.</li>
+          <li>WhatsApp, телефон, внешний booking-сервис или отключённая запись.</li>
+        </ul>
+        <ul class="checklist complete">
+          <li>CSP, защитные HTTP-заголовки, безопасный Service Worker и минимальный сбор данных.</li>
+          <li>Проверки конфигурации, опасных DOM-операций, секретов и Lighthouse в CI.</li>
+          <li>Автогенерация метаданных, sitemap, robots и структурированных данных.</li>
+          <li>Документы по адаптации, безопасности, продаже и сбору данных клиента.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Критический путь</p>
+          <h2>Шесть этапов до запуска</h2>
+        </div>
+        <p>Production включается только после выполнения этапов 1–5. Этап 6 начинается в день публикации.</p>
+      </div>
+
+      <ol class="roadmap">
+        <li>
+          <div class="step-number">1</div>
+          <div>
+            <h3>Зафиксировать владельца и требования <span>Блокирует всё остальное</span></h3>
+            <ul>
+              <li>Юридическое лицо, страна работы, целевая аудитория и ответственное лицо.</li>
+              <li>Услуги, цены, языки, часы, адрес, правила отмены и возврата.</li>
+              <li>Кому принадлежат домен, GitHub, хостинг, почта, CRM и платёжный аккаунт.</li>
+              <li>Заполнить <a href="CLIENT-QUESTIONNAIRE.md">анкету клиента</a>; секреты и пароли в неё не добавлять.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="step-number">2</div>
+          <div>
+            <h3>Заменить демонстрационный контент <span>Контент и право</span></h3>
+            <ul>
+              <li>Логотип, фото с подтверждёнными правами, контакты, адрес, цены и реальные отзывы.</li>
+              <li>Утверждённые Privacy/KVKK notice, условия записи, отмены, возврата и данные контролёра.</li>
+              <li>Сроки хранения, получатели данных и трансграничная передача для WhatsApp/CRM.</li>
+              <li>Удалить метаданные геолокации из фото; проверить каждую языковую версию.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="step-number">3</div>
+          <div>
+            <h3>Подготовить домен и инфраструктуру <span>Владение и доступы</span></h3>
+            <ul>
+              <li>Домен регистрирует бизнес: passkey/MFA, registrar lock, auto-renew, DNSSEC и безопасное восстановление.</li>
+              <li>Хостинг с HTTPS и настоящими заголовками из <code>_headers</code>; закрытый preview для материалов клиента.</li>
+              <li>GitHub: минимум администраторов, MFA, защищённая <code>main</code>, обязательный CI и review.</li>
+              <li>Почта бизнеса: SPF, DKIM и поэтапный DMARC; проверить TLS, DNS и страницу 404.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="step-number">4</div>
+          <div>
+            <h3>Подключить запись и, если нужно, оплату <span>Внешние провайдеры</span></h3>
+            <ul>
+              <li>Для старта выбрать WhatsApp Business или booking/CRM SaaS с MFA, ролями, журналом, экспортом и удалением.</li>
+              <li>Зафиксировать договор/DPA, хранение, backup, уведомление об инцидентах и порядок выгрузки при смене сервиса.</li>
+              <li>Оплату вести через Hosted Checkout/Payment Link; сайт не должен получать PAN/CVC карты.</li>
+              <li>Сотрудникам выдать личные учётные записи с минимальными правами, без общих паролей.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="step-number">5</div>
+          <div>
+            <h3>Собрать production и принять результат <span>Тестирование</span></h3>
+            <ul>
+              <li>Заполнить <code>site.config.json</code>, сгенерировать метаданные и только затем включить <code>production</code>.</li>
+              <li>Прогнать CI, Lighthouse и ручной тест четырёх языков, мобильных устройств, клавиатуры и записи.</li>
+              <li>Проверить реального адресата каждой заявки, юридические ссылки, заголовки, CSP, отсутствие секретов и ошибок.</li>
+              <li>Провести DAST на staging только с письменным разрешением; при backend/оплате — независимый pentest.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="step-number">6</div>
+          <div>
+            <h3>Передать и сопровождать <span>После запуска</span></h3>
+            <ul>
+              <li>Передать владельческие аккаунты, recovery-коды, договоры, инструкции и контакты аварийной остановки.</li>
+              <li>Включить мониторинг доступности, TLS/DNS, ошибок, зависимостей и подозрительных изменений.</li>
+              <li>Ежемесячно проверять доступы и домен; ежеквартально — восстановление backup и сценарий инцидента.</li>
+              <li>Определить срок поддержки, время реакции, ответственных и процедуру отключения записи/оплаты.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section decision-section">
+      <div class="section-heading">
+        <p class="eyebrow">Архитектурное решение</p>
+        <h2>Нужен ли собственный backend или CRM?</h2>
+      </div>
+      <div class="recommendation">
+        <div class="recommendation-mark">Рекомендуется сейчас</div>
+        <h3>Нет — не создавать собственную CRM до появления подтверждённой потребности.</h3>
+        <p>Для первого клиента безопаснее и дешевле: статический <code>www</code> + зрелый сервис записи + hosted-оплата. Собственная система добавляет аутентификацию, персональные данные, резервные копии, аудит, уязвимости API и постоянную эксплуатацию.</p>
+      </div>
+      <div class="decision-grid">
+        <article>
+          <h3>Выбрать готовый сервис, если</h3>
+          <ul>
+            <li>нужны расписание, напоминания, сотрудники и простая база клиентов;</li>
+            <li>процесс укладывается в типовой booking;</li>
+            <li>важны быстрый запуск и предсказуемая поддержка.</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Проектировать backend отдельно, если</h3>
+          <ul>
+            <li>есть уникальные правила ресурсов, филиалов, комиссий или интеграций;</li>
+            <li>требования нельзя закрыть настройкой зрелого SaaS;</li>
+            <li>есть отдельный бюджет на разработку, security review и сопровождение.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="backend-note">
+        <strong>Если backend всё же нужен:</strong>
+        отдельный приватный репозиторий и staging; управляемый Identity Provider с MFA/passkeys; серверная авторизация каждого объекта; валидация и rate limits; подписанные идемпотентные webhooks; шифрование и проверяемые backup; минимальные логи без телефонов и токенов; OWASP ASVS Level 2 и pentest перед оплатой.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Роли</p>
+        <h2>Кто принимает и подтверждает работу</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Роль</th>
+              <th>Ответственность</th>
+              <th>Результат</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Владелец бизнеса</td>
+              <td>Реквизиты, контент, процессы, поставщики, право и финальное согласование</td>
+              <td>Подписанная анкета и приёмка</td>
+            </tr>
+            <tr>
+              <td>Разработчик / интегратор</td>
+              <td>Конфигурация, домен, сборка, интеграция, тесты и документация</td>
+              <td>Зелёный CI и release</td>
+            </tr>
+            <tr>
+              <td>Юрист / бухгалтер</td>
+              <td>KVKK/GDPR, договоры, сроки хранения, возвраты, налоги и чек</td>
+              <td>Утверждённые тексты и правила</td>
+            </tr>
+            <tr>
+              <td>Провайдер записи / оплаты</td>
+              <td>MFA, роли, журнал, backup, DPA, PCI-область и инциденты</td>
+              <td>Рабочие production-аккаунты</td>
+            </tr>
+            <tr>
+              <td>Специалист по безопасности</td>
+              <td>Threat model, проверка конфигурации, DAST/pentest по согласованному scope</td>
+              <td>Отчёт без критичных рисков</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section acceptance">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Gate перед публикацией</p>
+          <h2>Сайт можно запускать, когда</h2>
+        </div>
+        <p>Каждый пункт имеет названного владельца и доказательство выполнения.</p>
+      </div>
+      <ul class="checklist gate-list">
+        <li>Клиент владеет доменом и всеми ключевыми аккаунтами; MFA и recovery проверены.</li>
+        <li>Production-конфигурация проходит автоматическую проверку без исключений.</li>
+        <li>Все контакты, цены, отзывы, фото, schema.org и юридические ссылки реальны и утверждены.</li>
+        <li>Тестовая запись дошла правильному сотруднику; оплата, если есть, прошла в sandbox и production.</li>
+        <li>HTTPS, DNS, CSP и защитные заголовки проверены на фактическом домене.</li>
+        <li>CI зелёный; нет high/critical зависимостей, секретов и ошибок браузерной консоли.</li>
+        <li>Есть процедура backup/restore, инцидента, удаления данных и смены провайдера.</li>
+        <li>Подписан акт передачи с границами поддержки и ответственными контактами.</li>
+      </ul>
+    </section>
+
+    <section class="section danger-section">
+      <div class="section-heading">
+        <p class="eyebrow">Стоп-сигналы</p>
+        <h2>Чего нельзя делать</h2>
+      </div>
+      <div class="danger-grid">
+        <p>Класть API-ключи, пароли, CRM-токены или персональные данные в HTML, JavaScript, конфигурацию или публичный GitHub.</p>
+        <p>Принимать данные карты на этом сайте, хранить CVC или отправлять платёж через один лишь browser JavaScript.</p>
+        <p>Добавлять свободное поле для медицинских сведений, аллергий и фотографий без отдельного правового и технического решения.</p>
+        <p>Считать <code>noindex</code> защитой доступа: закрытые материалы должны быть за аутентификацией, а не только скрыты от поисковика.</p>
+        <p>Использовать общие учётные записи сотрудников, SMS как единственный фактор CRM или пароли в переписке.</p>
+        <p>Сканировать production, проводить pentest или менять DNS без письменного scope, окна работ и плана отката.</p>
+      </div>
+    </section>
+
+    <section class="handover">
+      <div>
+        <p class="eyebrow">Пакет передачи</p>
+        <h2>Что отправить вместе с сайтом</h2>
+      </div>
+      <ul>
+        <li>Эту страницу и ссылку на demo/preview</li>
+        <li><a href="README.md">README</a> и <a href="CUSTOMIZATION.md">инструкцию адаптации</a></li>
+        <li><a href="SECURITY.md">модель безопасного запуска</a></li>
+        <li><a href="CLIENT-QUESTIONNAIRE.md">анкету клиента</a></li>
+        <li>Коммерческое предложение, scope и критерии приёмки</li>
+        <li>Матрицу аккаунтов, владельцев и аварийных контактов</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p><strong>LUMÉ Riviera</strong> · План запуска и передачи</p>
+      <p>Этот документ — технический план, а не юридическое заключение или гарантия абсолютной безопасности.</p>
+    </footer>
+  </main>
+</body>
+</html>

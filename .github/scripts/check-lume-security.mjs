@@ -7,15 +7,18 @@ const repository = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const site = resolve(repository, 'lume-riviera');
 const read = path => readFileSync(resolve(site, path), 'utf8');
 const html = read('index.html');
+const plan = read('launch-plan.html');
 const app = read('app.js');
 const worker = read('sw.js');
 const headers = read('_headers');
 const workflow = readFileSync(resolve(repository, '.github/workflows/lume-security.yml'), 'utf8');
 const checkedFiles = [
   html,
+  plan,
   app,
   worker,
   read('styles.css'),
+  read('launch-plan.css'),
   read('site.config.json'),
   read('site-config.schema.json'),
   read('manifest.webmanifest'),
@@ -69,6 +72,14 @@ assert(!/\son[a-z]+\s*=/i.test(html), 'An inline event handler was added to inde
 assert(!/\sstyle\s*=/i.test(html), 'An inline style was added to index.html.');
 assert(!/<script(?![^>]*type="application\/ld\+json")(?![^>]*\bsrc="app\.js")/i.test(html),
   'Only the JSON-LD block and the local app.js script are allowed.');
+
+assert(/<meta\b[^>]*name="robots"[^>]*content="noindex,nofollow,noarchive"/i.test(plan),
+  'The handover plan must remain excluded from search indexing.');
+assert(!/<script\b/i.test(plan), 'Scripts are not allowed on the handover plan.');
+assert(!/\son[a-z]+\s*=/i.test(plan), 'An inline event handler was added to the handover plan.');
+assert(!/\sstyle\s*=/i.test(plan), 'An inline style was added to the handover plan.');
+assert(headers.includes('X-Robots-Tag: noindex, nofollow, noarchive'),
+  'The handover plan is missing its X-Robots-Tag deployment header.');
 
 for (const anchor of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/gi)) {
   assert(/\brel="[^"]*\bnoopener\b[^"]*\bnoreferrer\b[^"]*"/i.test(anchor[0]),
