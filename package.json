@@ -15,7 +15,7 @@
     "check:lume:lighthouse-report": "node .github/scripts/check-lighthouse-report.mjs"
   },
   "devDependencies": {
-    "html-validate": "11.6.0",
+    "html-validate": "11.14.0",
     "lighthouse": "13.4.1"
   }
 }
