@@ -3,78 +3,126 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Small-Molecule Docking · Ivan Kashuba</title>
   <meta name="description" content="Coursework case: binding-site analysis and small-molecule docking to Influenza A H3N2 hemagglutinin using ProteinsPlus, DoGSite3, JAMDA and PoseEdit.">
   <meta name="author" content="Ivan Kashuba">
+  <link rel="canonical" href="https://ivan-kashuba-rd.github.io/molecular-docking/">
   <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ivan-kashuba-rd.github.io/molecular-docking/">
   <meta property="og:title" content="Small-Molecule Docking to Influenza A H3N2 Hemagglutinin">
   <meta property="og:description" content="An exploratory coursework workflow covering target selection, structural-model review, binding-site prediction, docking and interaction analysis.">
-  <meta property="og:url" content="https://ivan-kashuba-rd.github.io/molecular-docking/">
   <meta property="og:image" content="https://ivan-kashuba-rd.github.io/assets/docking-dinaciclib.png">
   <meta property="og:image:alt" content="Dinaciclib docking result and selected non-covalent interactions">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://ivan-kashuba-rd.github.io/molecular-docking/">
   <meta name="theme-color" content="#07111f">
-  <title>Small-Molecule Docking · Ivan Kashuba</title>
-  <style>
-    :root{--bg:#06101d;--card:#0d1d30;--card2:#11273f;--line:rgba(118,203,255,.22);--text:#eef7ff;--muted:#a8bed0;--soft:#cbdce8;--accent:#59c8ff;--accent2:#7ef0d2;--max:1100px}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 14% 5%,rgba(53,152,255,.16),transparent 28%),radial-gradient(circle at 86% 22%,rgba(50,233,196,.09),transparent 25%),linear-gradient(180deg,var(--bg),#071421 55%,var(--bg));line-height:1.65}
-    a{color:inherit}.wrap{width:min(calc(100% - 32px),var(--max));margin:auto}
-    nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(16px);background:rgba(6,16,29,.84);border-bottom:1px solid var(--line)}
-    .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:850;text-decoration:none}.nav-actions{display:flex;align-items:center;gap:10px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(17,39,63,.75);text-decoration:none;font-weight:800}.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border:0;color:#04111b}
-    .lang{border:1px solid var(--line);border-radius:999px;padding:9px 12px;background:rgba(17,39,63,.75);color:var(--text);font-weight:800;cursor:pointer}
-    header{padding:76px 0 36px}.eyebrow{color:var(--accent2);font-size:.78rem;font-weight:850;letter-spacing:.15em;text-transform:uppercase}h1{max-width:900px;margin:.25em 0 .25em;font-size:clamp(2.4rem,6vw,5rem);line-height:1;letter-spacing:-.05em}.lead{max-width:830px;color:var(--soft);font-size:clamp(1.02rem,2vw,1.25rem)}
-    .notice{margin-top:22px;padding:14px 16px;border-left:3px solid var(--accent2);border-radius:0 12px 12px 0;background:rgba(126,240,210,.07);color:var(--muted)}
-    main{padding:10px 0 70px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(17,39,63,.88),rgba(13,29,48,.9));box-shadow:0 20px 60px rgba(0,0,0,.28);padding:24px}.card h2{margin:0 0 14px;font-size:1.4rem}.card p{color:var(--soft)}
-    figure{margin:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#05090e}figure img{display:block;width:100%;height:100%;min-height:360px;object-fit:contain}figcaption{padding:12px 14px;color:var(--muted);font-size:.86rem;border-top:1px solid var(--line)}
-    .steps{display:grid;gap:10px;counter-reset:step}.step{position:relative;padding:13px 14px 13px 50px;border:1px solid var(--line);border-radius:14px;background:rgba(17,39,63,.64)}.step:before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:13px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04111b;font-size:.73rem;font-weight:900}.step strong{display:block}.step span{display:block;color:var(--muted);font-size:.88rem;margin-top:3px}
-    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}.gallery figure img{min-height:260px}.wide{grid-column:1/-1}.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.links a{color:var(--accent);font-weight:800;text-decoration:none}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chip{padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(89,200,255,.07);font-size:.86rem}
-    footer{padding:0 0 56px;color:var(--muted);text-align:center}
-    body:not(.ru) [data-lang="ru"]{display:none!important}body.ru [data-lang="en"]{display:none!important}
-    @media(max-width:780px){.grid,.gallery{grid-template-columns:1fr}.wide{grid-column:auto}header{padding-top:52px}figure img{min-height:0;height:auto}.nav .btn{padding:9px 12px;font-size:.86rem}}
-  </style>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
-  <nav><div class="wrap nav"><a class="brand" href="/">IK / R&amp;D</a><div class="nav-actions"><a class="btn" href="/#bioinformatics" data-lang="en">Full portfolio</a><a class="btn" href="/#bioinformatics" data-lang="ru">Портфолио</a><button class="lang" id="langBtn" type="button">RU</button></div></div></nav>
-  <header><div class="wrap">
-    <div class="eyebrow">Coursework case · Structural bioinformatics</div>
-    <h1 data-lang="en">Small-Molecule Docking to Influenza A H3N2 Hemagglutinin</h1>
-    <h1 data-lang="ru">Докинг малых молекул с гемагглютинином Influenza A H3N2</h1>
-    <p class="lead" data-lang="en">An exploratory structure-based workflow covering target selection, structural-model review, binding-site prediction, molecular docking and interpretation of predicted protein–ligand interactions.</p>
-    <p class="lead" data-lang="ru">Учебный процесс структурного моделирования: выбор мишени, проверка структурной модели, прогнозирование сайта связывания, молекулярный докинг и интерпретация предполагаемых взаимодействий белок–лиганд.</p>
-    <p class="notice" data-lang="en">This is an in-silico coursework result, not experimental validation of antiviral activity. Reported scores must not be interpreted as evidence of therapeutic efficacy.</p>
-    <p class="notice" data-lang="ru">Это результат учебного расчёта in silico, а не экспериментальное подтверждение противовирусной активности. Приведённые оценки не являются доказательством терапевтической эффективности.</p>
-  </div></header>
-  <main><div class="wrap">
-    <div class="grid">
-      <figure><img src="../assets/binding-site-dogsite3.png" alt="DoGSite3 binding-pocket prediction for influenza hemagglutinin"><figcaption data-lang="en">DoGSite3 pocket detection and descriptor table. The largest predicted pocket was selected for the coursework comparison.</figcaption><figcaption data-lang="ru">Определение карманов в DoGSite3 и таблица дескрипторов. Для учебного сравнения выбран крупнейший предсказанный карман.</figcaption></figure>
-      <section class="card"><h2 data-lang="en">Workflow</h2><h2 data-lang="ru">Процесс работы</h2><div class="steps">
-        <div class="step"><strong data-lang="en">Target selection</strong><strong data-lang="ru">Выбор мишени</strong><span data-lang="en">Selected Influenza A H3N2 hemagglutinin, NCBI ABB46547.1.</span><span data-lang="ru">Выбран гемагглютинин Influenza A H3N2, NCBI ABB46547.1.</span></div>
-        <div class="step"><strong data-lang="en">Sequence-set curation</strong><strong data-lang="ru">Формирование выборки</strong><span data-lang="en">Narrowed the sequence period to meet the phylogenetic tool limit.</span><span data-lang="ru">Период выборки сужен с учётом ограничения инструмента филогенетики.</span></div>
-        <div class="step"><strong data-lang="en">Structural-model review</strong><strong data-lang="ru">Проверка модели</strong><span data-lang="en">Compared templates and reviewed model geometry with a Ramachandran plot.</span><span data-lang="ru">Сопоставлены шаблоны, геометрия модели проверена по карте Рамачандрана.</span></div>
-        <div class="step"><strong data-lang="en">Binding-site analysis</strong><strong data-lang="ru">Анализ сайта связывания</strong><span data-lang="en">Predicted and compared candidate pockets with DoGSite3.</span><span data-lang="ru">Кандидатные карманы спрогнозированы и сопоставлены в DoGSite3.</span></div>
-        <div class="step"><strong data-lang="en">Docking and pose review</strong><strong data-lang="ru">Докинг и анализ поз</strong><span data-lang="en">Prepared ligands, ran JAMDA and reviewed selected interactions in PoseEdit.</span><span data-lang="ru">Подготовлены лиганды, выполнен JAMDA-докинг и просмотр взаимодействий в PoseEdit.</span></div>
-      </div><div class="links"><a href="https://www.ncbi.nlm.nih.gov/protein/ABB46547.1" target="_blank" rel="noopener">NCBI ABB46547.1 ↗</a><a href="https://proteins.plus/" target="_blank" rel="noopener">ProteinsPlus ↗</a></div></section>
-      <section class="card wide"><h2 data-lang="en">Reported coursework outputs</h2><h2 data-lang="ru">Результаты учебных расчётов</h2><p data-lang="en">The figures below document selected poses and non-covalent interaction diagrams generated during the training workflow. Several candidate structures were not recognised or did not return valid scores, highlighting practical data-format and interoperability limitations.</p><p data-lang="ru">Ниже показаны выбранные позы и диаграммы нековалентных взаимодействий, полученные в учебном процессе. Некоторые структуры не распознавались или не давали корректных оценок, что показало практические ограничения форматов и совместимости данных.</p>
-        <div class="gallery">
-          <figure><img src="../assets/docking-dinaciclib.png" alt="Dinaciclib docking interaction diagram"><figcaption><strong>Dinaciclib · JAMDA −2.7395</strong></figcaption></figure>
-          <figure><img src="../assets/docking-ligand-2.png" alt="Additional ligand docking diagram"><figcaption><strong>Additional ligand 1 · JAMDA −2.4808</strong></figcaption></figure>
-          <figure><img src="../assets/docking-ligand-3.png" alt="Additional ligand docking diagram"><figcaption><strong>Additional ligand 2 · JAMDA −2.4527</strong></figcaption></figure>
-          <figure><img src="../assets/docking-ligand-4.png" alt="Additional ligand docking diagram"><figcaption><strong>Additional ligand 3 · JAMDA −2.1566</strong></figcaption></figure>
-        </div>
-        <div class="chips"><span class="chip">Target selection</span><span class="chip">Structural-model review</span><span class="chip">Binding-site prediction</span><span class="chip">Ligand preparation</span><span class="chip">Molecular docking</span><span class="chip">Interaction analysis</span><span class="chip">Critical interpretation</span></div>
-      </section>
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="../">IK / R&amp;D</a>
+    <div class="nav-right">
+      <div class="nav-links" id="navMenu">
+        <a href="../" data-lang="en">Portfolio</a><a href="../" data-lang="ru">Портфолио</a>
+        <a href="../#experience" data-lang="en">Experience</a><a href="../#experience" data-lang="ru">Опыт</a>
+        <a href="../#publications" data-lang="en">Publications</a><a href="../#publications" data-lang="ru">Публикации</a>
+        <a href="mailto:ivan.med.tr@gmail.com">Email</a>
+      </div>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch theme">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="lang-btn" id="langBtn" type="button">RU</button>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navMenu">
+        <svg class="i-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
-  </div></main>
-  <footer><div class="wrap">© <span id="year"></span> Ivan Kashuba · Exploratory coursework case</div></footer>
-  <script>
-    const body=document.body,button=document.getElementById('langBtn');
-    if(new URLSearchParams(location.search).get('lang')==='ru')body.classList.add('ru');
-    function sync(){const ru=body.classList.contains('ru');button.textContent=ru?'EN':'RU';document.documentElement.lang=ru?'ru':'en'}
-    button.addEventListener('click',()=>{body.classList.toggle('ru');sync()});
-    document.getElementById('year').textContent=new Date().getFullYear();sync();
-  </script>
+  </div>
+</nav>
+
+<header style="padding-bottom:24px">
+  <div class="wrap">
+    <div class="eyebrow" data-lang="en">Coursework case · Structural bioinformatics</div>
+    <div class="eyebrow" data-lang="ru">Учебный кейс · Структурная биоинформатика</div>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4.3rem);line-height:1.04;max-width:950px" data-lang="en">Small-Molecule Docking to Influenza A H3N2 Hemagglutinin</h1>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4.3rem);line-height:1.04;max-width:950px" data-lang="ru">Докинг малых молекул с гемагглютинином Influenza A H3N2</h1>
+    <p style="max-width:830px;color:var(--soft);font-size:1.08rem" data-lang="en">Coursework exercise in molecular docking with ProteinsPlus: protein and ligand preparation, binding-site analysis, docking-pose review and interpretation of non-covalent interaction diagrams. All figures show ligands docked to the same hemagglutinin target used for the dinaciclib calculation.</p>
+    <p style="max-width:830px;color:var(--soft);font-size:1.08rem" data-lang="ru">Учебная работа по молекулярному докингу в ProteinsPlus: подготовка белка и лигандов, анализ сайта связывания, просмотр поз докинга и интерпретация диаграмм нековалентных взаимодействий. На всех изображениях показаны лиганды, рассчитанные для той же мишени — гемагглютинина, использованного в расчёте динациклиба.</p>
+    <p class="coursework-note note" style="max-width:830px" data-lang="en">This is an in-silico coursework result, not experimental validation of antiviral activity. The scores are reported as generated in the training workflow and should not be interpreted as evidence of therapeutic efficacy.</p>
+    <p class="coursework-note note" style="max-width:830px" data-lang="ru">Это результат учебного расчёта in silico, а не экспериментальное подтверждение противовирусной активности. Значения приведены в том виде, в котором они были получены в учебном процессе, и не являются доказательством терапевтической эффективности.</p>
+  </div>
+</header>
+
+<main>
+<section style="padding-top:24px">
+  <div class="wrap">
+    <article class="card">
+      <span class="project-tag">ProteinsPlus · DoGSite3 · JAMDA · PoseEdit</span>
+      <h4 data-lang="en">Workflow</h4><h4 data-lang="ru">Процесс работы</h4>
+      <div class="workflow-case">
+        <figure class="workflow-visual"><a href="../assets/binding-site-dogsite3.png" target="_blank" rel="noopener"><img src="../assets/binding-site-dogsite3.webp" width="554" height="316" decoding="async" alt="DoGSite3 binding-pocket detection for influenza hemagglutinin"></a><figcaption><span data-lang="en">DoGSite3 pocket detection and descriptor table. The largest predicted pocket was selected for the coursework docking comparison.</span><span data-lang="ru">Определение карманов в DoGSite3 и таблица их дескрипторов. Для учебного сравнения докинга был выбран крупнейший предсказанный карман.</span></figcaption></figure>
+        <div class="workflow-steps">
+          <div class="workflow-step"><strong data-lang="en">Target and sequence search</strong><strong data-lang="ru">Выбор мишени и поиск последовательности</strong><span data-lang="en">Selected Influenza A H3N2 hemagglutinin, NCBI accession ABB46547.1, and reviewed related sequences.</span><span data-lang="ru">Выбран гемагглютинин Influenza A H3N2 с идентификатором NCBI ABB46547.1; выполнен просмотр родственных последовательностей.</span></div>
+          <div class="workflow-step"><strong data-lang="en">Phylogenetic scope</strong><strong data-lang="ru">Филогенетическая выборка</strong><span data-lang="en">Narrowed the initial 1980–1990 result set to 1980–1985 to meet the tree-building tool limit of fewer than 1,000 sequences.</span><span data-lang="ru">Исходная выборка 1980–1990 годов была сужена до 1980–1985 годов из-за ограничения инструмента построения дерева — менее 1000 последовательностей.</span></div>
+          <div class="workflow-step"><strong data-lang="en">Structural-model review</strong><strong data-lang="ru">Проверка структурной модели</strong><span data-lang="en">Compared templates using sequence identity and the reported Å-scale structural difference, then reviewed model geometry with a Ramachandran plot.</span><span data-lang="ru">Шаблоны сравнивались по идентичности последовательности и указанному структурному различию в Å; геометрия модели проверялась по карте Рамачандрана.</span></div>
+          <div class="workflow-step"><strong data-lang="en">Binding-site selection</strong><strong data-lang="ru">Определение сайта связывания</strong><span data-lang="en">Used DoGSite3 to predict pockets from the 3D structure, compared the five largest candidates and noted similar pockets across the hemagglutinin trimer.</span><span data-lang="ru">DoGSite3 использовался для прогнозирования карманов по 3D-структуре; сопоставлены пять крупнейших кандидатов и отмечены сходные карманы в тримере гемагглютинина.</span></div>
+          <div class="workflow-step"><strong data-lang="en">Docking and interaction review</strong><strong data-lang="ru">Докинг и анализ взаимодействий</strong><span data-lang="en">Prepared or converted ligand files, ran JAMDA docking, exported results and reviewed selected poses and 2D non-covalent interactions in PoseEdit.</span><span data-lang="ru">Подготовлены и преобразованы файлы лигандов, выполнен докинг JAMDA, выгружены результаты и проанализированы выбранные позы и 2D-диаграммы нековалентных взаимодействий в PoseEdit.</span></div>
+        </div>
+      </div>
+      <div class="workflow-links"><a href="https://www.ncbi.nlm.nih.gov/protein/ABB46547.1" target="_blank" rel="noopener">NCBI ABB46547.1 ↗</a><a href="https://proteins.plus/" target="_blank" rel="noopener">ProteinsPlus ↗</a></div>
+      <h5 data-lang="en">What the exercise demonstrates</h5><h5 data-lang="ru">Какие навыки показывает работа</h5>
+      <div class="chips" data-lang="en"><span class="chip">Target selection</span><span class="chip">Sequence-set curation</span><span class="chip">Tool-limit awareness</span><span class="chip">Structural-model review</span><span class="chip">Pocket ranking</span><span class="chip">Ligand-format troubleshooting</span><span class="chip">Critical interpretation</span><span class="chip">Transparent limitations</span></div>
+      <div class="chips" data-lang="ru"><span class="chip">Выбор мишени</span><span class="chip">Формирование выборки</span><span class="chip">Учёт ограничений инструментов</span><span class="chip">Проверка структурной модели</span><span class="chip">Ранжирование карманов</span><span class="chip">Работа с форматами лигандов</span><span class="chip">Критическая интерпретация</span><span class="chip">Прозрачное описание ограничений</span></div>
+      <p class="note" style="margin-top:16px" data-lang="en">The exercise also exposed practical data-quality and interoperability issues: several candidate compounds were not recognized or did not return a valid score. This required alternative structure generation or format conversion and a clear distinction between missing results and interpretable docking outputs.</p>
+      <p class="note" style="margin-top:16px" data-lang="ru">Работа также выявила практические проблемы качества и совместимости данных: несколько соединений не распознавались инструментом или не давали корректной оценки. Это потребовало альтернативной генерации структуры или преобразования формата и чёткого отделения отсутствующих результатов от интерпретируемых выходных данных докинга.</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-title"><h3 data-lang="en">Reported coursework outputs</h3><h3 data-lang="ru">Результаты учебных расчётов</h3></div>
+    <div class="science-gallery" style="margin-top:0">
+      <figure class="science-figure"><a href="../assets/docking-dinaciclib.png" target="_blank" rel="noopener"><img src="../assets/docking-dinaciclib.webp" width="1124" height="492" loading="lazy" decoding="async" alt="Dinaciclib docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong>Dinaciclib · JAMDA −2.7395</strong><br><span data-lang="en">Predicted binding pose and selected non-covalent interactions.</span><span data-lang="ru">Предсказанная поза связывания и выбранные нековалентные взаимодействия.</span></figcaption></figure>
+      <figure class="science-figure"><a href="../assets/docking-ligand-2.png" target="_blank" rel="noopener"><img src="../assets/docking-ligand-2.webp" width="968" height="361" loading="lazy" decoding="async" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 1 · JAMDA −2.4808</strong><strong data-lang="ru">Дополнительный лиганд 1 · JAMDA −2.4808</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
+      <figure class="science-figure"><a href="../assets/docking-ligand-3.png" target="_blank" rel="noopener"><img src="../assets/docking-ligand-3.webp" width="1034" height="577" loading="lazy" decoding="async" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 2 · JAMDA −2.4527</strong><strong data-lang="ru">Дополнительный лиганд 2 · JAMDA −2.4527</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
+      <figure class="science-figure"><a href="../assets/docking-ligand-4.png" target="_blank" rel="noopener"><img src="../assets/docking-ligand-4.webp" width="900" height="322" loading="lazy" decoding="async" alt="Additional ligand docking interaction diagram for influenza hemagglutinin"></a><figcaption><strong data-lang="en">Additional ligand 3 · JAMDA −2.1566</strong><strong data-lang="ru">Дополнительный лиганд 3 · JAMDA −2.1566</strong><br><span data-lang="en">Interaction diagram for the same protein target.</span><span data-lang="ru">Диаграмма взаимодействий с той же белковой мишенью.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-title">
+      <h3 data-lang="en">Learning pathway</h3><h3 data-lang="ru">Направление развития</h3>
+      <p data-lang="en">A developing competence supported by introductory practical coursework, not a claim of senior bioinformatics expertise.</p>
+      <p data-lang="ru">Развиваемая компетенция, основанная на вводной практической подготовке, а не заявление об уровне опытного биоинформатика.</p>
+    </div>
+    <div class="grid">
+      <div class="card span-7">
+        <h4 data-lang="en">Bioinformatics and molecular modeling</h4><h4 data-lang="ru">Биоинформатика и молекулярное моделирование</h4>
+        <p data-lang="en">I am expanding my skills in protein–ligand interaction analysis, molecular docking, target and binding-site research, structural data interpretation, literature-based hypothesis development and basic phylogenetic analysis.</p>
+        <p data-lang="ru">Я развиваю навыки анализа взаимодействий белок–лиганд, молекулярного докинга, поиска мишеней и сайтов связывания, интерпретации структурных данных, формирования гипотез по литературе и базового филогенетического анализа.</p>
+        <h5 data-lang="en">Tools studied or used in training</h5><h5 data-lang="ru">Инструменты, изученные или применявшиеся в обучении</h5>
+        <div class="chips"><span class="chip">ProteinsPlus</span><span class="chip">PyMOL</span><span class="chip">AutoDockTools</span><span class="chip">Open Babel</span><span class="chip">SwissTargetPrediction</span><span class="chip">RCSB PDB</span><span class="chip">NCBI</span><span class="chip">PubMed</span><span class="chip">Cheminfo</span><span class="chip">Python basics</span></div>
+      </div>
+      <div class="card span-5">
+        <h4 data-lang="en">Current learning priorities</h4><h4 data-lang="ru">Текущие приоритеты обучения</h4>
+        <ul data-lang="en"><li>More reliable docking preparation, controls and interpretation.</li><li>Protein and ligand data handling in reproducible Python workflows.</li><li>Structural-biology databases and literature-driven validation.</li><li>Clear separation between exploratory computational results and experimentally validated conclusions.</li></ul>
+        <ul data-lang="ru"><li>Более надёжная подготовка докинга, контрольные проверки и интерпретация.</li><li>Обработка данных о белках и лигандах в воспроизводимых процессах Python.</li><li>Базы структурной биологии и проверка выводов по литературе.</li><li>Чёткое разделение предварительных вычислительных результатов и экспериментально подтверждённых выводов.</li></ul>
+      </div>
+    </div>
+    <p style="margin-top:26px"><a class="text-link" href="../" data-lang="en">← Back to the main portfolio</a><a class="text-link" href="../" data-lang="ru">← Вернуться к основному портфолио</a></p>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© <span id="year"></span> Ivan Kashuba · <span data-lang="en">Exploratory coursework case</span><span data-lang="ru">Учебный кейс</span></div></footer>
+<button id="topBtn" type="button" aria-label="Back to top">↑</button>
+<script src="../assets/site.js"></script>
 </body>
 </html>

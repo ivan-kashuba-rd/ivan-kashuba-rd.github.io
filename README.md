@@ -1,25 +1,23 @@
-# Ivan Kashuba - Personal Website v2
+# ivan-kashuba-rd.github.io
 
-Обновлённая двуязычная персональная страница с расширенной информацией из CV и résumé.
+Personal portfolio of **Ivan Kashuba**, materials scientist and process engineer: failure analysis, process development and scientific computing.
 
-## Что изменено
+**Live site:** https://ivan-kashuba-rd.github.io/
 
-- Добавлен более подробный профессиональный опыт без повторения одинаковых фактов в нескольких разделах.
-- Добавлены разделы о развитии в биоинформатике и молекулярном докинге.
-- Добавлен блок о создании простых сайтов и возможной интерактивности.
-- Добавлены четыре инженерных Python-проекта с прямыми ссылками.
-- Добавлены светлая и тёмная темы, переключатель языков и кнопка возврата наверх.
-- В комплект включены PDF-файлы подробного CV и двухстраничного résumé.
+## Structure
 
-## Как обновить сайт на GitHub Pages
+| Path | Content |
+| --- | --- |
+| `index.html` | Main portfolio (English / Russian) |
+| `molecular-docking/` | Coursework case: small-molecule docking to influenza A H3N2 hemagglutinin |
+| `web/` | Lightweight website projects |
+| `lume/`, `lume-joyful/`, `lume-riviera/` | LUMÉ Antalya website concept, three visual versions |
+| `usta-platform/` | Usta Platform local-services marketplace prototype |
+| `assets/` | Shared styles (`site.css`), script (`site.js`), images, favicon and social preview |
+| `Ivan_Kashuba_Detailed_CV.pdf` | Detailed CV |
 
-1. Распакуйте архив.
-2. Скопируйте все четыре файла в локальную папку репозитория `ivan-kashuba-rd.github.io`:
-   - `index.html`
-   - `Ivan_Kashuba_Detailed_CV.pdf`
-   - `Ivan_Kashuba_Resume.pdf`
-   - `README.md`
-3. Разрешите замену старых `index.html` и `README.md`.
-4. В GitHub Desktop укажите Summary: `Expand personal website content`.
-5. Нажмите **Commit to main**, затем **Push origin**.
-6. Через несколько минут обновите страницу `https://ivan-kashuba-rd.github.io/` сочетанием `Ctrl+F5`.
+Static site with no build step. Language and theme are switched on the client and remembered in the browser.
+
+## Contact
+
+ivan.med.tr@gmail.com · [LinkedIn](https://www.linkedin.com/in/ivan-kashuba) · [ORCID](https://orcid.org/0009-0002-8976-8886)
