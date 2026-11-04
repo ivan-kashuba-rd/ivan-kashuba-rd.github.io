@@ -20,4 +20,4 @@ Static site with no build step. Language and theme are switched on the client an
 
 ## Contact
 
-ivan.med.tr@gmail.com · [LinkedIn](https://www.linkedin.com/in/ivan-kashuba) · [ORCID](https://orcid.org/0009-0002-8976-8886)
+ivan.kashuba.cv@gmail.com · [LinkedIn](https://www.linkedin.com/in/ivan-kashuba) · [ORCID](https://orcid.org/0009-0002-8976-8886)
