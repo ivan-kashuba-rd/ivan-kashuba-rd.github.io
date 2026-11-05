@@ -14,10 +14,10 @@
     "privacyUrl": "",
     "termsUrl": "",
     "location": {
-      "mapUrl": "https://www.google.com/maps/search/?api=1&query=beauty+studio+Antalya",
-      "embedUrl": "https://www.openstreetmap.org/export/embed.html?bbox=30.674%2C36.870%2C30.735%2C36.905&layer=mapnik&marker=36.887%2C30.704",
+      "mapUrl": "",
+      "embedUrl": "",
       "address": "",
-      "locality": "Antalya",
+      "locality": "",
       "country": "TR"
     },
     "hours": {
@@ -36,7 +36,7 @@
   "features": {
     "favorites": true,
     "reviews": true,
-    "map": true,
+    "map": false,
     "currencySwitcher": true
   },
   "pricing": {

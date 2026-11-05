@@ -11,7 +11,7 @@ Personal portfolio of **Ivan Kashuba**, materials scientist and process engineer
 | `index.html` | Main portfolio (English / Russian) |
 | `molecular-docking/` | Coursework case: small-molecule docking to influenza A H3N2 hemagglutinin |
 | `web/` | Lightweight website projects |
-| `lume/`, `lume-joyful/`, `lume-riviera/` | LUMÉ Antalya website concept, three visual versions |
+| `lume/`, `lume-joyful/`, `lume-riviera/` | LUMÉ website concept, three visual versions |
 | `usta-platform/` | Usta Platform local-services marketplace prototype |
 | `assets/` | Shared styles (`site.css`), script (`site.js`), images, favicon and social preview |
 | `Ivan_Kashuba_Detailed_CV.pdf` | Detailed CV |

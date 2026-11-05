@@ -17,4 +17,4 @@ f:I[68027,["/lume-joyful/_next/static/chunks/0dbhjjzl8qfwv.js"],"default",1]
 c:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 10:I[27201,["/lume-joyful/_next/static/chunks/0dbhjjzl8qfwv.js"],"IconMark"]
 a:null
-e:[["$","title","0",{"children":"LUMÉ Antalya — Joyful Edition"}],["$","meta","1",{"name":"description","content":"Персональный уход и спокойная атмосфера для вашей естественной красоты."}],["$","meta","2",{"name":"codex-preview","content":"development"}],["$","link","3",{"rel":"shortcut icon","href":"/favicon.svg"}],["$","link","4",{"rel":"icon","href":"/favicon.svg"}],["$","$L10","5",{}]]
+e:[["$","title","0",{"children":"LUMÉ — Joyful Edition"}],["$","meta","1",{"name":"description","content":"Персональный уход и спокойная атмосфера для вашей естественной красоты."}],["$","meta","2",{"name":"codex-preview","content":"development"}],["$","link","3",{"rel":"shortcut icon","href":"/favicon.svg"}],["$","link","4",{"rel":"icon","href":"/favicon.svg"}],["$","$L10","5",{}]]
