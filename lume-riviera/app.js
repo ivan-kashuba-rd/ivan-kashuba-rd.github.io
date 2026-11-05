@@ -407,7 +407,8 @@ function applyLocalizedConfiguration() {
     inLanguage:validLangs,
     isAccessibleForFree:true
   };
-  $('#structuredData').textContent=JSON.stringify(structuredData);
+  // Not textContent: the page's Trusted Types policy blocks that on a script element.
+  $('#structuredData').firstChild.data=JSON.stringify(structuredData);
 }
 
 function setLanguage(lang, announce=true) {
