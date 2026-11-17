@@ -1,6 +1,6 @@
 # ivan-kashuba-rd.github.io
 
-Personal portfolio of **Ivan Kashuba**, materials scientist and process engineer: failure analysis, process development and scientific computing.
+Personal portfolio of **Ivan Kashuba**, materials researcher and process engineer: failure analysis, process development and scientific computing.
 
 **Live site:** https://ivan-kashuba-rd.github.io/
 
